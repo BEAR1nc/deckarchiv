@@ -72,7 +72,31 @@
    "name": "Kaalia B3",
    "tag": "Bracket 3",
    "list": "Commander\n1 Kaalia of the Vast\n\nDeck\n1 Giada, Font of Hope\n1 Resplendent Angel\n1 Righteous Valkyrie\n1 Archangel of Tithes\n1 Seraph of the Scales\n1 Liesa, Shroud of Dusk\n1 Shalai, Voice of Plenty\n1 Linvala, Keeper of Silence\n1 Angel of Finality\n1 Valkyrie Harbinger\n1 Angel of Sanctions\n1 Lyra Dawnbringer\n1 Baneslayer Angel\n1 Archangel Avacyn\n1 Herald of War\n1 Battle Angels of Tyr\n1 Archangel of Thune\n1 Angel of Destiny\n1 Aurelia, the Warleader\n1 Twilight Shepherd\n1 Admonition Angel\n1 Firemane Angel\n1 Gisela, Blade of Goldnight\n1 Angel of Despair\n1 Angel of Serenity\n1 Akroma, Angel of Fury\n1 Avacyn, Angel of Hope\n1 Akroma, Angel of Wrath\n1 Iona, Shield of Emeria\n1 Bishop of Wings\n1 Herald's Horn\n1 Patriarch's Bidding\n1 Starnheim Unleashed\n1 Elspeth Resplendent\n1 Sol Ring\n1 Arcane Signet\n1 Fellwar Stone\n1 Talisman of Conviction\n1 Talisman of Hierarchy\n1 Talisman of Indulgence\n1 Orzhov Signet\n1 Smothering Tithe\n1 Phyrexian Arena\n1 Black Market Connections\n1 Night's Whisper\n1 Read the Bones\n1 Demonic Tutor\n1 Diabolic Intent\n1 Swords to Plowshares\n1 Path to Exile\n1 Anguished Unmaking\n1 Vindicate\n1 Despark\n1 Terminate\n1 Chaos Warp\n1 Generous Gift\n1 Austere Command\n1 Vanquish the Horde\n1 Lightning Greaves\n1 Swiftfoot Boots\n1 Teferi's Protection\n1 Boros Charm\n1 Flawless Maneuver\n1 Command Tower\n1 Exotic Orchard\n1 Path of Ancestry\n1 Secluded Courtyard\n1 Unclaimed Territory\n1 Cavern of Souls\n1 Savai Triome\n1 Nomad Outpost\n1 Godless Shrine\n1 Sacred Foundry\n1 Blood Crypt\n1 Isolated Chapel\n1 Clifftop Retreat\n1 Dragonskull Summit\n1 Shattered Sanctum\n1 Sundown Pass\n1 Haunted Ridge\n1 Vault of Champions\n1 Spectator Seating\n1 Luxury Suite\n1 Battlefield Forge\n1 Caves of Koilos\n1 Sulfurous Springs\n1 Vault of the Archangel\n1 Fabled Passage\n1 Scoured Barrens\n1 Smoldering Marsh\n1 Emeria's Call\n4 Plains\n2 Swamp\n2 Mountain",
-   "picks": {}
+   "picks": {
+    "Kaalia of the Vast": "ef099f25-2b0b-4028-8490-fbc859e35f6c",
+    "Bishop of Wings": "ca42da05-330d-4050-a580-dc00f6faff24",
+    "Giada, Font of Hope": "0b235e9f-a8a6-45d7-b301-bc6db752dda8",
+    "Resplendent Angel": "e827612d-5a43-4a29-b0c1-ab7f3285ad98",
+    "Righteous Valkyrie": "02fb5f9f-8750-4eb5-a03a-6dacc60e0b90",
+    "Angel of Finality": "baaabd52-3aa9-4e2f-9369-d4db8b405ba8",
+    "Archangel of Tithes": "2f338a9f-2af0-4e0f-9de1-17fc51145c46",
+    "Battle Angels of Tyr": "8b3c8050-6acb-4d53-ba46-646ca88d4eb6",
+    "Linvala, Keeper of Silence": "9e8cf4ef-0545-4876-b089-bfc723b521ed",
+    "Seraph of the Scales": "e1eb4816-2f33-4800-a9f0-11fec4ac4cd0",
+    "Shalai, Voice of Plenty": "882d3475-4fb9-49ad-bc19-e6331428701b",
+    "Archangel of Thune": "f6929b98-e81c-48b9-87d8-11c8830974ce",
+    "Lyra Dawnbringer": "44899568-7aac-47ae-9f7d-b5414f65625b",
+    "Admonition Angel": "4800ebc2-d5a7-4c26-a2f7-943a540ae47e",
+    "Aurelia, the Warleader": "1052bdb9-aa3c-4ec1-8f03-9fee90194518",
+    "Angel of Despair": "6b229da4-609a-44e6-bf70-fb18bae25ed5",
+    "Akroma, Angel of Fury": "311d471a-801e-4d79-8f5e-bc621868fa05",
+    "Akroma, Angel of Wrath": "2886a989-5572-4ca0-a77b-e534d7934336",
+    "Avacyn, Angel of Hope": "446f001c-2164-4c3e-8017-5f4ea33e5d08",
+    "Iona, Shield of Emeria": "6197b59e-1652-496c-a038-e2eb88ecf017",
+    "Elspeth Resplendent": "66d75499-1be8-42a0-8520-9cd8adbd0ca3",
+    "Swords to Plowshares": "0e7ff4dc-af63-4342-9a44-d059e62bd14c",
+    "Despark": "c2743ca3-8b4a-429a-9f9b-090d632b6601"
+   }
   },
   "urtet-myr-bracket3": {
    "name": "Urtet B3",
