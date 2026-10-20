@@ -156,7 +156,26 @@
    "name": "Urtet B3",
    "tag": "Bracket 3",
    "list": "Commander\n1 Urtet, Remnant of Memnarch\n\nDeck\n1 Alloy Myr\n1 Copper Myr\n1 Darksteel Myr\n1 Gold Myr\n1 Iron Myr\n1 Leaden Myr\n1 Silver Myr\n1 Palladium Myr\n1 Plague Myr\n1 Myr Convert\n1 Ichorclaw Myr\n1 Myr Galvanizer\n1 Myr Retriever\n1 Myr Battlesphere\n1 Myr Sire\n1 Myr Propagator\n1 Myr Enforcer\n1 Lodestone Myr\n1 Hovermyr\n1 Perilous Myr\n1 Shimmer Myr\n1 Myr Superion\n1 Sarcomite Myr\n1 Knighted Myr\n1 Universal Automaton\n1 Changeling Outcast\n1 Mirror Entity\n1 Realmwalker\n1 Taurean Mauler\n1 Adaptive Automaton\n1 Steel Overseer\n1 Etherium Sculptor\n1 Foundry Inspector\n1 Jhoira, Weatherlight Captain\n1 Brudiclad, Telchor Engineer\n1 Urza, Prince of Kroog\n1 Roaming Throne\n1 Sol Ring\n1 Arcane Signet\n1 Chromatic Lantern\n1 Myr Turbine\n1 Myr Matrix\n1 Myr Incubator\n1 Myr Reservoir\n1 Herald's Horn\n1 Vanquisher's Banner\n1 Skullclamp\n1 Mystic Forge\n1 Maskwood Nexus\n1 Coat of Arms\n1 Kindred Discovery\n1 Ashnod's Altar\n1 Swords to Plowshares\n1 Path to Exile\n1 Chaos Warp\n1 Beast Within\n1 Generous Gift\n1 Anguished Unmaking\n1 Assassin's Trophy\n1 Despark\n1 Counterspell\n1 Heroic Intervention\n1 Flawless Maneuver\n1 Akroma's Will\n1 Teferi's Protection\n1 Command Tower\n1 Exotic Orchard\n1 Path of Ancestry\n1 Secluded Courtyard\n1 Unclaimed Territory\n1 Cavern of Souls\n1 City of Brass\n1 Mana Confluence\n1 Spire of Industry\n1 Fabled Passage\n1 Evolving Wilds\n1 Terramorphic Expanse\n1 Myriad Landscape\n1 Jetmir's Garden\n1 Raffine's Tower\n1 Spara's Headquarters\n1 Xander's Lounge\n1 Ziatora's Proving Ground\n1 Indatha Triome\n1 Ketria Triome\n1 Raugrin Triome\n1 Savai Triome\n1 Zagoth Triome\n1 Jungle Shrine\n1 Arcane Sanctum\n1 Crumbling Necropolis\n1 Savage Lands\n1 Seaside Citadel\n1 Nomad Outpost\n1 Plains\n1 Island\n1 Swamp\n1 Mountain\n1 Forest",
-   "picks": {}
+   "picks": {
+    "Urtet, Remnant of Memnarch": "7aa01ab4-26b0-49dc-8514-b3850d355a21",
+    "Copper Myr": "a52b2dc4-4fb3-4ddf-bdb6-c63e8c8efc09",
+    "Etherium Sculptor": "b0556f20-1ea8-4ab5-9a09-dec9959f017b",
+    "Gold Myr": "12331b1d-a561-4a8c-8e85-ed3a607ce508",
+    "Iron Myr": "af2e2732-a354-4e5d-a11d-ef9c363b6563",
+    "Leaden Myr": "ec221d0f-1a3a-47ab-9bd2-5dc240a29154",
+    "Myr Convert": "9df0adcf-7ad0-4d70-8dcd-28f69471495b",
+    "Myr Retriever": "7f0149d4-0731-474a-a1c3-28c25e486c14",
+    "Myr Sire": "11ba43d1-e879-40e0-b49c-e009deb7e3aa",
+    "Steel Overseer": "7601fbf2-916f-44b2-837a-201fd8304613",
+    "Foundry Inspector": "16debeb1-fb2b-4172-b6da-726416d4fb38",
+    "Realmwalker": "e8a0877c-5217-422d-89b8-92f951068693",
+    "Sarcomite Myr": "8636ba4f-07ef-4327-8e4a-6c2d8f90b264",
+    "Shimmer Myr": "4f61479b-05e1-4c89-bf11-b79c06ace5e2",
+    "Jhoira, Weatherlight Captain": "6c275f66-32dd-4f40-9b6e-f4423c8e7ec1",
+    "Roaming Throne": "c321a867-cb86-4c0e-9719-be490f578925",
+    "Urza, Prince of Kroog": "8f944c2f-c84f-4986-9e6f-ec8e171298c6",
+    "Path to Exile": "22e08a78-55b7-46b0-bd1a-a51548fc1861"
+   }
   },
   "atraxa-superfriends-bracket3": {
    "name": "Atraxa B3",
