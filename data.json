@@ -2,24 +2,8 @@
  "version": 1,
  "categories": [
   {
-   "id": "eigene",
-   "name": "Eigene Decks",
-   "decks": [
-    "kinnan-cedh-bracket5",
-    "winota-cedh-bracket5",
-    "winota-budget-bracket3",
-    "kaalia-angels-bracket3",
-    "urtet-myr-bracket3",
-    "atraxa-superfriends-bracket3",
-    "atraxa-superfriends-budget-bracket3",
-    "atraxa-superfriends-bracket4",
-    "isshin-samurai",
-    "tiamat-drachen"
-   ]
-  },
-  {
-   "id": "precons",
-   "name": "Precons",
+   "id": "kmvh0cdao",
+   "name": "Live",
    "decks": [
     "ltc-elven-council",
     "ltc-food-and-fellowship",
@@ -35,17 +19,34 @@
     "c21-quantum-quandrix",
     "c21-silverquill-statement",
     "c21-witherbloom-witchcraft",
+    "fdc-reign-of-dragons",
     "fdc-calling-all-angels",
     "fdc-keen-engineering",
-    "fdc-reign-of-dragons",
     "fdc-tramplesaurus-rex",
     "fdc-wretched-ranks"
    ]
   },
   {
-   "id": "kmvh0cdao",
-   "name": "Live",
-   "decks": []
+   "id": "kmvh0fswy",
+   "name": "planned",
+   "decks": [
+    "kaalia-angels-bracket3",
+    "urtet-myr-bracket3",
+    "tiamat-drachen"
+   ]
+  },
+  {
+   "id": "kmvh0gorl",
+   "name": "Ideensammluung",
+   "decks": [
+    "kinnan-cedh-bracket5",
+    "winota-cedh-bracket5",
+    "winota-budget-bracket3",
+    "isshin-samurai",
+    "atraxa-superfriends-bracket4",
+    "atraxa-superfriends-budget-bracket3",
+    "atraxa-superfriends-bracket3"
+   ]
   }
  ],
  "decks": {
