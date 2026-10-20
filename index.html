@@ -1,0 +1,873 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flos Deckarchiv</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js"></script>
+<style>
+/* Layout: Deckliste links, Arbeitsfläche rechts; auf dem Handy wird die Liste zur Leiste oben */
+:root{
+  --bg:#eceef1; --surface:#ffffff; --surface-2:#f5f6f8; --line:#d6dae0;
+  --fg:#1a1d22; --muted:#5e6672; --accent:#9a6a1f; --accent-soft:#f3e7d2; --on-accent:#ffffff;
+  --warn-bg:#fff4d6; --warn-fg:#6b4a00; --danger:#b3261e;
+  --shadow:0 1px 2px rgba(20,24,30,.08),0 6px 18px rgba(20,24,30,.06);
+  --pip-w:#efe7c8; --pip-u:#4f8fd1; --pip-b:#4a4048; --pip-r:#d4553a; --pip-g:#3e9a5c; --pip-c:#a9adb3;
+  --font-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --font-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#111318;--surface:#1a1d24;--surface-2:#22262f;--line:#2f3440;--fg:#e9e6df;--muted:#9aa1ad;
+  --accent:#d6a650;--accent-soft:#3a2f1d;--on-accent:#17130b;--warn-bg:#3a2f12;--warn-fg:#f1d58c;--danger:#ff8a80;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);--pip-b:#8a7f89;color-scheme:dark}
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--font-body)}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.app{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}
+.side{background:var(--surface);border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column}
+.brand{padding:20px 18px 14px;border-bottom:1px solid var(--line)}
+.brand h1{font:700 26px/1 var(--font-display);letter-spacing:.02em;margin:0;text-transform:uppercase}
+.brand p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.nav{display:flex;flex-direction:column;padding:10px;gap:2px}
+.nav button{display:flex;align-items:center;gap:10px;text-align:left;border:0;background:none;padding:8px 10px;border-radius:6px;cursor:pointer;width:100%}
+.nav button:hover{background:var(--surface-2)}
+.nav button.active{background:var(--accent-soft)}
+.nav .nm{font-weight:600;line-height:1.2;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav .tg{font-size:12px;color:var(--muted);line-height:1.2}
+.nav .txt{display:flex;flex-direction:column;min-width:0}
+.nav .home{font-family:var(--font-display);font-size:17px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.nav-sec{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 10px 4px}
+.side-foot{margin-top:auto;padding:12px 18px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+
+.pips{display:inline-flex;gap:3px;flex:none}
+.pip{width:11px;height:11px;border-radius:50%;border:1px solid rgba(0,0,0,.25)}
+.pip.W{background:var(--pip-w)}.pip.U{background:var(--pip-u)}.pip.B{background:var(--pip-b)}.pip.R{background:var(--pip-r)}.pip.G{background:var(--pip-g)}.pip.C{background:var(--pip-c)}
+
+main{padding:20px max(16px,3vw) 60px;min-width:0}
+.savebar{position:sticky;top:0;z-index:15;display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--warn-bg);color:var(--warn-fg);border-radius:8px;padding:9px 12px;margin-bottom:16px;font-size:14px;box-shadow:var(--shadow)}
+.savebar strong{margin-right:auto}
+
+/* Buttons */
+.btn{border:1px solid var(--line);background:var(--surface);padding:7px 12px;border-radius:6px;cursor:pointer;font-weight:500;font-size:14px;text-decoration:none;color:var(--fg);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn.danger{color:var(--danger)}
+.btn.danger.arm{background:var(--danger);color:var(--surface);border-color:var(--danger)}
+.btn.sm{padding:4px 9px;font-size:13px}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);cursor:pointer;font-size:13px;text-decoration:underline}
+.iconbtn{border:0;background:none;cursor:pointer;color:var(--muted);padding:4px 6px;border-radius:4px;font-size:15px;line-height:1}
+.iconbtn:hover{background:var(--surface-2);color:var(--fg)}
+
+/* Übersicht */
+.ov-head{display:flex;justify-content:space-between;align-items:end;gap:12px 16px;flex-wrap:wrap;margin-bottom:8px}
+.ov-head h2{font:700 40px/1 var(--font-display);text-transform:uppercase;margin:0;letter-spacing:.01em}
+.ov-tools{display:flex;gap:8px;flex-wrap:wrap}
+.hint{color:var(--muted);font-size:13px;margin:0 0 22px}
+.cat{margin-bottom:30px}
+.cat-head{display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:12px}
+.cat-handle{cursor:grab;color:var(--muted);font-size:18px;padding:0 4px;user-select:none;touch-action:none}
+.cat-name{font:600 24px/1 var(--font-display);text-transform:uppercase;letter-spacing:.03em;background:none;border:1px solid transparent;border-radius:6px;padding:2px 6px;min-width:0;flex:1}
+.cat-name:hover{border-color:var(--line)}
+.cat-name:focus{border-color:var(--accent);outline:none;background:var(--surface)}
+.cat-count{font:500 14px var(--font-mono);color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;min-height:64px;border-radius:10px}
+.tiles:empty{border:2px dashed var(--line);display:flex;align-items:center;justify-content:center}
+.tiles:empty::after{content:"Decks hierher ziehen";color:var(--muted);font-size:14px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;text-align:left;padding:0;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s;user-select:none}
+.tile:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.tile .art{aspect-ratio:626/457;background:var(--surface-2) center/cover no-repeat;max-width:100%}
+.tile .body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:5px}
+.tile .nm{font:600 20px/1.1 var(--font-display);text-transform:uppercase;letter-spacing:.01em}
+.tile .row{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:13px}
+.tile .price{font-family:var(--font-mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.sortable-ghost{opacity:.35}
+.sortable-chosen{box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+
+/* Deckansicht */
+.deck-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 20px;align-items:start;margin-bottom:18px}
+.name-wrap{display:flex;flex-direction:column;gap:6px;min-width:0}
+.name-in{font:700 40px/1.05 var(--font-display);text-transform:uppercase;letter-spacing:.01em;background:none;border:1px solid transparent;border-radius:6px;padding:2px 6px;margin-left:-7px;width:100%;min-width:0}
+.name-in:hover{border-color:var(--line)}
+.name-in:focus{border-color:var(--accent);outline:none;background:var(--surface)}
+.meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:13px}
+.meta select{border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:3px 6px;font-size:13px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:7px 12px;cursor:pointer;font-size:14px}
+.seg button.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,2fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:26px}
+.stat{background:var(--surface);padding:12px 14px;min-width:0}
+.stat .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.stat .v{font:600 24px/1.2 var(--font-mono);font-variant-numeric:tabular-nums;margin-top:2px}
+.stat .s{font-size:12px;color:var(--muted)}
+.curve{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;align-items:end;height:64px;margin-top:6px}
+.curve .b{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:2px}
+.curve .bar{width:100%;background:var(--accent);border-radius:2px 2px 0 0;min-height:1px}
+.curve .n{font:500 10px var(--font-mono);color:var(--muted)}
+.curve-l{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;font:500 10px var(--font-mono);color:var(--muted);text-align:center;margin-top:2px}
+
+.group{margin-bottom:30px}
+.group h3{font:600 22px/1 var(--font-display);text-transform:uppercase;letter-spacing:.03em;margin:0 0 12px;display:flex;gap:10px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:6px}
+.group h3 span{font:500 14px var(--font-mono);color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.card{position:relative;border:0;padding:0;background:none;cursor:pointer;border-radius:4.5%/3.3%;aspect-ratio:488/680;max-width:100%;transition:transform .15s}
+.card:hover{transform:translateY(-3px) scale(1.02)}
+.card img{width:100%;height:100%;border-radius:4.5%/3.3%;display:block;box-shadow:var(--shadow)}
+.card .ph{width:100%;height:100%;border-radius:8px;background:var(--surface);border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font-size:13px;color:var(--muted)}
+.card .qty{position:absolute;top:8%;right:6%;background:var(--accent);color:var(--on-accent);font:600 13px var(--font-mono);padding:2px 7px;border-radius:12px}
+.card .chg{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);background:var(--surface);color:var(--fg);font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;border:1px solid var(--line);white-space:nowrap}
+
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:7px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--surface-2)}
+td.num,th.num{text-align:right;font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+tr.rowc{cursor:pointer}
+tr.rowc:hover td{background:var(--surface-2)}
+tr.sec td{background:var(--surface-2);font-family:var(--font-display);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.mana{font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+
+/* Dialoge */
+.modal{position:fixed;inset:0;background:rgba(10,12,16,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.dlg{background:var(--bg);border-radius:12px;width:min(1100px,100%);max-height:calc(100vh - 32px);display:grid;grid-template-columns:320px minmax(0,1fr);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.dlg .left{background:var(--surface);padding:20px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;border-right:1px solid var(--line)}
+.dlg .left img{width:100%;border-radius:4.5%/3.3%;box-shadow:var(--shadow)}
+.dlg .left h4{font:700 24px/1.1 var(--font-display);text-transform:uppercase;margin:0}
+.dlg .info{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:2px}
+.dlg .info b{color:var(--fg);font-weight:600}
+.dlg .btns{display:flex;flex-direction:column;gap:6px}
+.dlg .right{padding:18px 20px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;min-width:0}
+.dlg .bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.dlg .bar strong{font:600 18px var(--font-display);text-transform:uppercase;letter-spacing:.03em}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--muted)}
+.close{border:0;background:var(--surface-2);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px;line-height:1;flex:none}
+.prints{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.pr{border:2px solid transparent;border-radius:8px;padding:4px;background:none;cursor:pointer;display:flex;flex-direction:column;gap:4px;text-align:left}
+.pr:hover{border-color:var(--line)}
+.pr.sel{border-color:var(--accent);background:var(--accent-soft)}
+.pr img{width:100%;aspect-ratio:488/680;border-radius:4.5%/3.3%;display:block;background:var(--surface-2)}
+.pr .cap{font-size:12px;line-height:1.3;color:var(--muted)}
+.pr .cap b{color:var(--fg);font-family:var(--font-mono);font-weight:600}
+.empty{color:var(--muted);padding:20px 0}
+
+.form{background:var(--bg);border-radius:12px;width:min(760px,100%);max-height:calc(100vh - 32px);overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.4);padding:20px;display:flex;flex-direction:column;gap:14px}
+.form.narrow{width:min(520px,100%)}
+.form-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.form-head h3{font:700 26px/1 var(--font-display);text-transform:uppercase;margin:0}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea{border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:8px 10px;width:100%}
+.field textarea{font-family:var(--font-mono);font-size:13px;min-height:260px;resize:vertical}
+.field small{color:var(--muted);font-size:12px}
+.preview{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px}
+.preview .warn{color:var(--danger)}
+.form-foot{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.steps{margin:0;padding-left:20px;font-size:14px;display:flex;flex-direction:column;gap:4px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:9px 16px;border-radius:8px;font-size:14px;z-index:60;max-width:calc(100% - 32px)}
+
+@media (max-width:820px){
+  .app{grid-template-columns:1fr}
+  .side{position:sticky;top:0;height:auto;z-index:20;border-right:0;border-bottom:1px solid var(--line)}
+  .brand{padding:12px 16px 8px;border:0}
+  .brand p,.side-foot{display:none}
+  .nav{flex-direction:row;overflow-x:auto;padding:0 12px 10px;gap:6px}
+  .nav button{width:auto;flex:none;border:1px solid var(--line)}
+  .nav .tg,.nav-sec{display:none}
+  .savebar{top:96px}
+  .deck-head{grid-template-columns:1fr}
+  .actions{justify-content:flex-start}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats .stat.wide{grid-column:1/-1}
+  .name-in,.ov-head h2{font-size:30px}
+  .cards{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+  .tiles{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+  .dlg{grid-template-columns:1fr;overflow-y:auto}
+  .dlg .left{border-right:0;border-bottom:1px solid var(--line);overflow:visible}
+  .dlg .left img{max-width:240px;margin:0 auto}
+  .dlg .right{overflow:visible}
+  .fgrid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><h1>Deckarchiv</h1><p>Commander · Paper</p></div>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot">
+      <span id="status">Starte …</span>
+      <button class="linkbtn" id="open-settings" style="align-self:flex-start">GitHub-Verbindung</button>
+    </div>
+  </aside>
+  <main>
+    <div class="savebar" id="savebar" hidden>
+      <strong>Ungespeicherte Änderungen</strong>
+      <button class="btn sm primary" id="sb-save">Auf GitHub speichern</button>
+      <button class="btn sm" id="sb-download">data.json herunterladen</button>
+      <button class="btn sm danger" id="sb-discard">Verwerfen</button>
+    </div>
+    <div id="main"></div>
+  </main>
+</div>
+
+<!-- Artwork-Auswahl -->
+<div class="modal" id="art-modal" hidden>
+  <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="m-name">
+    <div class="left" id="m-left"></div>
+    <div class="right">
+      <div class="bar">
+        <strong>Artwork wählen</strong>
+        <div style="display:flex;gap:12px;align-items:center">
+          <label class="chk"><input type="checkbox" id="m-paper" checked> nur Paper</label>
+          <label class="chk"><input type="checkbox" id="m-cheap"> nach Preis sortieren</label>
+          <button class="close" data-close aria-label="Schliessen">×</button>
+        </div>
+      </div>
+      <div class="prints" id="m-prints"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Import / Bearbeiten -->
+<div class="modal" id="imp-modal" hidden>
+  <form class="form" id="imp-form" role="dialog" aria-modal="true" aria-labelledby="imp-title">
+    <div class="form-head"><h3 id="imp-title">Deck importieren</h3><button type="button" class="close" data-close aria-label="Schliessen">×</button></div>
+    <div class="fgrid">
+      <div class="field"><label for="imp-name">Name</label><input id="imp-name" placeholder="z. B. Tiamat B3"></div>
+      <div class="field"><label for="imp-cat">Kategorie</label><select id="imp-cat"></select></div>
+    </div>
+    <div class="field">
+      <label for="imp-list">Deckliste</label>
+      <textarea id="imp-list" spellcheck="false" placeholder="Commander
+1 Tiamat
+
+Deck
+1 Sol Ring
+1 Dragonlord Dromoka (DTK) 217
+…"></textarea>
+      <small>Funktioniert mit Listen aus Moxfield, Archidekt, Arena und MTGO. Set und Nummer in Klammern sind optional. Abschnitte wie „Sideboard“ oder „Maybeboard“ werden ignoriert.</small>
+    </div>
+    <div class="field" id="imp-cmd-wrap" hidden>
+      <label for="imp-cmd">Commander</label>
+      <select id="imp-cmd"></select>
+      <small>Die Liste hat keinen Commander-Abschnitt. Wähle die Karte aus.</small>
+    </div>
+    <div class="preview" id="imp-preview">Füge eine Deckliste ein.</div>
+    <div class="form-foot">
+      <button type="button" class="btn" data-close>Abbrechen</button>
+      <button type="submit" class="btn primary" id="imp-submit">Deck hinzufügen</button>
+    </div>
+  </form>
+</div>
+
+<!-- GitHub -->
+<div class="modal" id="gh-modal" hidden>
+  <form class="form narrow" id="gh-form" role="dialog" aria-modal="true" aria-labelledby="gh-title">
+    <div class="form-head"><h3 id="gh-title">GitHub-Verbindung</h3><button type="button" class="close" data-close aria-label="Schliessen">×</button></div>
+    <p style="margin:0;font-size:14px">Damit „Auf GitHub speichern“ funktioniert, braucht diese Seite einmal pro Gerät einen Zugangsschlüssel (Token). Er bleibt nur in diesem Browser gespeichert.</p>
+    <ol class="steps">
+      <li>Auf GitHub: Profilbild → <b>Settings</b> → <b>Developer settings</b> → <b>Personal access tokens</b> → <b>Fine-grained tokens</b> → <b>Generate new token</b>.</li>
+      <li>Bei <b>Repository access</b> nur dein Deckarchiv-Repository wählen.</li>
+      <li>Bei <b>Permissions → Contents</b> „Read and write“ einstellen, dann erzeugen und hier einfügen.</li>
+    </ol>
+    <div class="fgrid">
+      <div class="field"><label for="gh-owner">Benutzername</label><input id="gh-owner" autocomplete="off"></div>
+      <div class="field"><label for="gh-repo">Repository</label><input id="gh-repo" autocomplete="off"></div>
+    </div>
+    <div class="fgrid">
+      <div class="field"><label for="gh-branch">Branch</label><input id="gh-branch" value="main" autocomplete="off"></div>
+      <div class="field"><label for="gh-token">Token</label><input id="gh-token" type="password" autocomplete="off" placeholder="github_pat_…"></div>
+    </div>
+    <div class="preview" id="gh-result">Noch nicht getestet.</div>
+    <div class="form-foot">
+      <button type="button" class="btn danger" id="gh-forget">Token entfernen</button>
+      <button type="button" class="btn" id="gh-test">Verbindung testen</button>
+      <button type="submit" class="btn primary">Speichern</button>
+    </div>
+  </form>
+</div>
+
+<script>
+/* ================= Speicher ================= */
+const DRAFT_KEY = "flo-deckarchiv-draft-v1", CACHE_KEY = "flo-deckarchiv-scryfall-v1", GH_KEY = "flo-deckarchiv-github-v1", VIEW_KEY = "flo-deckarchiv-view";
+function load(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } }
+function save(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+function drop(k){ try{ localStorage.removeItem(k); }catch(e){} }
+
+let data = null;          // aktueller Stand
+let serverText = "";      // Stand aus data.json (zum Vergleich)
+let dirty = false;
+let view = load(VIEW_KEY, "grid");
+const cache = load(CACHE_KEY, {});
+const failed = new Set();
+const printsCache = {};
+let cacheTimer; const persistCache = () => { clearTimeout(cacheTimer); cacheTimer = setTimeout(() => save(CACHE_KEY, cache), 400); };
+
+function commit(rerender = true){
+  dirty = JSON.stringify(data) !== serverText;
+  if(dirty) save(DRAFT_KEY, {data, base:serverText.length}); else drop(DRAFT_KEY);
+  $("savebar").hidden = !dirty;
+  if(rerender) render(); else renderNav();
+}
+
+/* ================= Deckliste parsen ================= */
+function parseList(text){
+  const out = {commander:[], main:[], skipped:0};
+  let sec = "main";
+  for(const raw of String(text).split(/\r?\n/)){
+    let l = raw.trim(); if(!l) continue;
+    const head = l.replace(/^\/\/\s*/, "").replace(/:$/, "").trim().toLowerCase();
+    if(/^(commanders?|befehlshaber)$/.test(head)){ sec = "commander"; continue; }
+    if(/^(deck|main|mainboard|maindeck|hauptdeck)$/.test(head)){ sec = "main"; continue; }
+    if(/^(sideboard|maybeboard|considering|tokens?|companion|attractions|stickers)$/.test(head)){ sec = "skip"; continue; }
+    if(l.startsWith("//") || l.startsWith("#")){ if(sec === "commander") sec = "main"; continue; }
+    if(/^(about|name)\b/i.test(l) && !/^\d/.test(l)) continue;
+    let isCmd = false;
+    if(/^commander:\s*/i.test(l)){ isCmd = true; l = l.replace(/^commander:\s*/i, ""); }
+    if(/\((commander|cmdr)\)\s*$/i.test(l)){ isCmd = true; l = l.replace(/\((commander|cmdr)\)\s*$/i, "").trim(); }
+    if(/\*cmdr\*/i.test(l)){ isCmd = true; l = l.replace(/\*cmdr\*/ig, "").trim(); }
+    l = l.replace(/\s+\*[A-Za-z]+\*/g, "").replace(/\s+#\S.*$/, "").replace(/\s+\^[^^]*\^/g, "").replace(/\s+\[[a-z]+\]/g, "").trim();
+    const m = l.match(/^(?:(\d+)\s*[xX]?\s+)?(.+?)(?:\s+[\(\[]([A-Za-z0-9]{2,6})(?::([^\)\]]+))?[\)\]](?:\s+(\S+))?)?$/);
+    if(!m) continue;
+    if(sec === "skip"){ out.skipped++; continue; }
+    const e = {qty: m[1] ? +m[1] : 1, name: m[2].trim(), set: m[3] ? m[3].toUpperCase() : null, cn: m[4] || m[5] || null};
+    (isCmd || sec === "commander" ? out.commander : out.main).push(e);
+  }
+  return out;
+}
+const fmtEntry = e => `${e.qty} ${e.name}${e.set ? ` (${e.set})${e.cn ? " " + e.cn : ""}` : ""}`;
+const toList = p => "Commander\n" + p.commander.map(fmtEntry).join("\n") + "\n\nDeck\n" + p.main.map(fmtEntry).join("\n");
+const parsedCache = {};
+function parsed(id){
+  const d = data.decks[id];
+  if(!parsedCache[id] || parsedCache[id].src !== d.list) parsedCache[id] = {src:d.list, p:parseList(d.list)};
+  return parsedCache[id].p;
+}
+const keyOf = e => e.name.toLowerCase() + (e.set ? "|" + e.set.toLowerCase() + "|" + (e.cn || "") : "");
+
+/* ================= Scryfall ================= */
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function cmUrl(c){ const u = c.purchase_uris && c.purchase_uris.cardmarket; return u ? u.replace("cardmarket.com/en/", "cardmarket.com/de/") : null; }
+function slim(c){
+  const f = c.card_faces && c.card_faces[0];
+  const iu = c.image_uris || (f && f.image_uris) || {};
+  const p = c.prices || {};
+  return {
+    id:c.id, name:c.name, set:c.set, setName:c.set_name, cn:c.collector_number, rel:c.released_at || "",
+    img:iu.normal || "", small:iu.small || iu.normal || "", large:iu.large || iu.normal || "", art:iu.art_crop || "",
+    type:(f && f.type_line) || c.type_line || "", mana:c.mana_cost || (f && f.mana_cost) || "",
+    cmc:c.cmc || 0, ci:c.color_identity || [], eur:p.eur ? +p.eur : null, eurFoil:p.eur_foil ? +p.eur_foil : null,
+    cm:cmUrl(c), prints:c.prints_search_uri, scry:c.scryfall_uri, games:c.games || [], full:!!c.full_art
+  };
+}
+function matches(e, c){
+  const n = e.name.toLowerCase(), cn = c.name.toLowerCase();
+  return cn === n || cn.startsWith(n + " //") || (c.card_faces || []).some(f => f.name.toLowerCase() === n);
+}
+async function postCollection(ids){
+  const r = await fetch("https://api.scryfall.com/cards/collection", {method:"POST", headers:{"Content-Type":"application/json", "Accept":"application/json"}, body:JSON.stringify({identifiers:ids})});
+  return (await r.json()).data || [];
+}
+async function resolve(entries, onProgress){
+  const uniq = [...new Map(entries.filter(e => !cache[keyOf(e)] && !failed.has(keyOf(e))).map(e => [keyOf(e), e])).values()];
+  for(let i = 0; i < uniq.length; i += 75){
+    const batch = uniq.slice(i, i + 75);
+    const ids = batch.map(e => e.set && e.cn ? {set:e.set.toLowerCase(), collector_number:e.cn} : e.set ? {name:e.name, set:e.set.toLowerCase()} : {name:e.name});
+    try{
+      for(const c of await postCollection(ids)){
+        const s = slim(c); cache["id:" + s.id] = s;
+        for(const e of batch) if(!cache[keyOf(e)] && matches(e, c)) cache[keyOf(e)] = s;
+      }
+    }catch(err){ console.warn(err); }
+    persistCache(); onProgress && onProgress(); await sleep(110);
+  }
+  for(const e of uniq){
+    if(cache[keyOf(e)]) continue;
+    try{
+      const r = await fetch("https://api.scryfall.com/cards/named?fuzzy=" + encodeURIComponent(e.name));
+      if(r.ok){ const s = slim(await r.json()); cache[keyOf(e)] = s; cache["id:" + s.id] = s; } else failed.add(keyOf(e));
+    }catch(err){ failed.add(keyOf(e)); }
+    persistCache(); onProgress && onProgress(); await sleep(110);
+  }
+}
+async function resolveIds(ids, onProgress){
+  const miss = [...new Set(ids)].filter(id => !cache["id:" + id] && !failed.has("id:" + id));
+  for(let i = 0; i < miss.length; i += 75){
+    const batch = miss.slice(i, i + 75);
+    try{ for(const c of await postCollection(batch.map(id => ({id})))){ cache["id:" + c.id] = slim(c); } }catch(err){ console.warn(err); }
+    batch.forEach(id => { if(!cache["id:" + id]) failed.add("id:" + id); });
+    persistCache(); onProgress && onProgress(); await sleep(110);
+  }
+}
+async function loadPrints(card){
+  if(printsCache[card.prints]) return printsCache[card.prints];
+  let url = card.prints, out = [];
+  while(url && out.length < 400){
+    const r = await fetch(url); if(!r.ok) break;
+    const j = await r.json(); out.push(...(j.data || []).map(slim));
+    url = j.has_more ? j.next_page : null; if(url) await sleep(110);
+  }
+  out.sort((a, b) => b.rel.localeCompare(a.rel));
+  out.forEach(p => cache["id:" + p.id] = p); persistCache();
+  return printsCache[card.prints] = out;
+}
+
+/* ================= Hilfen ================= */
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmtEur = v => v == null ? "–" : v.toLocaleString("de-CH", {style:"currency", currency:"EUR"});
+const cmSearch = name => "https://www.cardmarket.com/de/Magic/Products/Search?searchString=" + encodeURIComponent(name);
+const priceOf = c => c ? (c.eur ?? c.eurFoil) : null;
+function cardFor(id, e){
+  const pick = data.decks[id].picks && data.decks[id].picks[e.name];
+  return (pick && cache["id:" + pick]) || cache[keyOf(e)] || null;
+}
+function allEntries(id){ const p = parsed(id); return [...p.commander.map(e => ({...e, cmdr:true})), ...p.main]; }
+function pips(ci){ const cs = ci && ci.length ? ci : ["C"]; return `<span class="pips">${cs.map(c => `<span class="pip ${c}" title="${c}"></span>`).join("")}</span>`; }
+function commanderCard(id){ const e = parsed(id).commander[0]; return e ? cardFor(id, e) : null; }
+function deckCI(id){ const s = new Set(); parsed(id).commander.forEach(e => { const c = cardFor(id, e); c && c.ci.forEach(x => s.add(x)); }); return "WUBRG".split("").filter(x => s.has(x)); }
+function catOf(id){ return data.categories.find(c => c.decks.includes(id)); }
+function toast(msg){ const t = document.createElement("div"); t.className = "toast"; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2400); }
+function slug(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "deck"; }
+function newId(base){ let id = slug(base), n = 2; while(data.decks[id]) id = slug(base) + "-" + n++; return id; }
+function armButton(btn, label, action){
+  if(btn.dataset.armed){ action(); return; }
+  const old = btn.textContent; btn.dataset.armed = "1"; btn.classList.add("arm"); btn.textContent = label;
+  setTimeout(() => { if(btn.isConnected){ delete btn.dataset.armed; btn.classList.remove("arm"); btn.textContent = old; } }, 3500);
+}
+
+const GROUPS = ["Commander","Kreaturen","Planeswalker","Spontanzauber","Hexereien","Artefakte","Verzauberungen","Schlachten","Länder","Nicht gefunden"];
+function groupOf(e, c){
+  if(e.cmdr) return "Commander";
+  if(!c) return "Nicht gefunden";
+  const t = c.type;
+  if(/Creature/.test(t)) return "Kreaturen";
+  if(/Planeswalker/.test(t)) return "Planeswalker";
+  if(/Battle/.test(t)) return "Schlachten";
+  if(/Land/.test(t)) return "Länder";
+  if(/Instant/.test(t)) return "Spontanzauber";
+  if(/Sorcery/.test(t)) return "Hexereien";
+  if(/Artifact/.test(t)) return "Artefakte";
+  if(/Enchantment/.test(t)) return "Verzauberungen";
+  return "Nicht gefunden";
+}
+function deckStats(id){
+  let count = 0, price = 0, missingPrice = 0, cmcSum = 0, cmcN = 0, lands = 0, loaded = 0;
+  const curve = new Array(8).fill(0);
+  for(const e of allEntries(id)){
+    count += e.qty; const c = cardFor(id, e); if(c) loaded += e.qty;
+    const p = priceOf(c); if(p != null) price += p * e.qty; else if(c) missingPrice++;
+    if(!c) continue;
+    if(/Land/.test(c.type) && !/Creature/.test(c.type)){ lands += e.qty; continue; }
+    if(e.cmdr) continue;
+    cmcSum += c.cmc * e.qty; cmcN += e.qty; curve[Math.min(7, Math.floor(c.cmc))] += e.qty;
+  }
+  return {count, price, missingPrice, avg:cmcN ? cmcSum / cmcN : 0, lands, curve, loaded};
+}
+
+/* ================= Navigation ================= */
+let current = decodeURIComponent(location.hash.slice(1)) || "overview";
+function go(id){ current = id; history.replaceState(null, "", "#" + encodeURIComponent(id)); render(); window.scrollTo(0, 0); }
+window.addEventListener("hashchange", () => { const h = decodeURIComponent(location.hash.slice(1)) || "overview"; if(h !== current){ current = h; render(); } });
+function renderNav(){
+  $("nav").innerHTML = `<button data-go="overview" class="${current === "overview" ? "active" : ""}"><span class="home">Übersicht</span></button>` +
+    data.categories.map(cat => `<div class="nav-sec">${esc(cat.name)}</div>` + cat.decks.filter(id => data.decks[id]).map(id => {
+      const d = data.decks[id];
+      return `<button data-go="${esc(id)}" class="${current === id ? "active" : ""}">${pips(deckCI(id))}<span class="txt"><span class="nm">${esc(d.name)}</span><span class="tg">${esc(d.tag || "")}</span></span></button>`;
+    }).join("")).join("");
+}
+$("nav").addEventListener("click", ev => { const b = ev.target.closest("[data-go]"); if(b) go(b.dataset.go); });
+
+/* ================= Übersicht ================= */
+let sortables = [];
+function renderOverview(){
+  sortables.forEach(s => s.destroy()); sortables = [];
+  let total = 0;
+  const tile = id => {
+    const d = data.decks[id]; const st = deckStats(id); total += st.price;
+    const cmd = commanderCard(id);
+    return `<div class="tile" data-id="${esc(id)}" tabindex="0" role="button" aria-label="${esc(d.name)} öffnen">
+      <div class="art" style="${cmd && cmd.art ? `background-image:url('${cmd.art}')` : ""}"></div>
+      <div class="body">
+        <div class="row"><span class="badge">${esc(d.tag || "Deck")}</span>${pips(deckCI(id))}</div>
+        <div class="nm">${esc(d.name)}</div>
+        <div class="row"><span>${esc(parsed(id).commander.map(e => e.name).join(" & ") || "Kein Commander")}</span></div>
+        <div class="row"><span>${st.count} Karten · Ø MV ${st.avg.toFixed(2)}</span><span class="price">${st.loaded ? fmtEur(st.price) : "…"}</span></div>
+      </div></div>`;
+  };
+  const cats = data.categories.map(cat => `<section class="cat" data-cat="${esc(cat.id)}">
+      <div class="cat-head">
+        <span class="cat-handle" title="Kategorie verschieben" aria-hidden="true">⠿</span>
+        <input class="cat-name" id="cat-${esc(cat.id)}" value="${esc(cat.name)}" aria-label="Kategoriename" spellcheck="false">
+        <span class="cat-count">${cat.decks.length}</span>
+        <button class="iconbtn" data-delcat="${esc(cat.id)}" title="Kategorie löschen">✕</button>
+      </div>
+      <div class="tiles" data-cat="${esc(cat.id)}">${cat.decks.filter(id => data.decks[id]).map(tile).join("")}</div>
+    </section>`).join("");
+  $("main").innerHTML = `
+    <div class="ov-head"><h2>Alle Decks</h2>
+      <div class="ov-tools">
+        <button class="btn primary" id="btn-import">+ Deck importieren</button>
+        <button class="btn" id="btn-addcat">+ Kategorie</button>
+      </div></div>
+    <p class="hint">${Object.keys(data.decks).length} Decks · Gesamtwert ${fmtEur(total)} · Decks und Kategorien per Ziehen ordnen, Kategorienamen anklicken zum Umbenennen.</p>
+    <div id="cats">${cats}</div>`;
+
+  $("btn-import").onclick = () => openImport();
+  $("btn-addcat").onclick = () => {
+    const id = "k" + Date.now().toString(36);
+    data.categories.push({id, name:"Neue Kategorie", decks:[]}); commit();
+    const inp = $("cat-" + id); if(inp){ inp.focus(); inp.select(); }
+  };
+  $("main").querySelectorAll(".cat-name").forEach(inp => {
+    inp.addEventListener("input", () => { const cat = data.categories.find(c => "cat-" + c.id === inp.id); cat.name = inp.value.trim() || "Ohne Namen"; commit(false); });
+    inp.addEventListener("keydown", ev => { if(ev.key === "Enter") inp.blur(); });
+  });
+  $("main").querySelectorAll("[data-delcat]").forEach(btn => btn.onclick = () => {
+    const cat = data.categories.find(c => c.id === btn.dataset.delcat);
+    if(data.categories.length === 1){ toast("Die letzte Kategorie kann nicht gelöscht werden."); return; }
+    const label = cat.decks.length ? `Löschen? ${cat.decks.length} Decks wandern nach „${data.categories.find(c => c !== cat).name}“` : "Wirklich löschen?";
+    armButton(btn, label, () => {
+      const target = data.categories.find(c => c !== cat); target.decks.push(...cat.decks);
+      data.categories = data.categories.filter(c => c !== cat); commit();
+    });
+  });
+  $("main").querySelectorAll(".tile").forEach(t => {
+    t.addEventListener("click", () => go(t.dataset.id));
+    t.addEventListener("keydown", ev => { if(ev.key === "Enter") go(t.dataset.id); });
+  });
+  if(window.Sortable){
+    $("main").querySelectorAll(".tiles").forEach(el => sortables.push(Sortable.create(el, {
+      group:"decks", animation:150, delay:180, delayOnTouchOnly:true, ghostClass:"sortable-ghost", chosenClass:"sortable-chosen",
+      onEnd: syncFromDom
+    })));
+    sortables.push(Sortable.create($("cats"), {handle:".cat-handle", animation:150, ghostClass:"sortable-ghost", onEnd: syncFromDom}));
+  }
+}
+function syncFromDom(){
+  const order = [...$("cats").querySelectorAll(".cat")].map(sec => {
+    const cat = data.categories.find(c => c.id === sec.dataset.cat);
+    cat.decks = [...sec.querySelectorAll(".tile")].map(t => t.dataset.id);
+    return cat;
+  });
+  data.categories = order;
+  commit(false);
+  $("main").querySelectorAll(".cat").forEach(sec => sec.querySelector(".cat-count").textContent = sec.querySelectorAll(".tile").length);
+}
+
+/* ================= Deckansicht ================= */
+function renderDeck(id){
+  const d = data.decks[id]; if(!d){ go("overview"); return; }
+  const es = allEntries(id); const st = deckStats(id);
+  const max = Math.max(1, ...st.curve);
+  const groups = {}; GROUPS.forEach(g => groups[g] = []);
+  es.forEach(e => { const c = cardFor(id, e); groups[groupOf(e, c)].push({e, c}); });
+  for(const g of GROUPS) groups[g].sort((a, b) => (a.c ? a.c.cmc : 99) - (b.c ? b.c.cmc : 99) || a.e.name.localeCompare(b.e.name));
+  const cnt = arr => arr.reduce((s, x) => s + x.e.qty, 0);
+  const picked = Object.keys(d.picks || {}).length;
+  const cat = catOf(id);
+
+  let body;
+  if(view === "grid"){
+    body = GROUPS.filter(g => groups[g].length).map(g => `<section class="group"><h3>${g}<span>${cnt(groups[g])}</span></h3><div class="cards">${
+      groups[g].map(({e, c}) => `<button class="card" data-card="${esc(e.name)}" title="${esc(e.name)}">${
+        c && c.img ? `<img loading="lazy" src="${c.img}" alt="${esc(e.name)}">` : `<div class="ph">${esc(e.name)}</div>`
+      }${e.qty > 1 ? `<span class="qty">×${e.qty}</span>` : ""}${d.picks && d.picks[e.name] && c ? `<span class="chg">${esc(c.set.toUpperCase())}</span>` : ""}</button>`).join("")
+    }</div></section>`).join("");
+  }else{
+    body = `<div class="tbl-wrap"><table><thead><tr><th class="num">#</th><th>Karte</th><th>Kosten</th><th>Druck</th><th class="num">Preis</th><th>Kaufen</th></tr></thead><tbody>${
+      GROUPS.filter(g => groups[g].length).map(g => `<tr class="sec"><td colspan="6">${g} (${cnt(groups[g])})</td></tr>` + groups[g].map(({e, c}) => `<tr class="rowc" data-card="${esc(e.name)}">
+        <td class="num">${e.qty}</td><td>${esc(e.name)}</td><td class="mana">${esc(c ? c.mana : "")}</td>
+        <td>${c ? esc(c.setName) + " · " + esc(c.set.toUpperCase()) + " " + esc(c.cn) : "–"}</td>
+        <td class="num">${fmtEur(priceOf(c) != null ? priceOf(c) * e.qty : null)}</td>
+        <td><a href="${(c && c.cm) || cmSearch(e.name)}" target="_blank" rel="noopener" data-stop>Cardmarket</a></td></tr>`).join("")).join("")
+    }</tbody></table></div>`;
+  }
+
+  $("main").innerHTML = `
+  <div class="deck-head">
+    <div class="name-wrap">
+      <input id="deck-name" class="name-in" value="${esc(d.name)}" aria-label="Deckname" spellcheck="false">
+      <div class="meta">${pips(deckCI(id))} <span>${esc(parsed(id).commander.map(e => e.name).join(" & ") || "Kein Commander")}</span>
+        <label>Kategorie <select id="deck-cat">${data.categories.map(c => `<option value="${esc(c.id)}" ${c === cat ? "selected" : ""}>${esc(c.name)}</option>`).join("")}</select></label>
+        <label>Notiz <input id="deck-tag" value="${esc(d.tag || "")}" style="border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:2px 6px;width:9em;font-size:13px"></label>
+        ${picked ? `<span>${picked} Artwork${picked > 1 ? "s" : ""} gewählt</span> <button class="linkbtn" id="picks-reset">zurücksetzen</button>` : ""}
+      </div>
+    </div>
+    <div class="actions">
+      <div class="seg" role="group" aria-label="Ansicht"><button data-view="grid" class="${view === "grid" ? "on" : ""}">Bilder</button><button data-view="list" class="${view === "list" ? "on" : ""}">Liste</button></div>
+      <button class="btn" id="edit-list">Liste bearbeiten</button>
+      <button class="btn" id="copy">Kopieren</button>
+      <button class="btn" id="dl">.txt</button>
+      <button class="btn danger" id="del">Löschen</button>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="k">Karten</div><div class="v">${st.count}</div><div class="s">${st.lands} Länder</div></div>
+    <div class="stat"><div class="k">Ø Manawert</div><div class="v">${st.avg.toFixed(2)}</div><div class="s">ohne Länder & Commander</div></div>
+    <div class="stat"><div class="k">Preis</div><div class="v">${fmtEur(st.price)}</div><div class="s">${st.missingPrice ? st.missingPrice + " ohne Preis" : "Cardmarket-Trend"}</div></div>
+    <div class="stat"><div class="k">Typen</div><div class="s" style="margin-top:4px;line-height:1.6">${GROUPS.filter(g => g !== "Commander" && groups[g].length).map(g => `${g} <b>${cnt(groups[g])}</b>`).join(" · ")}</div></div>
+    <div class="stat wide"><div class="k">Manakurve</div>
+      <div class="curve">${st.curve.map(n => `<div class="b"><span class="n">${n || ""}</span><div class="bar" style="height:${(n / max) * 100}%"></div></div>`).join("")}</div>
+      <div class="curve-l">${["0","1","2","3","4","5","6","7+"].map(x => `<span>${x}</span>`).join("")}</div>
+    </div>
+  </div>
+  ${body}`;
+
+  const inp = $("deck-name");
+  inp.addEventListener("input", () => { d.name = inp.value.trim() || "Ohne Namen"; commit(false); });
+  inp.addEventListener("keydown", ev => { if(ev.key === "Enter") inp.blur(); });
+  $("deck-tag").addEventListener("input", ev => { d.tag = ev.target.value.trim(); commit(false); });
+  $("deck-cat").onchange = ev => {
+    data.categories.forEach(c => c.decks = c.decks.filter(x => x !== id));
+    data.categories.find(c => c.id === ev.target.value).decks.push(id); commit(false); toast("Verschoben");
+  };
+  $("picks-reset") && ($("picks-reset").onclick = () => { d.picks = {}; commit(); });
+  $("main").querySelectorAll("[data-view]").forEach(b => b.onclick = () => { view = b.dataset.view; save(VIEW_KEY, view); render(); });
+  $("main").querySelectorAll("[data-card]").forEach(el => el.addEventListener("click", ev => { if(ev.target.closest("[data-stop]")) return; openCard(id, el.dataset.card); }));
+  $("edit-list").onclick = () => openImport(id);
+  $("copy").onclick = () => copyText(exportText(id));
+  $("dl").onclick = () => downloadFile(slug(d.name) + ".txt", exportText(id), "text/plain");
+  $("del").onclick = ev => armButton(ev.currentTarget, "Wirklich löschen?", () => {
+    delete data.decks[id]; data.categories.forEach(c => c.decks = c.decks.filter(x => x !== id));
+    commit(false); go("overview"); toast("Deck gelöscht");
+  });
+}
+function exportText(id){
+  const p = parsed(id);
+  const line = e => { const c = cardFor(id, e); return c ? `${e.qty} ${c.name} (${c.set.toUpperCase()}) ${c.cn}` : `${e.qty} ${e.name}`; };
+  return "Commander\n" + p.commander.map(line).join("\n") + "\n\nDeck\n" + p.main.map(line).join("\n") + "\n";
+}
+async function copyText(t){
+  try{ await navigator.clipboard.writeText(t); toast("Liste kopiert"); }
+  catch(e){ const ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); toast("Liste kopiert"); }catch(_){ toast("Kopieren nicht möglich"); } ta.remove(); }
+}
+function downloadFile(name, text, type){
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+}
+
+/* ================= Dialoge allgemein ================= */
+function openModal(id){ $(id).hidden = false; document.body.style.overflow = "hidden"; }
+function closeModal(id){ $(id).hidden = true; if([...document.querySelectorAll(".modal")].every(m => m.hidden)) document.body.style.overflow = ""; }
+document.querySelectorAll(".modal").forEach(m => {
+  m.addEventListener("click", ev => { if(ev.target === m || ev.target.closest("[data-close]")) closeModal(m.id); });
+});
+document.addEventListener("keydown", ev => { if(ev.key === "Escape") document.querySelectorAll(".modal:not([hidden])").forEach(m => closeModal(m.id)); });
+
+/* ================= Artwork ================= */
+let artCtx = null;
+function openCard(deckId, name){
+  const e = allEntries(deckId).find(x => x.name === name); if(!e) return;
+  artCtx = {deckId, e}; openModal("art-modal"); renderArt(true);
+}
+async function renderArt(first){
+  if(!artCtx) return;
+  const {deckId, e} = artCtx; const d = data.decks[deckId]; const c = cardFor(deckId, e);
+  const isPicked = !!(d.picks && d.picks[e.name]);
+  $("m-left").innerHTML = c ? `
+    <img src="${c.large}" alt="${esc(c.name)}">
+    <h4 id="m-name">${esc(c.name)}</h4>
+    <div class="info"><span><b>${esc(c.setName)}</b> · ${esc(c.set.toUpperCase())} #${esc(c.cn)} · ${esc(c.rel.slice(0, 4))}</span>
+      <span>Preis: <b>${fmtEur(c.eur)}</b>${c.eurFoil != null ? ` · Foil ${fmtEur(c.eurFoil)}` : ""}</span></div>
+    <div class="btns">
+      <a class="btn primary" href="${c.cm || cmSearch(c.name)}" target="_blank" rel="noopener">Diesen Druck auf Cardmarket</a>
+      <a class="btn" href="${cmSearch(c.name)}" target="_blank" rel="noopener">Alle Angebote auf Cardmarket</a>
+      <a class="btn" href="${c.scry}" target="_blank" rel="noopener">Scryfall</a>
+      ${isPicked ? `<button class="btn" id="m-reset">Druck aus der Liste wiederherstellen</button>` : ""}
+    </div>` : `<h4 id="m-name">${esc(e.name)}</h4><div class="info">Karte wurde auf Scryfall nicht gefunden. Prüfe die Schreibweise unter „Liste bearbeiten“.</div><a class="btn" href="${cmSearch(e.name)}" target="_blank" rel="noopener">Auf Cardmarket suchen</a>`;
+  $("m-reset") && ($("m-reset").onclick = () => { delete d.picks[e.name]; commit(); renderArt(false); });
+  if(!c || !c.prints){ $("m-prints").innerHTML = ""; return; }
+  if(first && !printsCache[c.prints]) $("m-prints").innerHTML = `<div class="empty">Lade Drucke …</div>`;
+  let prints;
+  try{ prints = await loadPrints(c); }catch(err){ $("m-prints").innerHTML = `<div class="empty">Drucke konnten nicht geladen werden. Prüfe die Internetverbindung.</div>`; return; }
+  if(!artCtx || artCtx.e !== e) return;
+  let list = prints.filter(p => p.img && (!$("m-paper").checked || p.games.includes("paper")));
+  if($("m-cheap").checked) list = [...list].sort((a, b) => (priceOf(a) ?? 1e9) - (priceOf(b) ?? 1e9));
+  $("m-prints").innerHTML = list.length ? list.map(p => `<button class="pr ${p.id === c.id ? "sel" : ""}" data-pid="${p.id}">
+      <img loading="lazy" src="${p.small}" alt="">
+      <span class="cap">${esc(p.setName)}<br>${esc(p.set.toUpperCase())} #${esc(p.cn)} · ${esc(p.rel.slice(0, 4))}${p.full ? " · Full Art" : ""}<br><b>${fmtEur(priceOf(p))}</b>${p.eur == null && p.eurFoil != null ? " (Foil)" : ""}</span>
+    </button>`).join("") : `<div class="empty">Keine passenden Drucke.</div>`;
+  $("m-prints").querySelectorAll("[data-pid]").forEach(b => b.onclick = () => {
+    d.picks = d.picks || {}; d.picks[e.name] = b.dataset.pid; commit(); renderArt(false);
+  });
+}
+$("m-paper").onchange = () => renderArt(false);
+$("m-cheap").onchange = () => renderArt(false);
+new MutationObserver(() => { if($("art-modal").hidden) artCtx = null; }).observe($("art-modal"), {attributes:true, attributeFilter:["hidden"]});
+
+/* ================= Import ================= */
+let impEdit = null;
+function openImport(editId){
+  impEdit = editId || null;
+  const d = editId ? data.decks[editId] : null;
+  $("imp-title").textContent = d ? "Liste bearbeiten" : "Deck importieren";
+  $("imp-submit").textContent = d ? "Änderungen übernehmen" : "Deck hinzufügen";
+  $("imp-name").value = d ? d.name : "";
+  $("imp-list").value = d ? d.list : "";
+  const cur = editId ? catOf(editId) : (current !== "overview" && data.decks[current] ? catOf(current) : data.categories[0]);
+  $("imp-cat").innerHTML = data.categories.map(c => `<option value="${esc(c.id)}" ${c === cur ? "selected" : ""}>${esc(c.name)}</option>`).join("");
+  impPreview(); openModal("imp-modal"); (d ? $("imp-list") : $("imp-name")).focus();
+}
+function impParsed(){
+  const p = parseList($("imp-list").value);
+  if(!p.commander.length && p.main.length){
+    const sel = $("imp-cmd"); const prev = sel.value;
+    $("imp-cmd-wrap").hidden = false;
+    sel.innerHTML = p.main.map((e, i) => `<option value="${i}">${esc(e.name)}</option>`).join("");
+    if(prev && +prev < p.main.length) sel.value = prev;
+    const i = +sel.value || 0; p.commander = [p.main[i]]; p.main = p.main.filter((_, j) => j !== i);
+  }else $("imp-cmd-wrap").hidden = true;
+  return p;
+}
+function impPreview(){
+  const p = impParsed();
+  const n = [...p.commander, ...p.main].reduce((s, e) => s + e.qty, 0);
+  if(!n){ $("imp-preview").textContent = "Füge eine Deckliste ein."; return; }
+  const warn = [];
+  if(n !== 100) warn.push(`${n} statt 100 Karten`);
+  if(p.commander.length > 2) warn.push("mehr als zwei Commander");
+  $("imp-preview").innerHTML = `<b>${esc(p.commander.map(e => e.name).join(" & "))}</b> · ${n} Karten · ${p.main.length} verschiedene Karten im Deck${p.skipped ? ` · ${p.skipped} Sideboard-Karten ignoriert` : ""}${warn.length ? `<br><span class="warn">Achtung: ${warn.join(", ")}</span>` : ""}`;
+  if(!$("imp-name").value.trim() && p.commander[0] && !impEdit) $("imp-name").placeholder = p.commander[0].name.split(",")[0];
+}
+$("imp-list").addEventListener("input", impPreview);
+$("imp-cmd").addEventListener("change", impPreview);
+$("imp-form").addEventListener("submit", async ev => {
+  ev.preventDefault();
+  const p = impParsed();
+  if(!p.commander.length && !p.main.length){ toast("Die Liste ist leer."); return; }
+  const name = $("imp-name").value.trim() || $("imp-name").placeholder || "Neues Deck";
+  const catId = $("imp-cat").value;
+  let id = impEdit;
+  if(id){
+    const d = data.decks[id]; d.name = name; d.list = toList(p);
+    const keep = new Set([...p.commander, ...p.main].map(e => e.name));
+    Object.keys(d.picks || {}).forEach(k => { if(!keep.has(k)) delete d.picks[k]; });
+    data.categories.forEach(c => c.decks = c.decks.filter(x => x !== id));
+  }else{
+    id = newId(name); data.decks[id] = {name, tag:"", list:toList(p), picks:{}};
+  }
+  data.categories.find(c => c.id === catId).decks.push(id);
+  closeModal("imp-modal"); commit(false); go(id);
+  await resolve(allEntries(id), softRender); render();
+  const miss = allEntries(id).filter(e => !cardFor(id, e));
+  toast(miss.length ? `${miss.length} Karte(n) nicht gefunden: ${miss.slice(0, 3).map(e => e.name).join(", ")}` : (impEdit ? "Liste aktualisiert" : "Deck hinzugefügt"));
+});
+
+/* ================= GitHub ================= */
+function ghCfg(){
+  const c = load(GH_KEY, {});
+  if(!c.owner && location.hostname.endsWith(".github.io")){
+    c.owner = location.hostname.split(".")[0];
+    const seg = location.pathname.split("/").filter(Boolean)[0];
+    c.repo = seg && !seg.includes(".") ? seg : location.hostname;
+  }
+  c.branch = c.branch || "main";
+  return c;
+}
+function openGh(){
+  const c = ghCfg();
+  $("gh-owner").value = c.owner || ""; $("gh-repo").value = c.repo || ""; $("gh-branch").value = c.branch || "main"; $("gh-token").value = c.token || "";
+  $("gh-result").textContent = c.token ? "Token ist gespeichert." : "Noch kein Token gespeichert.";
+  openModal("gh-modal");
+}
+function ghFromForm(){ return {owner:$("gh-owner").value.trim(), repo:$("gh-repo").value.trim(), branch:$("gh-branch").value.trim() || "main", token:$("gh-token").value.trim()}; }
+const ghHeaders = c => ({"Authorization":"Bearer " + c.token, "Accept":"application/vnd.github+json", "X-GitHub-Api-Version":"2022-11-28"});
+const ghUrl = c => `https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}/contents/data.json`;
+function b64utf8(s){ const bytes = new TextEncoder().encode(s); let bin = ""; for(let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)); return btoa(bin); }
+async function ghSha(c){
+  const r = await fetch(ghUrl(c) + "?ref=" + encodeURIComponent(c.branch) + "&t=" + Date.now(), {headers:ghHeaders(c), cache:"no-store"});
+  if(r.status === 404) return null;
+  if(r.status === 401) throw new Error("Der Token ist ungültig oder abgelaufen.");
+  if(!r.ok) throw new Error("GitHub antwortet mit Fehler " + r.status + ". Prüfe Benutzername, Repository und Branch.");
+  return (await r.json()).sha;
+}
+$("gh-test").onclick = async () => {
+  const c = ghFromForm(); $("gh-result").textContent = "Teste …";
+  try{ const sha = await ghSha(c); $("gh-result").textContent = sha ? "Verbindung klappt. data.json gefunden." : "Verbindung klappt. data.json wird beim ersten Speichern angelegt."; }
+  catch(err){ $("gh-result").textContent = err.message; }
+};
+$("gh-form").addEventListener("submit", ev => { ev.preventDefault(); save(GH_KEY, ghFromForm()); closeModal("gh-modal"); toast("Verbindung gespeichert"); });
+$("gh-forget").onclick = () => { const c = ghFromForm(); c.token = ""; save(GH_KEY, c); $("gh-token").value = ""; $("gh-result").textContent = "Token entfernt."; };
+$("open-settings").onclick = openGh;
+
+async function ghSave(){
+  const c = ghCfg();
+  if(!c.token || !c.owner || !c.repo){ openGh(); toast("Bitte zuerst die GitHub-Verbindung einrichten."); return; }
+  const btn = $("sb-save"); btn.disabled = true; btn.textContent = "Speichere …";
+  try{
+    const text = JSON.stringify(data, null, 1);
+    const sha = await ghSha(c);
+    const r = await fetch(ghUrl(c), {method:"PUT", headers:{...ghHeaders(c), "Content-Type":"application/json"},
+      body:JSON.stringify({message:"Deckarchiv aktualisiert", content:b64utf8(text), branch:c.branch, ...(sha ? {sha} : {})})});
+    if(r.status === 403 || r.status === 404) throw new Error("Keine Schreibrechte. Der Token braucht „Contents: Read and write“ für dieses Repository.");
+    if(!r.ok) throw new Error("Speichern fehlgeschlagen (Fehler " + r.status + ").");
+    serverText = JSON.stringify(data); commit(false);
+    toast("Auf GitHub gespeichert. Die Seite ist in etwa einer Minute überall aktuell.");
+  }catch(err){ toast(err.message); }
+  finally{ btn.disabled = false; btn.textContent = "Auf GitHub speichern"; }
+}
+$("sb-save").onclick = ghSave;
+$("sb-download").onclick = () => downloadFile("data.json", JSON.stringify(data, null, 1), "application/json");
+$("sb-discard").onclick = ev => armButton(ev.currentTarget, "Alle Änderungen verwerfen?", () => {
+  if(!serverText){ toast("Kein gespeicherter Stand vorhanden."); return; }
+  data = JSON.parse(serverText); drop(DRAFT_KEY); commit(); toast("Änderungen verworfen");
+});
+
+/* ================= Start ================= */
+function render(){
+  renderNav();
+  const a = document.activeElement;
+  if(a && (a.id === "deck-name" || a.id === "deck-tag" || a.classList.contains("cat-name"))) return;
+  if(current === "overview" || !data.decks[current]) { current = "overview"; renderOverview(); } else renderDeck(current);
+}
+let renderTimer; const softRender = () => { clearTimeout(renderTimer); renderTimer = setTimeout(render, 300); };
+
+async function boot(){
+  let server = null;
+  try{ const r = await fetch("data.json?t=" + Date.now(), {cache:"no-store"}); if(r.ok) server = await r.json(); }catch(e){}
+  const draft = load(DRAFT_KEY, null);
+  if(server) serverText = JSON.stringify(server);
+  if(draft && draft.data){ data = draft.data; }
+  else if(server){ data = server; }
+  else{
+    data = {version:1, categories:[{id:"eigene", name:"Eigene Decks", decks:[]}], decks:{}};
+    $("main").innerHTML = "";
+    toast("data.json konnte nicht geladen werden. Die Seite muss über GitHub Pages oder einen Webserver geöffnet werden.");
+  }
+  data.categories = data.categories || []; data.decks = data.decks || {};
+  // Decks ohne Kategorie einsammeln
+  const placed = new Set(data.categories.flatMap(c => c.decks));
+  const orphans = Object.keys(data.decks).filter(id => !placed.has(id));
+  if(orphans.length){ if(!data.categories.length) data.categories.push({id:"eigene", name:"Eigene Decks", decks:[]}); data.categories[0].decks.push(...orphans); }
+  commit();
+
+  const ids = [current, ...data.categories.flatMap(c => c.decks)].filter((x, i, a) => data.decks[x] && a.indexOf(x) === i);
+  const pickIds = Object.values(data.decks).flatMap(d => Object.values(d.picks || {}));
+  await resolveIds(pickIds, softRender);
+  let done = 0;
+  for(const id of ids){
+    $("status").textContent = `Lade Karten von Scryfall … ${done}/${ids.length} Decks`;
+    await resolve(allEntries(id), softRender); done++; softRender();
+  }
+  const miss = ids.reduce((s, id) => s + allEntries(id).filter(e => !cardFor(id, e)).length, 0);
+  $("status").textContent = miss ? `${miss} Karte(n) nicht gefunden.` : "Alle Karten geladen. Bilder & Preise: Scryfall.";
+}
+boot();
+</script>
+</body>
+</html>
