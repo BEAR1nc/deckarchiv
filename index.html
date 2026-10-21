@@ -41,7 +41,7 @@ a{color:var(--accent)}
 .side{background:var(--surface);border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column}
 .brand{padding:20px 18px 14px;border-bottom:1px solid var(--line)}
 .brand h1{font:700 26px/1 var(--font-display);letter-spacing:.02em;margin:0;text-transform:uppercase}
-.brand-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand-row{display:flex;align-items:center;justify-content:space-between;gap:8px 10px;flex-wrap:wrap}
 .theme-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--fg);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
 .theme-btn:hover{border-color:var(--accent)}
 .theme-btn svg{width:14px;height:14px;flex:none}
@@ -126,6 +126,16 @@ main{padding:20px max(16px,3vw) 60px;min-width:0}
 .curve .n{font:500 10px var(--font-mono);color:var(--muted)}
 .curve-l{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;font:500 10px var(--font-mono);color:var(--muted);text-align:center;margin-top:2px}
 
+.gc-box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:-12px 0 26px;display:flex;flex-direction:column;gap:10px}
+.gc-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px 12px;flex-wrap:wrap}
+.gc-head h3{font:600 20px/1 var(--font-display);text-transform:uppercase;letter-spacing:.03em;margin:0;display:flex;gap:8px;align-items:baseline}
+.gc-head h3 span{font:500 14px var(--font-mono);color:var(--muted)}
+.gc-hint{font-size:12px;color:var(--muted)}
+.gc-hint.hi{color:var(--accent);font-weight:600}
+.gc-list{display:flex;flex-wrap:wrap;gap:6px}
+.gc-chip{border:1px solid var(--line);background:var(--accent-soft);color:var(--fg);border-radius:999px;padding:4px 11px;font-size:13px;cursor:pointer}
+.gc-chip:hover{border-color:var(--accent)}
+.gc-none{margin:0;color:var(--muted);font-size:14px}
 .group{margin-bottom:30px}
 .group h3{font:600 22px/1 var(--font-display);text-transform:uppercase;letter-spacing:.03em;margin:0 0 12px;display:flex;gap:10px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:6px}
 .group h3 span{font:500 14px var(--font-mono);color:var(--muted)}
@@ -407,7 +417,8 @@ async function resolve(entries, onProgress){
     if(cache[keyOf(e)]) continue;
     try{
       const r = await fetch("https://api.scryfall.com/cards/named?fuzzy=" + encodeURIComponent(e.name));
-      if(r.ok){ const s = slim(await r.json()); cache[keyOf(e)] = s; cache["id:" + s.id] = s; } else failed.add(keyOf(e));
+      const j = r.ok ? await r.json() : null;
+      if(j && j.object === "card"){ const s = slim(j); cache[keyOf(e)] = s; cache["id:" + s.id] = s; } else failed.add(keyOf(e));
     }catch(err){ failed.add(keyOf(e)); }
     persistCache(); onProgress && onProgress(); await sleep(110);
   }
@@ -458,6 +469,12 @@ function armButton(btn, label, action){
   setTimeout(() => { if(btn.isConnected){ delete btn.dataset.armed; btn.classList.remove("arm"); btn.textContent = old; } }, 3500);
 }
 
+/* Game Changer laut offizieller Liste (Stand Februar 2026) */
+const GAME_CHANGERS = new Set(["Drannith Magistrate","Enlightened Tutor","Farewell","Humility","Teferi's Protection","Smothering Tithe","Consecrated Sphinx","Cyclonic Rift","Fierce Guardianship","Force of Will","Gifts Ungiven","Intuition","Mystical Tutor","Narset, Parter of Veils","Rhystic Study","Thassa's Oracle","Ad Nauseam","Bolas's Citadel","Braids, Cabal Minion","Demonic Tutor","Imperial Seal","Necropotence","Opposition Agent","Orcish Bowmasters","Tergrid, God of Fright","Tergrid's Lantern","Vampiric Tutor","Gamble","Jeska's Will","Underworld Breach","Biorhythm","Crop Rotation","Natural Order","Seedborn Muse","Survival of the Fittest","Worldly Tutor","Aura Shards","Coalition Victory","Grand Arbiter Augustin IV","Notion Thief","Ancient Tomb","Chrome Mox","Field of the Dead","Gaea's Cradle","Glacial Chasm","Grim Monolith","Lion's Eye Diamond","Mana Vault","Mishra's Workshop","Mox Diamond","Panoptic Mirror","Serra's Sanctum","The One Ring","The Tabernacle at Pendrell Vale"].map(n => n.toLowerCase()));
+function gameChangers(id){
+  return allEntries(id).filter(e => GAME_CHANGERS.has(e.name.toLowerCase()) || (cardFor(id, e)?.name && GAME_CHANGERS.has(cardFor(id, e).name.toLowerCase())));
+}
+function gcHint(n){ return n === 0 ? "passt zu Bracket 1–2" : n <= 3 ? "passt zu Bracket 3 (max. 3)" : "nur Bracket 4–5 (mehr als 3)"; }
 const GROUPS = ["Commander","Kreaturen","Planeswalker","Spontanzauber","Hexereien","Artefakte","Verzauberungen","Schlachten","Länder","Nicht gefunden"];
 function groupOf(e, c){
   if(e.cmdr) return "Commander";
@@ -588,6 +605,7 @@ function renderDeck(id){
   const cnt = arr => arr.reduce((s, x) => s + x.e.qty, 0);
   const picked = Object.keys(d.picks || {}).length;
   const cat = catOf(id);
+  const gcs = gameChangers(id);
 
   let body;
   if(view === "grid"){
@@ -634,6 +652,10 @@ function renderDeck(id){
       <div class="curve-l">${["0","1","2","3","4","5","6","7+"].map(x => `<span>${x}</span>`).join("")}</div>
     </div>
   </div>
+  <section class="gc-box">
+    <div class="gc-head"><h3>Game Changer <span>${gcs.length}</span></h3><span class="gc-hint ${gcs.length > 3 ? "hi" : ""}">${gcHint(gcs.length)}</span></div>
+    ${gcs.length ? `<div class="gc-list">${gcs.map(e => `<button class="gc-chip" data-card="${esc(e.name)}">${esc(e.name)}</button>`).join("")}</div>` : `<p class="gc-none">Keine Game Changer in diesem Deck.</p>`}
+  </section>
   ${body}`;
 
   const inp = $("deck-name");
