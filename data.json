@@ -205,7 +205,29 @@
    "name": "Tiamat B3",
    "tag": "Bracket 3",
    "list": "Commander\n1 Tiamat\n\nDeck\n1 Delighted Halfling\n1 Birds of Paradise\n1 Elvish Mystic\n1 Avacyn's Pilgrim\n1 Farhaven Elf\n1 Dracogenesis\n1 Drakuseth, Maw of Flames\n1 Firespitter Whelp\n1 Sarkhan, Soul Aflame\n1 Wear // Tear\n1 Goldspan Dragon\n1 Dragonspeaker Shaman\n1 Terror of the Peaks\n1 Dragonhawk, Fate's Tempest\n1 Miirym, Sentinel Wyrm\n1 Ancient Copper Dragon\n1 Nature's Lore\n1 Hexing Squelcher\n1 Sol Ring\n1 Dragonlord Dromoka\n1 Dragon Tempest\n1 Old Gnawbone\n1 Rishkar's Expertise\n1 Arcane Signet\n1 Mind Stone\n1 Mox Jasper\n1 Chromatic Lantern\n1 Dragon's Hoard\n1 Dragonlord Kolaghan\n1 Carnelian Orb of Dragonkind\n1 Swiftfoot Boots\n1 Arid Mesa\n1 Bitter Reunion\n1 Blood Crypt\n1 Bloodstained Mire\n1 Brainstorm\n1 Breeding Pool\n1 Cavern of Souls\n1 Command Tower\n1 Counterspell\n1 Crux of Fate\n1 Cultivate\n1 Cut Down\n1 Chaos Warp\n1 Fabled Passage\n1 Fatal Push\n1 Scourge of the Throne\n1 Flare of Cultivation\n1 Flooded Strand\n2 Forest\n1 Get Lost\n1 Godless Shrine\n1 Go for the Throat\n1 Hallowed Fountain\n1 Heroic Intervention\n1 Indatha Triome\n1 Infernal Grasp\n1 Call the Spirit Dragons\n1 Island\n1 Ketria Triome\n1 Mana Confluence\n1 Marsh Flats\n1 Misty Rainforest\n1 Mountain\n1 Overgrown Tomb\n1 Path to Exile\n1 Plaza of Heroes\n1 Polluted Delta\n1 Raugrin Triome\n1 Reflecting Pool\n1 Sacred Foundry\n1 Savai Triome\n1 Scalding Tarn\n1 Secluded Courtyard\n1 Warstorm Surge\n1 Steam Vents\n1 Stomping Ground\n1 Sarkhan, Dragon Ascendant\n1 Swamp\n1 Swords to Plowshares\n1 Temple Garden\n1 The World Tree\n1 Three Tree City\n1 Unclaimed Territory\n1 Veil of Summer\n1 Verdant Catacombs\n1 Virtue of Persistence\n1 Watery Grave\n1 Windswept Heath\n1 Wooded Foothills\n1 Zagoth Triome\n1 Dragon's Fire\n1 Orb of Dragonkind\n1 Herald's Horn\n1 Dragonlord Silumgar\n1 Teferi's Protection\n1 Guardian Project\n1 Dragonlord's Servant",
-   "picks": {}
+   "picks": {
+    "Avacyn's Pilgrim": "0a02a28d-ac00-40c5-9590-de029c007dde",
+    "Birds of Paradise": "4c72e177-d95d-41df-91b3-4e489175b6aa",
+    "Delighted Halfling": "aad18e0d-ccf9-4d86-945b-36991558fd3e",
+    "Elvish Mystic": "880468be-3f4d-4dbf-92e7-cf212da7f718",
+    "Dragonlord's Servant": "be6fa0dc-74e7-4fad-9bdd-8e986612577a",
+    "Sarkhan, Dragon Ascendant": "e3be50dc-3735-47a6-9af3-e8d8e425b5b2",
+    "Dragonspeaker Shaman": "be918553-aed5-455d-8b36-23a73dc3f907",
+    "Farhaven Elf": "320d0a4c-c556-4468-b934-bfdf17961a53",
+    "Firespitter Whelp": "ddcc3c1b-b564-4444-9a1a-0f62f8e6b8bb",
+    "Sarkhan, Soul Aflame": "18484227-b96a-40fb-9788-656d00705d80",
+    "Dragonhawk, Fate's Tempest": "de4ef78d-ba5e-415e-9684-816464c5611a",
+    "Goldspan Dragon": "1183d4d7-094b-4024-ab1d-23c458cb7e71",
+    "Terror of the Peaks": "ac35ea21-fef4-4000-9b22-c8d07420827b",
+    "Ancient Copper Dragon": "0c9ac08c-11ce-4e8a-8ea8-c18cfc745ac7",
+    "Dragonlord Dromoka": "9137168d-ec86-4460-910c-d786a30df744",
+    "Dragonlord Kolaghan": "434a3cb4-7226-4909-a8cc-ccc7783ab572",
+    "Dragonlord Silumgar": "4e82ad5e-6c7c-4140-bbef-9c97b7765e4e",
+    "Miirym, Sentinel Wyrm": "99ad63c7-0686-4f20-bc81-7b06df2bcb4a",
+    "Scourge of the Throne": "8b4c7818-4523-44e9-baa4-013695d57bc4",
+    "Drakuseth, Maw of Flames": "91617299-82cb-4dee-99ac-505ce45f302b",
+    "Old Gnawbone": "16ead969-8ba4-4587-a68d-47730943605e"
+   }
   },
   "ltc-elven-council": {
    "name": "Elven Council B2",
