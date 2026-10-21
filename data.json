@@ -343,7 +343,11 @@
    "name": "Riders of Rohan B2",
    "tag": "Precon · Herr der Ringe",
    "list": "Commander\n1 Éowyn, Shieldmaiden (LTC) 1\n\nDeck\n1 Aragorn, King of Gondor (LTC) 5\n1 Beregond of the Guard (LTC) 9\n1 Champions of Minas Tirith (LTC) 10\n1 Gilraen, Dúnedain Protector (LTC) 13\n1 Grey Host Reinforcements (LTC) 14\n1 Lossarnach Captain (LTC) 16\n1 Archivist of Gondor (LTC) 18\n1 Denethor, Stone Seer (LTC) 20\n1 Fealty to the Realm (LTC) 21\n1 Call for Aid (LTC) 30\n1 Gimli of the Glittering Caves (LTC) 32\n1 Boromir, Gondor's Hope (LTC) 49\n1 Éomer, King of Rohan (LTC) 52\n1 Faramir, Steward of Gondor (LTC) 54\n1 Forth Eorlingas! (LTC) 56\n1 Oath of Eorl\n1 Riders of Rohan (LTC) 67\n1 Taunt from the Rampart (LTC) 71\n1 Crown of Gondor (LTC) 75\n1 Bastion Protector\n1 Dearly Departed\n1 Frontline Medic\n1 Increasing Devotion\n1 Marshal's Anthem\n1 Selfless Squire\n1 Unbreakable Formation\n1 Verge Rangers\n1 Visions of Glory\n1 Weathered Wayfarer\n1 Combat Celebrant\n1 Court of Ire\n1 Earthquake\n1 Flamerush Rider\n1 Frontier Warmonger\n1 Harsh Mentor\n1 Shared Animosity\n1 Zealous Conscripts\n1 Supreme Verdict\n1 Door of Destinies\n1 Vanquisher's Banner\n1 Battlefield Forge\n1 Clifftop Retreat\n1 Exotic Orchard\n1 Furycalm Snarl\n1 Glacial Fortress\n1 Port Town\n1 Prairie Stream\n1 Sulfur Falls\n1 Throne of the High City\n1 Windbrisk Heights\n1 Lost to Legend\n1 Erkenbrand, Lord of Westfold\n1 Banishing Light\n1 Fiend Hunter\n1 Palace Jailer\n1 Path to Exile\n1 Sunset Revelry\n1 Swords to Plowshares\n1 Village Bell-Ringer\n1 Prince Imrahil the Fair\n1 Humble Defector\n1 Théoden, King of Rohan\n1 Arcane Signet\n1 Commander's Sphere\n1 Heirloom Blade\n1 Herald's Horn\n1 Sol Ring (LTC) 284\n1 Talisman of Conviction\n1 Talisman of Progress\n1 Thought Vessel\n1 Wayfarer's Bauble\n1 Command Tower\n1 Evolving Wilds\n1 Field of Ruin\n1 Path of Ancestry\n1 Rogue's Passage\n1 Secluded Courtyard\n1 Terramorphic Expanse\n1 Tranquil Cove\n1 Wind-Scarred Crag\n5 Plains (LTR) 262\n4 Plains (LTR) 263\n3 Island (LTR) 264\n2 Island (LTR) 265\n3 Mountain (LTR) 268\n2 Mountain (LTR) 269",
-   "picks": {}
+   "picks": {
+    "Prince Imrahil the Fair": "7d486def-7c3f-41e9-bb28-4582450a7b9e",
+    "Aragorn, King of Gondor": "1c7ac04c-8510-468b-aa6f-f249bde9ff87",
+    "Faramir, Steward of Gondor": "5c3e8a30-de2a-4d8f-a929-5abeaea2e65a"
+   }
   },
   "ltc-the-hosts-of-mordor": {
    "name": "The Hosts of Mordor B3",
