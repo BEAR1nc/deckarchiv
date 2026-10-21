@@ -54,7 +54,9 @@
    "name": "Kinnan B5",
    "tag": "Bracket 5",
    "list": "Commander\n1 Kinnan, Bonder Prodigy\n\nDeck\n1 Delighted Halfling\n1 Birds of Paradise\n1 Elvish Mystic\n1 Fyndhorn Elves\n1 Llanowar Elves\n1 Badgermole Cub\n1 Elvish Spirit Guide\n1 Faerie Mastermind\n1 Spellskite\n1 Shang-Chi, Master of Kung Fu\n1 Thrasios, Triton Hero\n1 Wan Shi Tong, Librarian\n1 Drift of Phantasms\n1 Endurance\n1 Enduring Vitality\n1 Hydroelectric Specimen\n1 Formidable Speaker\n1 Valley Floodcaller\n1 Clever Impersonator\n1 Phyrexian Metamorph\n1 High Fae Trickster\n1 Seedborn Muse\n1 Consecrated Sphinx\n1 Nezahal, Primal Tide\n1 Hullbreaker Horror\n1 Nyxbloom Ancient\n1 Tidespout Tyrant\n1 Lotus Petal\n1 Chrome Mox\n1 Mox Amber\n1 Mox Diamond\n1 Mox Opal\n1 Mana Vault\n1 Sol Ring\n1 Springleaf Drum\n1 Arcane Signet\n1 Fellwar Stone\n1 Simic Signet\n1 Talisman of Curiosity\n1 Grim Monolith\n1 Basalt Monolith\n1 Moonsilver Key\n1 Imposter Mech\n1 Mirage Mirror\n1 The One Ring\n1 Pact of Negation\n1 Chain of Vapor\n1 Crop Rotation\n1 Flusterstorm\n1 Mental Misstep\n1 Pongify\n1 Veil of Summer\n1 Swan Song\n1 Worldly Tutor\n1 Dramatic Reversal\n1 Chord of Calling\n1 Fierce Guardianship\n1 Force of Negation\n1 Sink into Stupor\n1 Flash Photography\n1 Mindbreak Trap\n1 Force of Will\n1 Commandeer\n1 Green Sun's Zenith\n1 Finale of Devastation\n1 Nature's Rhythm\n1 Transmute Artifact\n1 Fabricate\n1 Sea Gate Restoration\n1 Mystic Remora\n1 Cryptolith Rite\n1 Mirrormade\n1 Pemmin's Aura\n1 Rhystic Study\n1 Invasion of Ikoria\n1 Tezzeret the Seeker\n1 Gaea's Cradle\n1 Ancient Tomb\n1 Tropical Island\n1 Breeding Pool\n1 Command Tower\n1 City of Brass\n1 Mana Confluence\n1 Gemstone Caverns\n1 Misty Rainforest\n1 Polluted Delta\n1 Scalding Tarn\n1 Yavimaya Coast\n1 Waterlogged Grove\n1 Rejuvenating Springs\n1 Willowrush Verge\n1 Boseiju, Who Endures\n1 Otawara, Soaring City\n1 Minamo, School at Water's Edge\n1 Cephalid Coliseum\n1 Emergence Zone\n1 Treasure Vault\n1 Snow-Covered Island\n1 Snow-Covered Forest",
-   "picks": {}
+   "picks": {
+    "Mox Amber": "6ea9852b-78fa-4732-8801-4ce632270558"
+   }
   },
   "winota-cedh-bracket5": {
    "name": "Winota B5",
@@ -193,7 +195,32 @@
    "name": "Atraxa B4",
    "tag": "Bracket 4",
    "list": "Commander\n1 Atraxa, Praetors' Voice\n\nDeck\n1 Teferi, Hero of Dominaria\n1 Teferi, Time Raveler\n1 Teferi, Temporal Archmage\n1 Narset, Parter of Veils\n1 Jace, the Mind Sculptor\n1 Elspeth, Sun's Champion\n1 Elspeth Resplendent\n1 The Wandering Emperor\n1 Tamiyo, Field Researcher\n1 Liliana, Dreadhorde General\n1 Kaya the Inexorable\n1 Nissa, Who Shakes the World\n1 Wrenn and Seven\n1 Oko, Thief of Crowns\n1 Vraska, Golgari Queen\n1 Grist, the Hunger Tide\n1 Karn, the Great Creator\n1 Doubling Season\n1 The Chain Veil\n1 Oath of Teferi\n1 Oath of Gideon\n1 Deepglow Skate\n1 Flux Channeler\n1 Spark Double\n1 Ichormoon Gauntlet\n1 Vorinclex, Monstrous Raider\n1 Carth the Lion\n1 Enlightened Tutor\n1 Mystical Tutor\n1 Demonic Tutor\n1 Vampiric Tutor\n1 Rhystic Study\n1 Mystic Remora\n1 Sylvan Library\n1 The One Ring\n1 Sol Ring\n1 Mana Vault\n1 Chrome Mox\n1 Arcane Signet\n1 Chromatic Lantern\n1 Talisman of Hierarchy\n1 Talisman of Curiosity\n1 Birds of Paradise\n1 Noble Hierarch\n1 Smothering Tithe\n1 Nature's Lore\n1 Three Visits\n1 Farseek\n1 Swords to Plowshares\n1 Path to Exile\n1 Generous Gift\n1 Cyclonic Rift\n1 Anguished Unmaking\n1 Assassin's Trophy\n1 Supreme Verdict\n1 Damnation\n1 Toxic Deluge\n1 Teferi's Protection\n1 Heroic Intervention\n1 Fierce Guardianship\n1 Force of Will\n1 Counterspell\n1 Propaganda\n1 Command Tower\n1 Karn's Bastion\n1 Interplanar Beacon\n1 Mana Confluence\n1 Boseiju, Who Endures\n1 Otawara, Soaring City\n1 Spara's Headquarters\n1 Raffine's Tower\n1 Indatha Triome\n1 Zagoth Triome\n1 Hallowed Fountain\n1 Godless Shrine\n1 Overgrown Tomb\n1 Breeding Pool\n1 Watery Grave\n1 Temple Garden\n1 Flooded Strand\n1 Polluted Delta\n1 Marsh Flats\n1 Misty Rainforest\n1 Verdant Catacombs\n1 Windswept Heath\n1 Prismatic Vista\n1 Training Center\n1 Vault of Champions\n1 Undergrowth Stadium\n1 Rejuvenating Springs\n2 Plains\n2 Island\n2 Swamp\n3 Forest",
-   "picks": {}
+   "picks": {
+    "Atraxa, Praetors' Voice": "dac080ef-8f40-43a2-8440-b457b6074b69",
+    "Birds of Paradise": "9ca8c7a0-d7c5-414f-8ca9-80e3daf49a5e",
+    "Noble Hierarch": "8008977f-b164-4ab7-a38a-25b382c6a16f",
+    "Flux Channeler": "3c520263-6bad-4521-ba9e-192ca8223b07",
+    "Carth the Lion": "fbf4ca15-10b9-4dcc-86dc-be15eeda87a4",
+    "Spark Double": "bb8a103c-b776-4501-9441-a45b90391045",
+    "Deepglow Skate": "94e8e7b9-042e-4d01-87dd-27dc95257113",
+    "Vorinclex, Monstrous Raider": "f6db03ef-db89-43c4-89b4-d48e0620e101",
+    "Grist, the Hunger Tide": "808a3770-057a-4985-ba5c-870d7b1cd527",
+    "Narset, Parter of Veils": "fe5b4aaf-1d0b-43a6-b20f-45235cb53db0",
+    "Oko, Thief of Crowns": "95da027e-34c1-4098-827d-1647693ad8f4",
+    "Teferi, Time Raveler": "662fe50f-d75c-422c-8c6c-1f9b5c4ba21f",
+    "Jace, the Mind Sculptor": "ec386bc3-137b-49b5-8380-8daff470f0bc",
+    "Karn, the Great Creator": "deb3721d-fba1-444f-8b31-1cd10c94c4a0",
+    "Tamiyo, Field Researcher": "9f9aced7-9ae9-432f-b8c0-caac9cad098b",
+    "The Wandering Emperor": "fab2d8a9-ab4c-4225-a570-22636293c17d",
+    "Vraska, Golgari Queen": "963f641d-aabe-4432-87c5-d8cddf95d8d5",
+    "Elspeth Resplendent": "66d75499-1be8-42a0-8520-9cd8adbd0ca3",
+    "Kaya the Inexorable": "35e3a516-2989-4cac-892f-deb3d754ba7d",
+    "Nissa, Who Shakes the World": "cb966bb2-1634-400e-9dd0-b8befda81f6a",
+    "Teferi, Hero of Dominaria": "82846b73-add5-43af-a7b6-5895149ecca1",
+    "Wrenn and Seven": "302f0dc1-88ab-4961-b78c-fbe7980dca18",
+    "Elspeth, Sun's Champion": "08382257-68d5-493e-8754-2ff72e9321e9",
+    "Teferi, Temporal Archmage": "368c6e60-804c-447c-bc2b-ac9dc4cab5e7"
+   }
   },
   "isshin-samurai": {
    "name": "Isshin B2",
