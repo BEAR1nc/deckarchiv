@@ -111,6 +111,13 @@ main{padding:20px max(16px,3vw) 60px;min-width:0}
 .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:13px}
 .meta select{border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:3px 6px;font-size:13px}
 .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.menu{position:relative}
+.menu > summary{list-style:none}
+.menu > summary::-webkit-details-marker{display:none}
+.menu-pop{position:absolute;right:0;top:calc(100% + 6px);z-index:30;background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:6px;width:min(300px,calc(100vw - 32px));display:flex;flex-direction:column;gap:2px}
+.menu-item{border:0;background:none;text-align:left;padding:8px 10px;border-radius:6px;cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.menu-item:hover{background:var(--surface-2)}
+.menu-item span{font-size:12px;color:var(--muted)}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
 .seg button{border:0;background:var(--surface);padding:7px 12px;cursor:pointer;font-size:14px}
 .seg button.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
@@ -207,6 +214,7 @@ tr.sec td{background:var(--surface-2);font-family:var(--font-display);font-weigh
   .savebar{top:96px}
   .deck-head{grid-template-columns:1fr}
   .actions{justify-content:flex-start}
+  .menu-pop{left:0;right:auto}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stats .stat.wide{grid-column:1/-1}
   .name-in,.ov-head h2{font-size:30px}
@@ -321,7 +329,7 @@ Deck
 
 <script>
 /* ================= Speicher ================= */
-const DRAFT_KEY = "flo-deckarchiv-draft-v1", CACHE_KEY = "flo-deckarchiv-scryfall-v1", GH_KEY = "flo-deckarchiv-github-v1", VIEW_KEY = "flo-deckarchiv-view";
+const DRAFT_KEY = "flo-deckarchiv-draft-v1", CACHE_KEY = "flo-deckarchiv-scryfall-v2", GH_KEY = "flo-deckarchiv-github-v1", VIEW_KEY = "flo-deckarchiv-view";
 function load(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } }
 function save(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
 function drop(k){ try{ localStorage.removeItem(k); }catch(e){} }
@@ -388,7 +396,7 @@ function slim(c){
     id:c.id, name:c.name, set:c.set, setName:c.set_name, cn:c.collector_number, rel:c.released_at || "",
     img:iu.normal || "", small:iu.small || iu.normal || "", large:iu.large || iu.normal || "", art:iu.art_crop || "",
     type:(f && f.type_line) || c.type_line || "", mana:c.mana_cost || (f && f.mana_cost) || "",
-    cmc:c.cmc || 0, ci:c.color_identity || [], eur:p.eur ? +p.eur : null, eurFoil:p.eur_foil ? +p.eur_foil : null,
+    cmc:c.cmc || 0, layout:c.layout || "", ci:c.color_identity || [], eur:p.eur ? +p.eur : null, eurFoil:p.eur_foil ? +p.eur_foil : null,
     cm:cmUrl(c), prints:c.prints_search_uri, scry:c.scryfall_uri, games:c.games || [], full:!!c.full_art
   };
 }
@@ -639,6 +647,12 @@ function renderDeck(id){
       <button class="btn" id="edit-list">Liste bearbeiten</button>
       <button class="btn" id="copy">Kopieren</button>
       <button class="btn" id="dl">.txt</button>
+      <details class="menu" id="cock-menu"><summary class="btn">Cockatrice ▾</summary>
+        <div class="menu-pop">
+          <button class="menu-item" id="cock-copy"><b>Für Cockatrice kopieren</b><span>Dann in Cockatrice: Deck-Editor → Deck → „Deck aus Zwischenablage laden“</span></button>
+          <button class="menu-item" id="cock-file"><b>.cod-Datei herunterladen</b><span>In Cockatrice mit „Deck laden“ öffnen</span></button>
+        </div>
+      </details>
       <button class="btn danger" id="del">Löschen</button>
     </div>
   </div>
@@ -672,6 +686,8 @@ function renderDeck(id){
   $("edit-list").onclick = () => openImport(id);
   $("copy").onclick = () => copyText(exportText(id));
   $("dl").onclick = () => downloadFile(slug(d.name) + ".txt", exportText(id), "text/plain");
+  $("cock-copy").onclick = () => { copyText(cockatriceText(id)); $("cock-menu").open = false; };
+  $("cock-file").onclick = () => { downloadFile(slug(d.name) + ".cod", cockatriceCod(id), "application/xml"); $("cock-menu").open = false; };
   $("del").onclick = ev => armButton(ev.currentTarget, "Wirklich löschen?", () => {
     delete data.decks[id]; data.categories.forEach(c => c.decks = c.decks.filter(x => x !== id));
     commit(false); go("overview"); toast("Deck gelöscht");
@@ -681,6 +697,32 @@ function exportText(id){
   const p = parsed(id);
   const line = e => { const c = cardFor(id, e); return c ? `${e.qty} ${c.name} (${c.set.toUpperCase()}) ${c.cn}` : `${e.qty} ${e.name}`; };
   return "Commander\n" + p.commander.map(line).join("\n") + "\n\nDeck\n" + p.main.map(line).join("\n") + "\n";
+}
+/* Cockatrice: Commander kommt ins Sideboard (Cockatrice kennt keinen Commander-Bereich) */
+function cockName(id, e){
+  if(!e.name.includes(" // ")) return e.name;
+  const c = cardFor(id, e);
+  return c && c.layout && !["split", "aftermath"].includes(c.layout) ? e.name.split(" // ")[0] : e.name;
+}
+function cockatriceText(id){
+  const p = parsed(id);
+  return p.main.map(e => `${e.qty} ${cockName(id, e)}`).join("\n") + "\n\n" + p.commander.map(e => `SB: ${e.qty} ${cockName(id, e)}`).join("\n") + "\n";
+}
+function cockatriceCod(id){
+  const p = parsed(id), x = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const card = e => { const c = cardFor(id, e); return `        <card number="${e.qty}" name="${x(cockName(id, e))}"${c ? ` setShortName="${x(c.set.toUpperCase())}" collectorNumber="${x(c.cn)}"` : ""}/>`; };
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<cockatrice_deck version="1">
+    <deckname>${x(data.decks[id].name)}</deckname>
+    <comments>Commander: ${x(p.commander.map(e => e.name).join(" & "))}</comments>
+    <zone name="main">
+${p.main.map(card).join("\n")}
+    </zone>
+    <zone name="side">
+${p.commander.map(card).join("\n")}
+    </zone>
+</cockatrice_deck>
+`;
 }
 async function copyText(t){
   try{ await navigator.clipboard.writeText(t); toast("Liste kopiert"); }
