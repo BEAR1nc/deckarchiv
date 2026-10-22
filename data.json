@@ -50,7 +50,8 @@
     "meren-aristokraten-bracket3",
     "windgrace-lands-bracket3",
     "gishath-dinos-bracket3",
-    "mizzix-spellslinger-bracket3"
+    "mizzix-spellslinger-bracket3",
+    "boros-burn-modern"
    ]
   }
  ],
@@ -479,6 +480,13 @@
    "name": "Mizzix B3",
    "tag": "Bracket 3",
    "list": "Commander\n1 Mizzix of the Izmagnus\n\nDeck\n1 Young Pyromancer\n1 Talrand, Sky Summoner\n1 Archmage Emeritus\n1 Storm-Kiln Artist\n1 Baral, Chief of Compliance\n1 Goblin Electromancer\n1 Guttersnipe\n1 Third Path Iconoclast\n1 Murmuring Mystic\n1 Snapcaster Mage\n1 Brainstorm\n1 Ponder\n1 Preordain\n1 Opt\n1 Consider\n1 Frantic Search\n1 Faithless Looting\n1 Expressive Iteration\n1 Fact or Fiction\n1 Treasure Cruise\n1 Dig Through Time\n1 Rhystic Study\n1 Mizzix's Mastery\n1 Epic Experiment\n1 Mind's Desire\n1 Blue Sun's Zenith\n1 Stroke of Genius\n1 Comet Storm\n1 Crackle with Power\n1 Fireball\n1 Insurrection\n1 Mass Manipulation\n1 Rite of Replication\n1 Reality Shift\n1 Pongify\n1 Rapid Hybridization\n1 Counterspell\n1 Arcane Denial\n1 Swan Song\n1 Negate\n1 Lightning Bolt\n1 Chaos Warp\n1 Blasphemous Act\n1 Vandalblast\n1 Mystic Confluence\n1 Increasing Vengeance\n1 Reverberate\n1 Past in Flames\n1 Mnemonic Deluge\n1 Thousand-Year Storm\n1 Archmage's Charm\n1 Cyclonic Rift\n1 Seething Song\n1 Rite of Flame\n1 Big Score\n1 Unexpected Windfall\n1 Ral, Monsoon Mage\n1 Brazen Borrower\n1 Sol Ring\n1 Arcane Signet\n1 Izzet Signet\n1 Talisman of Creativity\n1 Mind Stone\n1 Fellwar Stone\n1 Command Tower\n1 Steam Vents\n1 Sulfur Falls\n1 Spirebluff Canal\n1 Shivan Reef\n1 Fiery Islet\n1 Scalding Tarn\n1 Misty Rainforest\n1 Prismatic Vista\n1 Fabled Passage\n1 Izzet Boilerworks\n1 Riverglide Pathway\n1 Stormcarved Coast\n1 Otawara, Soaring City\n1 Sokenzan, Crucible of Defiance\n1 Reliquary Tower\n1 Mystic Sanctuary\n1 Swiftwater Cliffs\n1 Exotic Orchard\n9 Island\n7 Mountain\n",
+   "picks": {}
+  },
+  "boros-burn-modern": {
+   "name": "Boros Burn",
+   "tag": "Modern",
+   "format": "modern",
+   "list": "Deck\n4 Goblin Guide\n4 Monastery Swiftspear\n4 Eidolon of the Great Revel\n4 Lightning Bolt\n4 Lava Spike\n4 Rift Bolt\n4 Skewer the Critics\n4 Lightning Helix\n4 Boros Charm\n3 Searing Blaze\n2 Skullcrack\n4 Battlefield Forge\n4 Sunbaked Canyon\n8 Mountain\n3 Plains\n\nSideboard\n3 Path to Exile\n2 Rest in Peace\n2 Damping Sphere\n2 Wear // Tear\n2 Smash to Smithereens\n2 Deflecting Palm\n2 Soul-Guide Lantern",
    "picks": {}
   }
  }

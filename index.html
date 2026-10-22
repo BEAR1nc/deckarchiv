@@ -232,7 +232,7 @@ tr.sec td{background:var(--surface-2);font-family:var(--font-display);font-weigh
 <body>
 <div class="app">
   <aside class="side">
-    <div class="brand"><div class="brand-row"><h1>Deckarchiv</h1><button class="theme-btn" id="theme-btn" type="button" aria-label="Farbschema wechseln"></button></div><p>Commander · Paper</p></div>
+    <div class="brand"><div class="brand-row"><h1>Deckarchiv</h1><button class="theme-btn" id="theme-btn" type="button" aria-label="Farbschema wechseln"></button></div><p>Paper-Decks</p></div>
     <nav class="nav" id="nav"></nav>
     <div class="side-foot">
       <span id="status">Starte …</span>
@@ -276,6 +276,8 @@ tr.sec td{background:var(--surface-2);font-family:var(--font-display);font-weigh
       <div class="field"><label for="imp-name">Name</label><input id="imp-name" placeholder="z. B. Tiamat B3"></div>
       <div class="field"><label for="imp-cat">Kategorie</label><select id="imp-cat"></select></div>
     </div>
+    <div class="field"><label for="imp-format">Format</label><select id="imp-format"></select>
+      <small>Bei Commander wird ein Sideboard ignoriert. Bei allen anderen Formaten wird es mitgespeichert.</small></div>
     <div class="field">
       <label for="imp-list">Deckliste</label>
       <textarea id="imp-list" spellcheck="false" placeholder="Commander
@@ -352,14 +354,17 @@ function commit(rerender = true){
 
 /* ================= Deckliste parsen ================= */
 function parseList(text){
-  const out = {commander:[], main:[], skipped:0};
+  const out = {commander:[], main:[], side:[], skipped:0};
   let sec = "main";
   for(const raw of String(text).split(/\r?\n/)){
     let l = raw.trim(); if(!l) continue;
     const head = l.replace(/^\/\/\s*/, "").replace(/:$/, "").trim().toLowerCase();
     if(/^(commanders?|befehlshaber)$/.test(head)){ sec = "commander"; continue; }
     if(/^(deck|main|mainboard|maindeck|hauptdeck)$/.test(head)){ sec = "main"; continue; }
-    if(/^(sideboard|maybeboard|considering|tokens?|companion|attractions|stickers)$/.test(head)){ sec = "skip"; continue; }
+    if(/^(sideboard|sb)$/.test(head)){ sec = "side"; continue; }
+    if(/^(maybeboard|considering|tokens?|companion|attractions|stickers)$/.test(head)){ sec = "skip"; continue; }
+    let isSide = false;
+    if(/^sb:\s*/i.test(l)){ isSide = true; l = l.replace(/^sb:\s*/i, ""); }
     if(l.startsWith("//") || l.startsWith("#")){ if(sec === "commander") sec = "main"; continue; }
     if(/^(about|name)\b/i.test(l) && !/^\d/.test(l)) continue;
     let isCmd = false;
@@ -371,12 +376,12 @@ function parseList(text){
     if(!m) continue;
     if(sec === "skip"){ out.skipped++; continue; }
     const e = {qty: m[1] ? +m[1] : 1, name: m[2].trim(), set: m[3] ? m[3].toUpperCase() : null, cn: m[4] || m[5] || null};
-    (isCmd || sec === "commander" ? out.commander : out.main).push(e);
+    (isCmd || sec === "commander" ? out.commander : (isSide || sec === "side") ? out.side : out.main).push(e);
   }
   return out;
 }
 const fmtEntry = e => `${e.qty} ${e.name}${e.set ? ` (${e.set})${e.cn ? " " + e.cn : ""}` : ""}`;
-const toList = p => "Commander\n" + p.commander.map(fmtEntry).join("\n") + "\n\nDeck\n" + p.main.map(fmtEntry).join("\n");
+const toList = p => [p.commander.length ? "Commander\n" + p.commander.map(fmtEntry).join("\n") : "", "Deck\n" + p.main.map(fmtEntry).join("\n"), p.side && p.side.length ? "Sideboard\n" + p.side.map(fmtEntry).join("\n") : ""].filter(Boolean).join("\n\n");
 const parsedCache = {};
 function parsed(id){
   const d = data.decks[id];
@@ -463,10 +468,18 @@ function cardFor(id, e){
   const pick = data.decks[id].picks && data.decks[id].picks[e.name];
   return (pick && cache["id:" + pick]) || cache[keyOf(e)] || null;
 }
-function allEntries(id){ const p = parsed(id); return [...p.commander.map(e => ({...e, cmdr:true})), ...p.main]; }
+const FORMATS = {commander:"Commander", modern:"Modern", pioneer:"Pioneer", standard:"Standard", legacy:"Legacy", vintage:"Vintage", pauper:"Pauper", other:"Anderes"};
+const fmtOf = id => data.decks[id].format || "commander";
+const isCmdr = id => fmtOf(id) === "commander";
+function allEntries(id){ const p = parsed(id); return [...p.commander.map(e => ({...e, cmdr:true})), ...p.main, ...(isCmdr(id) ? [] : p.side.map(e => ({...e, sb:true})))]; }
+function subline(id){
+  if(isCmdr(id)) return parsed(id).commander.map(e => e.name).join(" & ") || "Kein Commander";
+  const sb = parsed(id).side.reduce((s, e) => s + e.qty, 0);
+  return FORMATS[fmtOf(id)] + (sb ? ` · ${sb} Karten Sideboard` : "");
+}
 function pips(ci){ const cs = ci && ci.length ? ci : ["C"]; return `<span class="pips">${cs.map(c => `<span class="pip ${c}" title="${c}"></span>`).join("")}</span>`; }
-function commanderCard(id){ const e = parsed(id).commander[0]; return e ? cardFor(id, e) : null; }
-function deckCI(id){ const s = new Set(); parsed(id).commander.forEach(e => { const c = cardFor(id, e); c && c.ci.forEach(x => s.add(x)); }); return "WUBRG".split("").filter(x => s.has(x)); }
+function commanderCard(id){ const p = parsed(id); const e = p.commander[0] || p.main.find(x => { const c = cardFor(id, x); return c && !/Land/.test(c.type); }) || p.main[0]; return e ? cardFor(id, e) : null; }
+function deckCI(id){ const s = new Set(); const p = parsed(id); (p.commander.length ? p.commander : p.main).forEach(e => { const c = cardFor(id, e); c && c.ci.forEach(x => s.add(x)); }); return "WUBRG".split("").filter(x => s.has(x)); }
 function catOf(id){ return data.categories.find(c => c.decks.includes(id)); }
 function toast(msg){ const t = document.createElement("div"); t.className = "toast"; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2400); }
 function slug(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "deck"; }
@@ -483,9 +496,10 @@ function gameChangers(id){
   return allEntries(id).filter(e => GAME_CHANGERS.has(e.name.toLowerCase()) || (cardFor(id, e)?.name && GAME_CHANGERS.has(cardFor(id, e).name.toLowerCase())));
 }
 function gcHint(n){ return n === 0 ? "passt zu Bracket 1–2" : n <= 3 ? "passt zu Bracket 3 (max. 3)" : "nur Bracket 4–5 (mehr als 3)"; }
-const GROUPS = ["Commander","Kreaturen","Planeswalker","Spontanzauber","Hexereien","Artefakte","Verzauberungen","Schlachten","Länder","Nicht gefunden"];
+const GROUPS = ["Commander","Kreaturen","Planeswalker","Spontanzauber","Hexereien","Artefakte","Verzauberungen","Schlachten","Länder","Nicht gefunden","Sideboard"];
 function groupOf(e, c){
   if(e.cmdr) return "Commander";
+  if(e.sb) return "Sideboard";
   if(!c) return "Nicht gefunden";
   const t = c.type;
   if(/Creature/.test(t)) return "Kreaturen";
@@ -502,8 +516,10 @@ function deckStats(id){
   let count = 0, price = 0, missingPrice = 0, cmcSum = 0, cmcN = 0, lands = 0, loaded = 0;
   const curve = new Array(8).fill(0);
   for(const e of allEntries(id)){
-    count += e.qty; const c = cardFor(id, e); if(c) loaded += e.qty;
+    const c = cardFor(id, e); if(c) loaded += e.qty;
     const p = priceOf(c); if(p != null) price += p * e.qty; else if(c) missingPrice++;
+    if(e.sb) continue;
+    count += e.qty;
     if(!c) continue;
     if(/Land/.test(c.type) && !/Creature/.test(c.type)){ lands += e.qty; continue; }
     if(e.cmdr) continue;
@@ -538,7 +554,7 @@ function renderOverview(){
       <div class="body">
         <div class="row"><span class="badge">${esc(d.tag || "Deck")}</span>${pips(deckCI(id))}</div>
         <div class="nm">${esc(d.name)}</div>
-        <div class="row"><span>${esc(parsed(id).commander.map(e => e.name).join(" & ") || "Kein Commander")}</span></div>
+        <div class="row"><span>${esc(subline(id))}</span></div>
         <div class="row"><span>${st.count} Karten · Ø MV ${st.avg.toFixed(2)}</span><span class="price">${st.loaded ? fmtEur(st.price) : "…"}</span></div>
       </div></div>`;
   };
@@ -613,7 +629,7 @@ function renderDeck(id){
   const cnt = arr => arr.reduce((s, x) => s + x.e.qty, 0);
   const picked = Object.keys(d.picks || {}).length;
   const cat = catOf(id);
-  const gcs = gameChangers(id);
+  const gcs = isCmdr(id) ? gameChangers(id) : [];
 
   let body;
   if(view === "grid"){
@@ -636,7 +652,7 @@ function renderDeck(id){
   <div class="deck-head">
     <div class="name-wrap">
       <input id="deck-name" class="name-in" value="${esc(d.name)}" aria-label="Deckname" spellcheck="false">
-      <div class="meta">${pips(deckCI(id))} <span>${esc(parsed(id).commander.map(e => e.name).join(" & ") || "Kein Commander")}</span>
+      <div class="meta">${pips(deckCI(id))} <span>${esc(subline(id))}</span>
         <label>Kategorie <select id="deck-cat">${data.categories.map(c => `<option value="${esc(c.id)}" ${c === cat ? "selected" : ""}>${esc(c.name)}</option>`).join("")}</select></label>
         <label>Notiz <input id="deck-tag" value="${esc(d.tag || "")}" style="border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:2px 6px;width:9em;font-size:13px"></label>
         ${picked ? `<span>${picked} Artwork${picked > 1 ? "s" : ""} gewählt</span> <button class="linkbtn" id="picks-reset">zurücksetzen</button>` : ""}
@@ -657,19 +673,19 @@ function renderDeck(id){
     </div>
   </div>
   <div class="stats">
-    <div class="stat"><div class="k">Karten</div><div class="v">${st.count}</div><div class="s">${st.lands} Länder</div></div>
-    <div class="stat"><div class="k">Ø Manawert</div><div class="v">${st.avg.toFixed(2)}</div><div class="s">ohne Länder & Commander</div></div>
+    <div class="stat"><div class="k">Karten</div><div class="v">${st.count}</div><div class="s">${st.lands} Länder${isCmdr(id) ? "" : " · Hauptdeck"}</div></div>
+    <div class="stat"><div class="k">Ø Manawert</div><div class="v">${st.avg.toFixed(2)}</div><div class="s">${isCmdr(id) ? "ohne Länder & Commander" : "ohne Länder & Sideboard"}</div></div>
     <div class="stat"><div class="k">Preis</div><div class="v">${fmtEur(st.price)}</div><div class="s">${st.missingPrice ? st.missingPrice + " ohne Preis" : "Cardmarket-Trend"}</div></div>
-    <div class="stat"><div class="k">Typen</div><div class="s" style="margin-top:4px;line-height:1.6">${GROUPS.filter(g => g !== "Commander" && groups[g].length).map(g => `${g} <b>${cnt(groups[g])}</b>`).join(" · ")}</div></div>
+    <div class="stat"><div class="k">Typen</div><div class="s" style="margin-top:4px;line-height:1.6">${GROUPS.filter(g => g !== "Commander" && g !== "Sideboard" && groups[g].length).map(g => `${g} <b>${cnt(groups[g])}</b>`).join(" · ")}</div></div>
     <div class="stat wide"><div class="k">Manakurve</div>
       <div class="curve">${st.curve.map(n => `<div class="b"><span class="n">${n || ""}</span><div class="bar" style="height:${(n / max) * 100}%"></div></div>`).join("")}</div>
       <div class="curve-l">${["0","1","2","3","4","5","6","7+"].map(x => `<span>${x}</span>`).join("")}</div>
     </div>
   </div>
-  <section class="gc-box">
+  ${isCmdr(id) ? `<section class="gc-box">
     <div class="gc-head"><h3>Game Changer <span>${gcs.length}</span></h3><span class="gc-hint ${gcs.length > 3 ? "hi" : ""}">${gcHint(gcs.length)}</span></div>
     ${gcs.length ? `<div class="gc-list">${gcs.map(e => `<button class="gc-chip" data-card="${esc(e.name)}">${esc(e.name)}</button>`).join("")}</div>` : `<p class="gc-none">Keine Game Changer in diesem Deck.</p>`}
-  </section>
+  </section>` : ""}
   ${body}`;
 
   const inp = $("deck-name");
@@ -696,7 +712,7 @@ function renderDeck(id){
 function exportText(id){
   const p = parsed(id);
   const line = e => { const c = cardFor(id, e); return c ? `${e.qty} ${c.name} (${c.set.toUpperCase()}) ${c.cn}` : `${e.qty} ${e.name}`; };
-  return "Commander\n" + p.commander.map(line).join("\n") + "\n\nDeck\n" + p.main.map(line).join("\n") + "\n";
+  return [p.commander.length ? "Commander\n" + p.commander.map(line).join("\n") : "", "Deck\n" + p.main.map(line).join("\n"), !isCmdr(id) && p.side.length ? "Sideboard\n" + p.side.map(line).join("\n") : ""].filter(Boolean).join("\n\n") + "\n";
 }
 /* Cockatrice: Commander kommt ins Sideboard (Cockatrice kennt keinen Commander-Bereich) */
 function cockName(id, e){
@@ -706,7 +722,8 @@ function cockName(id, e){
 }
 function cockatriceText(id){
   const p = parsed(id);
-  return p.main.map(e => `${e.qty} ${cockName(id, e)}`).join("\n") + "\n\n" + p.commander.map(e => `SB: ${e.qty} ${cockName(id, e)}`).join("\n") + "\n";
+  const side = [...p.commander, ...(isCmdr(id) ? [] : p.side)];
+  return p.main.map(e => `${e.qty} ${cockName(id, e)}`).join("\n") + "\n\n" + side.map(e => `SB: ${e.qty} ${cockName(id, e)}`).join("\n") + "\n";
 }
 function cockatriceCod(id){
   const p = parsed(id), x = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -714,12 +731,12 @@ function cockatriceCod(id){
   return `<?xml version="1.0" encoding="UTF-8"?>
 <cockatrice_deck version="1">
     <deckname>${x(data.decks[id].name)}</deckname>
-    <comments>Commander: ${x(p.commander.map(e => e.name).join(" & "))}</comments>
+    <comments>${x(isCmdr(id) ? "Commander: " + p.commander.map(e => e.name).join(" & ") : FORMATS[fmtOf(id)])}</comments>
     <zone name="main">
 ${p.main.map(card).join("\n")}
     </zone>
     <zone name="side">
-${p.commander.map(card).join("\n")}
+${[...p.commander, ...(isCmdr(id) ? [] : p.side)].map(card).join("\n")}
     </zone>
 </cockatrice_deck>
 `;
@@ -783,7 +800,7 @@ $("m-cheap").onchange = () => renderArt(false);
 new MutationObserver(() => { if($("art-modal").hidden) artCtx = null; }).observe($("art-modal"), {attributes:true, attributeFilter:["hidden"]});
 
 /* ================= Import ================= */
-let impEdit = null;
+let impEdit = null, impFormatTouched = false;
 function openImport(editId){
   impEdit = editId || null;
   const d = editId ? data.decks[editId] : null;
@@ -793,10 +810,24 @@ function openImport(editId){
   $("imp-list").value = d ? d.list : "";
   const cur = editId ? catOf(editId) : (current !== "overview" && data.decks[current] ? catOf(current) : data.categories[0]);
   $("imp-cat").innerHTML = data.categories.map(c => `<option value="${esc(c.id)}" ${c === cur ? "selected" : ""}>${esc(c.name)}</option>`).join("");
+  $("imp-format").innerHTML = Object.entries(FORMATS).map(([k, v]) => `<option value="${k}">${v}</option>`).join("");
+  $("imp-format").value = d ? (d.format || "commander") : "commander";
+  impFormatTouched = !!d;
   impPreview(); openModal("imp-modal"); (d ? $("imp-list") : $("imp-name")).focus();
 }
 function impParsed(){
   const p = parseList($("imp-list").value);
+  // Format automatisch vorschlagen, solange es nicht von Hand gewählt wurde
+  if(!impFormatTouched){
+    const n = p.main.reduce((s, e) => s + e.qty, 0);
+    $("imp-format").value = !p.commander.length && p.main.length && (p.side.length || n <= 75) ? "modern" : "commander";
+  }
+  if($("imp-format").value !== "commander"){
+    $("imp-cmd-wrap").hidden = true;
+    p.main.push(...p.commander); p.commander = [];
+    return p;
+  }
+  p.skipped += p.side.reduce((s, e) => s + e.qty, 0); p.side = [];
   if(!p.commander.length && p.main.length){
     const sel = $("imp-cmd"); const prev = sel.value;
     $("imp-cmd-wrap").hidden = false;
@@ -811,6 +842,16 @@ function impPreview(){
   const n = [...p.commander, ...p.main].reduce((s, e) => s + e.qty, 0);
   if(!n){ $("imp-preview").textContent = "Füge eine Deckliste ein."; return; }
   const warn = [];
+  if($("imp-format").value !== "commander"){
+    const sb = p.side.reduce((s, e) => s + e.qty, 0);
+    if(n < 60) warn.push(`nur ${n} Karten im Hauptdeck (mindestens 60)`);
+    if(sb > 15) warn.push(`${sb} Karten im Sideboard (höchstens 15)`);
+    const over = [...p.main, ...p.side].reduce((m, e) => (m[e.name] = (m[e.name] || 0) + e.qty, m), {});
+    const four = Object.entries(over).filter(([k, v]) => v > 4 && !/^(Plains|Island|Swamp|Mountain|Forest|Wastes)$|^Snow-Covered /.test(k)).map(([k]) => k);
+    if(four.length) warn.push("mehr als 4 Exemplare: " + four.join(", "));
+    $("imp-preview").innerHTML = `<b>${esc(FORMATS[$("imp-format").value])}</b> · ${n} Karten im Hauptdeck · ${sb} im Sideboard${warn.length ? `<br><span class="warn">Achtung: ${warn.join(", ")}</span>` : ""}`;
+    return;
+  }
   if(n !== 100) warn.push(`${n} statt 100 Karten`);
   if(p.commander.length > 2) warn.push("mehr als zwei Commander");
   $("imp-preview").innerHTML = `<b>${esc(p.commander.map(e => e.name).join(" & "))}</b> · ${n} Karten · ${p.main.length} verschiedene Karten im Deck${p.skipped ? ` · ${p.skipped} Sideboard-Karten ignoriert` : ""}${warn.length ? `<br><span class="warn">Achtung: ${warn.join(", ")}</span>` : ""}`;
@@ -818,6 +859,7 @@ function impPreview(){
 }
 $("imp-list").addEventListener("input", impPreview);
 $("imp-cmd").addEventListener("change", impPreview);
+$("imp-format").addEventListener("change", () => { impFormatTouched = true; impPreview(); });
 $("imp-form").addEventListener("submit", async ev => {
   ev.preventDefault();
   const p = impParsed();
@@ -827,11 +869,11 @@ $("imp-form").addEventListener("submit", async ev => {
   let id = impEdit;
   if(id){
     const d = data.decks[id]; d.name = name; d.list = toList(p);
-    const keep = new Set([...p.commander, ...p.main].map(e => e.name));
+    const keep = new Set([...p.commander, ...p.main, ...p.side].map(e => e.name)); d.format = $("imp-format").value;
     Object.keys(d.picks || {}).forEach(k => { if(!keep.has(k)) delete d.picks[k]; });
     data.categories.forEach(c => c.decks = c.decks.filter(x => x !== id));
   }else{
-    id = newId(name); data.decks[id] = {name, tag:"", list:toList(p), picks:{}};
+    id = newId(name); data.decks[id] = {name, tag:"", format:$("imp-format").value, list:toList(p), picks:{}};
   }
   data.categories.find(c => c.id === catId).decks.push(id);
   closeModal("imp-modal"); commit(false); go(id);
@@ -929,7 +971,7 @@ function render(){
   if(a && (a.id === "deck-name" || a.id === "deck-tag" || a.classList.contains("cat-name"))) return;
   if(current === "overview" || !data.decks[current]) { current = "overview"; renderOverview(); } else renderDeck(current);
 }
-let renderTimer; const softRender = () => { clearTimeout(renderTimer); renderTimer = setTimeout(render, 300); };
+let renderTimer = null; const softRender = () => { if(renderTimer) return; renderTimer = setTimeout(() => { renderTimer = null; render(); }, 350); };
 
 async function boot(){
   let server = null;
