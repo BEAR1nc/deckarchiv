@@ -146,6 +146,8 @@ main{padding:20px max(16px,3vw) 60px;min-width:0}
 .group{margin-bottom:30px}
 .group h3{font:600 22px/1 var(--font-display);text-transform:uppercase;letter-spacing:.03em;margin:0 0 12px;display:flex;gap:10px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:6px}
 .group h3 span{font:500 14px var(--font-mono);color:var(--muted)}
+.group h3{flex-wrap:wrap;row-gap:4px}
+.group h3 small{font:500 13px var(--font-body);color:var(--muted);letter-spacing:.02em;text-transform:none;margin-left:auto;white-space:nowrap}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
 .card{position:relative;border:0;padding:0;background:none;cursor:pointer;border-radius:4.5%/3.3%;aspect-ratio:488/680;max-width:100%;transition:transform .15s}
 .card:hover{transform:translateY(-3px) scale(1.02)}
@@ -340,6 +342,8 @@ let data = null;          // aktueller Stand
 let serverText = "";      // Stand aus data.json (zum Vergleich)
 let dirty = false;
 let view = load(VIEW_KEY, "grid");
+const GROUPBY_KEY = "flo-deckarchiv-groupby";
+let groupBy = load(GROUPBY_KEY, "type");
 const cache = load(CACHE_KEY, {});
 const failed = new Set();
 const printsCache = {};
@@ -630,17 +634,38 @@ function renderDeck(id){
   const picked = Object.keys(d.picks || {}).length;
   const cat = catOf(id);
   const gcs = isCmdr(id) ? gameChangers(id) : [];
+  // Abschnitte für die Kartenanzeige: nach Typ oder nach Set
+  let sections;
+  if(groupBy === "set"){
+    const bySet = new Map(), head = [], tail = [], missing = [];
+    for(const e of es){
+      const c = cardFor(id, e), item = {e, c};
+      if(e.cmdr) head.push(item); else if(e.sb) tail.push(item); else if(!c) missing.push(item);
+      else{ if(!bySet.has(c.set)) bySet.set(c.set, {c, items:[]}); bySet.get(c.set).items.push(item); }
+    }
+    const cnSort = (a, b) => (parseInt(a.c.cn) || 0) - (parseInt(b.c.cn) || 0) || a.c.cn.localeCompare(b.c.cn);
+    sections = [
+      ...(head.length ? [{title:"Commander", items:head}] : []),
+      ...[...bySet.values()].sort((a, b) => b.c.rel.localeCompare(a.c.rel) || a.c.setName.localeCompare(b.c.setName))
+        .map(g => ({title:g.c.setName, sub:`${g.c.set.toUpperCase()} · ${g.c.rel.slice(0, 4)}`, items:g.items.sort(cnSort)})),
+      ...(missing.length ? [{title:"Nicht gefunden", items:missing}] : []),
+      ...(tail.length ? [{title:"Sideboard", items:tail}] : [])
+    ];
+  }else{
+    sections = GROUPS.filter(g => groups[g].length).map(g => ({title:g, items:groups[g]}));
+  }
+  const nSets = new Set(es.filter(e => !e.sb).map(e => cardFor(id, e)?.set).filter(Boolean)).size;
 
   let body;
   if(view === "grid"){
-    body = GROUPS.filter(g => groups[g].length).map(g => `<section class="group"><h3>${g}<span>${cnt(groups[g])}</span></h3><div class="cards">${
-      groups[g].map(({e, c}) => `<button class="card" data-card="${esc(e.name)}" title="${esc(e.name)}">${
+    body = sections.map(sec => `<section class="group"><h3>${esc(sec.title)}<span>${cnt(sec.items)}</span>${sec.sub ? `<small>${esc(sec.sub)}</small>` : ""}</h3><div class="cards">${
+      sec.items.map(({e, c}) => `<button class="card" data-card="${esc(e.name)}" title="${esc(e.name)}">${
         c && c.img ? `<img loading="lazy" src="${c.img}" alt="${esc(e.name)}">` : `<div class="ph">${esc(e.name)}</div>`
       }${e.qty > 1 ? `<span class="qty">×${e.qty}</span>` : ""}${d.picks && d.picks[e.name] && c ? `<span class="chg">${esc(c.set.toUpperCase())}</span>` : ""}</button>`).join("")
     }</div></section>`).join("");
   }else{
     body = `<div class="tbl-wrap"><table><thead><tr><th class="num">#</th><th>Karte</th><th>Kosten</th><th>Druck</th><th class="num">Preis</th><th>Kaufen</th></tr></thead><tbody>${
-      GROUPS.filter(g => groups[g].length).map(g => `<tr class="sec"><td colspan="6">${g} (${cnt(groups[g])})</td></tr>` + groups[g].map(({e, c}) => `<tr class="rowc" data-card="${esc(e.name)}">
+      sections.map(sec => `<tr class="sec"><td colspan="6">${esc(sec.title)} (${cnt(sec.items)})${sec.sub ? ` · ${esc(sec.sub)}` : ""}</td></tr>` + sec.items.map(({e, c}) => `<tr class="rowc" data-card="${esc(e.name)}">
         <td class="num">${e.qty}</td><td>${esc(e.name)}</td><td class="mana">${esc(c ? c.mana : "")}</td>
         <td>${c ? esc(c.setName) + " · " + esc(c.set.toUpperCase()) + " " + esc(c.cn) : "–"}</td>
         <td class="num">${fmtEur(priceOf(c) != null ? priceOf(c) * e.qty : null)}</td>
@@ -660,6 +685,7 @@ function renderDeck(id){
     </div>
     <div class="actions">
       <div class="seg" role="group" aria-label="Ansicht"><button data-view="grid" class="${view === "grid" ? "on" : ""}">Bilder</button><button data-view="list" class="${view === "list" ? "on" : ""}">Liste</button></div>
+      <div class="seg" role="group" aria-label="Sortieren nach"><button data-group="type" class="${groupBy === "type" ? "on" : ""}">Nach Typ</button><button data-group="set" class="${groupBy === "set" ? "on" : ""}" title="${nSets} verschiedene Sets">Nach Set</button></div>
       <button class="btn" id="edit-list">Liste bearbeiten</button>
       <button class="btn" id="copy">Kopieren</button>
       <button class="btn" id="dl">.txt</button>
@@ -698,6 +724,7 @@ function renderDeck(id){
   };
   $("picks-reset") && ($("picks-reset").onclick = () => { d.picks = {}; commit(); });
   $("main").querySelectorAll("[data-view]").forEach(b => b.onclick = () => { view = b.dataset.view; save(VIEW_KEY, view); render(); });
+  $("main").querySelectorAll("[data-group]").forEach(b => b.onclick = () => { groupBy = b.dataset.group; save(GROUPBY_KEY, groupBy); render(); });
   $("main").querySelectorAll("[data-card]").forEach(el => el.addEventListener("click", ev => { if(ev.target.closest("[data-stop]")) return; openCard(id, el.dataset.card); }));
   $("edit-list").onclick = () => openImport(id);
   $("copy").onclick = () => copyText(exportText(id));
