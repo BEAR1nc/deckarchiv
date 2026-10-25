@@ -51,7 +51,8 @@
     "windgrace-lands-bracket3",
     "gishath-dinos-bracket3",
     "mizzix-spellslinger-bracket3",
-    "boros-burn-modern"
+    "boros-burn-modern",
+    "aragorn-menschen-paper-bracket3"
    ]
   }
  ],
@@ -487,6 +488,12 @@
    "tag": "Modern",
    "format": "modern",
    "list": "Deck\n4 Goblin Guide\n4 Monastery Swiftspear\n4 Eidolon of the Great Revel\n4 Lightning Bolt\n4 Lava Spike\n4 Rift Bolt\n4 Skewer the Critics\n4 Lightning Helix\n4 Boros Charm\n3 Searing Blaze\n2 Skullcrack\n4 Battlefield Forge\n4 Sunbaked Canyon\n8 Mountain\n3 Plains\n\nSideboard\n3 Path to Exile\n2 Rest in Peace\n2 Damping Sphere\n2 Wear // Tear\n2 Smash to Smithereens\n2 Deflecting Palm\n2 Soul-Guide Lantern",
+   "picks": {}
+  },
+  "aragorn-menschen-paper-bracket3": {
+   "name": "Aragorn Menschen B3",
+   "tag": "Bracket 3",
+   "list": "Commander\n1 Aragorn, the Uniter\n\nDeck\n1 Delighted Halfling\n1 Birds of Paradise\n1 Avacyn's Pilgrim\n1 Esper Sentinel\n1 Recruitment Officer\n1 Hopeful Initiate\n1 Thalia's Lieutenant\n1 Katilda, Dawnhart Prime\n1 The Queen of Dale\n1 Pippin, Guard of the Citadel\n1 Prince Imrahil the Fair\n1 Théoden, King of Rohan\n1 Boromir, Warden of the Tower\n1 Faramir, Prince of Ithilien\n1 Arwen, Mortal Queen\n1 Aragorn, Company Leader\n1 Éowyn, Fearless Knight\n1 Éomer, Marshal of Rohan\n1 Éomer of the Riddermark\n1 Erkenbrand, Lord of Westfold\n1 Adeline, Resplendent Cathar\n1 Anim Pakal, Thousandth Moon\n1 Inti, Seneschal of the Sun\n1 Imodane's Recruiter\n1 Sigarda, Champion of Light\n1 Torens, Fist of the Angels\n1 Queen Allenal of Ruadach\n1 Hero of Precinct One\n1 Jetmir, Nexus of Revels\n1 Halana and Alena, Partners\n1 Myrel, Shield of Argive\n1 Mondrak, Glory Dominus\n1 Arcane Signet\n1 Sol Ring\n1 Chromatic Lantern\n1 Smothering Tithe\n1 Horn of Gondor\n1 Flowering of the White Tree\n1 Wedding Announcement\n1 Virtue of Loyalty\n1 Cathars' Crusade\n1 Annie Joins Up\n1 Brokers Ascendancy\n1 Anointed Procession\n1 Mirari's Wake\n1 Warleader's Call\n1 Chaos Warp\n1 Adarkar Wastes\n1 Windswept Heath\n1 Battlefield Forge\n1 Boseiju, Who Endures\n1 Wooded Foothills\n1 Breeding Pool\n1 Brushland\n1 Camaraderie\n1 Cavern of Souls\n1 Command Tower\n1 Arid Mesa\n1 Dovin's Veto\n1 Eiganjo, Seat of the Empire\n1 Fabled Passage\n1 Forest\n1 Get Lost\n1 Great Hall of the Citadel\n1 Hallowed Fountain\n1 Flooded Strand\n1 Heroic Intervention\n1 Island\n1 Jetmir's Garden\n1 Skullclamp\n1 Karplusan Forest\n1 Ketria Triome\n1 Lightning Bolt\n1 Lightning Helix\n1 Mana Confluence\n1 March of the Multitudes\n1 Minas Tirith\n1 Mountain\n1 Scalding Tarn\n1 Otawara, Soaring City\n1 Path to Exile\n1 Plains\n1 Plaza of Heroes\n1 Rally at the Hornburg\n1 Raugrin Triome\n1 Reprieve\n1 Misty Rainforest\n1 Sacred Foundry\n1 Secluded Courtyard\n1 Shivan Reef\n1 Spara's Headquarters\n1 Steam Vents\n1 Stomping Ground\n1 Stroke of Midnight\n1 Swords to Plowshares\n1 Teferi's Protection\n1 Temple Garden\n1 Unclaimed Territory\n1 Yavimaya Coast\n",
    "picks": {}
   }
  }
