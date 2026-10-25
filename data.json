@@ -494,7 +494,24 @@
    "name": "Aragorn Menschen B3",
    "tag": "Bracket 3",
    "list": "Commander\n1 Aragorn, the Uniter\n\nDeck\n1 Delighted Halfling\n1 Birds of Paradise\n1 Avacyn's Pilgrim\n1 Esper Sentinel\n1 Recruitment Officer\n1 Hopeful Initiate\n1 Thalia's Lieutenant\n1 Katilda, Dawnhart Prime\n1 The Queen of Dale\n1 Pippin, Guard of the Citadel\n1 Prince Imrahil the Fair\n1 Théoden, King of Rohan\n1 Boromir, Warden of the Tower\n1 Faramir, Prince of Ithilien\n1 Arwen, Mortal Queen\n1 Aragorn, Company Leader\n1 Éowyn, Fearless Knight\n1 Éomer, Marshal of Rohan\n1 Éomer of the Riddermark\n1 Erkenbrand, Lord of Westfold\n1 Adeline, Resplendent Cathar\n1 Anim Pakal, Thousandth Moon\n1 Inti, Seneschal of the Sun\n1 Imodane's Recruiter\n1 Sigarda, Champion of Light\n1 Torens, Fist of the Angels\n1 Queen Allenal of Ruadach\n1 Hero of Precinct One\n1 Jetmir, Nexus of Revels\n1 Halana and Alena, Partners\n1 Myrel, Shield of Argive\n1 Mondrak, Glory Dominus\n1 Arcane Signet\n1 Sol Ring\n1 Chromatic Lantern\n1 Smothering Tithe\n1 Horn of Gondor\n1 Flowering of the White Tree\n1 Wedding Announcement\n1 Virtue of Loyalty\n1 Cathars' Crusade\n1 Annie Joins Up\n1 Brokers Ascendancy\n1 Anointed Procession\n1 Mirari's Wake\n1 Warleader's Call\n1 Chaos Warp\n1 Adarkar Wastes\n1 Windswept Heath\n1 Battlefield Forge\n1 Boseiju, Who Endures\n1 Wooded Foothills\n1 Breeding Pool\n1 Brushland\n1 Camaraderie\n1 Cavern of Souls\n1 Command Tower\n1 Arid Mesa\n1 Dovin's Veto\n1 Eiganjo, Seat of the Empire\n1 Fabled Passage\n1 Forest\n1 Get Lost\n1 Great Hall of the Citadel\n1 Hallowed Fountain\n1 Flooded Strand\n1 Heroic Intervention\n1 Island\n1 Jetmir's Garden\n1 Skullclamp\n1 Karplusan Forest\n1 Ketria Triome\n1 Lightning Bolt\n1 Lightning Helix\n1 Mana Confluence\n1 March of the Multitudes\n1 Minas Tirith\n1 Mountain\n1 Scalding Tarn\n1 Otawara, Soaring City\n1 Path to Exile\n1 Plains\n1 Plaza of Heroes\n1 Rally at the Hornburg\n1 Raugrin Triome\n1 Reprieve\n1 Misty Rainforest\n1 Sacred Foundry\n1 Secluded Courtyard\n1 Shivan Reef\n1 Spara's Headquarters\n1 Steam Vents\n1 Stomping Ground\n1 Stroke of Midnight\n1 Swords to Plowshares\n1 Teferi's Protection\n1 Temple Garden\n1 Unclaimed Territory\n1 Yavimaya Coast\n",
-   "picks": {}
+   "picks": {
+    "Aragorn, the Uniter": "1b868c39-0fdc-4152-991e-3bc60a90d1ec",
+    "Avacyn's Pilgrim": "0a02a28d-ac00-40c5-9590-de029c007dde",
+    "Birds of Paradise": "45835349-99c3-4071-95d1-7191110bfd9f",
+    "Delighted Halfling": "10829a5d-d8cd-4285-8fd1-da52c61eed0e",
+    "Recruitment Officer": "29c63c32-ec2d-49fa-9c81-ab9e1abc8494",
+    "Inti, Seneschal of the Sun": "fa7a55aa-ae61-4933-b7a4-dcc55dac6fcd",
+    "Pippin, Guard of the Citadel": "25630509-c9ba-4faf-b154-32be8649d9fa",
+    "Prince Imrahil the Fair": "7d486def-7c3f-41e9-bb28-4582450a7b9e",
+    "The Queen of Dale": "7d635dfb-0a48-4965-82d1-d98f943bb28d",
+    "Aragorn, Company Leader": "142c3004-fe39-4ca3-bf14-f4af8b20fa80",
+    "Arwen, Mortal Queen": "a2055227-0a53-4b6b-b6d3-0eafc1884d4c",
+    "Boromir, Warden of the Tower": "e186ef93-f369-4b4d-a683-36f338b6ce3f",
+    "Éomer, Marshal of Rohan": "e60c8be5-68be-4e29-baf5-0590ace77319",
+    "Éowyn, Fearless Knight": "adffb389-c9a3-41c4-b078-292a2bcf870d",
+    "Faramir, Prince of Ithilien": "2c44ab34-99fe-47be-9fef-d49a25989bfb",
+    "Flowering of the White Tree": "b8d7c21f-7a67-4cab-ac95-b0bc6eb3d8a2"
+   }
   }
  }
 }
