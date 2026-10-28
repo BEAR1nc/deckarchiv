@@ -52,7 +52,8 @@
     "gishath-dinos-bracket3",
     "mizzix-spellslinger-bracket3",
     "boros-burn-modern",
-    "aragorn-menschen-paper-bracket3"
+    "aragorn-menschen-paper-bracket3",
+    "aragorn-2-bracket3"
    ]
   }
  ],
@@ -571,6 +572,12 @@
     "Otawara, Soaring City": "9e99599e-c594-42c6-b9e3-4dbb8e982f88",
     "Scalding Tarn": "49515199-f53c-4595-94ba-3a3e46b86372"
    }
+  },
+  "aragorn-2-bracket3": {
+   "name": "Aragorn 2 B3",
+   "tag": "Bracket 3",
+   "list": "Commander\n1 Aragorn, the Uniter\n\nDeck\n1 Alter Reality\n1 Boros Charm\n1 Dovin's Veto\n1 Glamerdye\n1 Growth Spiral\n1 Hithlain Knots\n1 Legolas's Quick Reflexes\n1 Opt\n1 Planar Genesis\n1 Shower of Arrows\n1 Sleight of Mind\n1 Spectral Shift\n1 Swan Song\n1 Amulet of Vigor\n1 Ancient Cornucopia\n1 Arcane Signet\n1 Crown of Gondor\n1 Doors of Durin\n1 Lifecrafter's Bestiary\n1 Mirror of Galadriel\n1 Palantír of Orthanc\n1 Planetarium of Wan Shi Tong\n1 Sol Ring\n1 The One Ring\n1 Tome of the Guildpact\n1 Annie Joins Up\n1 Asceticism\n1 Rhystic Study\n1 Swirl the Mists\n1 Aragorn, Company Leader\n1 Aragorn, King of Gondor\n1 Arwen Undómiel\n1 Bloom Tender\n1 Círdan the Shipwright\n1 Denzilore Fatehold\n1 Elrond of the White Council\n1 Elrond, Lord of Rivendell\n1 Elrond, Master of Healing\n1 Elvish Mariner\n1 Esper Sentinel\n1 Faerie Seer\n1 Galadriel of Lothlórien\n1 Galadriel, Elven-Queen\n1 Galadriel, Light of Valinor\n1 Gandalf, White Rider\n1 Hermes, Overseer of Elpis\n1 Knight of New Alara\n1 Legolas, Counter of Kills\n1 Lothlórien Lookout\n1 Matoya, Archon Elder\n1 Noble Hierarch\n1 Radagast of Rhosgobel\n1 Sigarda, Font of Blessings\n1 Arwen's Gift\n1 Lessons from Life\n1 Mystic Speculation\n1 Overwhelming Stampede\n1 Preordain\n1 Return to the Light Realms\n1 Serum Visions\n1 Taunt from the Rampart\n1 Trait Doctoring\n1 Azorius Chancery\n1 Boros Garrison\n1 Boseiju, Who Endures\n1 Bountiful Promenade\n1 Command Tower\n2 Forest\n1 Gruul Turf\n2 Island\n1 Izzet Boilerworks\n1 Jetmir's Garden\n1 Ketria Triome\n2 Mountain\n2 Plains\n1 Plateau\n1 Raugrin Triome\n1 Reflecting Pool\n1 Rejuvenating Springs\n1 Savannah\n1 Sea of Clouds\n1 Selesnya Sanctuary\n1 Simic Growth Chamber\n1 Spara's Headquarters\n1 Spectator Seating\n1 Spire Garden\n1 Taiga\n1 Training Center\n1 Tropical Island\n1 Tundra\n1 Urza's Saga\n1 Volcanic Island\n1 Yavimaya, Cradle of Growth\n1 Elminster\n1 Nissa, Steward of Elements",
+   "picks": {}
   }
  }
 }
