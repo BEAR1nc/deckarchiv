@@ -30,3 +30,11 @@ Damit „Auf GitHub speichern“ funktioniert:
 Benutzername und Repository werden auf GitHub Pages automatisch erkannt. Der Token bleibt nur im Browser des jeweiligen Geräts.
 
 Ohne Token geht es auch: „data.json herunterladen“ und die Datei im Repository ersetzen (**Add file → Upload files**).
+
+## Shopping (MTG-Display-Preise)
+
+Unterseite `shopping/`: Preisvergleich der englischen Play-, Set- und Collector-Booster-Displays bei Schweizer Händlern, inklusive Excel-Download.
+
+- `scraper/`: liest die Shops aus (`scrape.py`), erkennt Edition/Typ/Sprache (`normalize.py`) und erstellt die Excel-Datei (`excel.py`).
+- `.github/workflows/shopping.yml`: läuft täglich und speichert die neuen Preise in `shopping/data/`. Manuell starten: GitHub → Actions → «Shopping-Preise aktualisieren» → «Run workflow».
+- Shops, die automatische Abfragen blockieren, behalten ihren letzten bekannten Stand (siehe Tabelle «Händler & Stand» auf der Seite).
