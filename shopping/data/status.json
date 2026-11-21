@@ -20,7 +20,7 @@
   "ok": true,
   "last_ok": "2026-11-21",
   "note": null,
-  "count": 79,
+  "count": 77,
   "error": null
  },
  "GameGalaxy": {
@@ -52,7 +52,7 @@
   "ok": true,
   "last_ok": "2026-11-21",
   "note": null,
-  "count": 36,
+  "count": 35,
   "error": null
  },
  "MaRo Games": {
@@ -74,7 +74,7 @@
   "ok": true,
   "last_ok": "2026-11-21",
   "note": null,
-  "count": 266,
+  "count": 156,
   "error": null
  },
  "Mr. Packhouse": {
@@ -114,7 +114,7 @@
   "ok": true,
   "last_ok": "2026-11-21",
   "note": null,
-  "count": 89,
+  "count": 88,
   "error": null
  },
  "CardCollectors": {
@@ -130,7 +130,7 @@
   "ok": true,
   "last_ok": "2026-11-21",
   "note": null,
-  "count": 141,
+  "count": 137,
   "error": null
  },
  "Toki": {
@@ -155,14 +155,14 @@
   "last_ok": "2026-11-21",
   "note": null,
   "last_try": "2026-11-21",
-  "error": "RuntimeError: keine Produkte gefunden"
+  "error": "RuntimeError: keine Produkte gefunden (letzte Antwort: {'status': 200, 'size': 447616, 'url': 'https://www.twomoons.ch/search?search=magic+display&p=1', 'title': ''})"
  },
  "CardCosmos": {
   "link": "https://cardcosmos.ch",
   "ok": true,
   "last_ok": "2026-11-21",
   "note": null,
-  "count": 151,
+  "count": 136,
   "error": null
  },
  "edujeu": {
@@ -192,7 +192,7 @@
   "ok": true,
   "last_ok": "2026-11-21",
   "note": null,
-  "count": 276,
+  "count": 96,
   "error": null
  },
  "World of Games": {
@@ -212,7 +212,7 @@
   "error": null
  },
  "_meta": {
-  "updated": "2026-11-21T16:53+00:00",
+  "updated": "2026-11-21T16:59+00:00",
   "shops": [
    {
     "name": "Cards & Dice",
