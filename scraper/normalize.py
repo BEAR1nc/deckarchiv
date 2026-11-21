@@ -102,7 +102,7 @@ def find_type(t, setname):
         return 'Collector'
     if re.search(r'set[- ]?booster|set display|set boosterbox|\| set \|', tl):
         return 'Set'
-    if re.search(r'play|booster de jeu|game booster|boosters de jeu', tl):
+    if re.search(r'\bplay\b|play-?booster|booster de jeu|game booster|boosters de jeu', tl):
         return 'Play'
     # generic "Booster Display/Box" -> Play only in Play-Booster era
     if ORDER.get(setname, '0000') >= PLAY_ERA_START:

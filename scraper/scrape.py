@@ -32,6 +32,9 @@ S.headers.update({
 EXCL_JS = re.compile(r'draft|jumpstart|beyond|epilog|commander[- ]?deck|bundle|prerelease|case|karton|faltbox|deck ?box|sleeve|hülle|leer|empty|starter|collection|gift|scene box|single booster|einzel|foil|near mint|played|acryl|unsanctioned', re.I)
 
 
+LAST = {}
+
+
 def get(url, **kw):
     for i in range(3):
         try:
@@ -39,6 +42,8 @@ def get(url, **kw):
             if r.status_code in (429, 503):
                 time.sleep(5 * (i + 1))
                 continue
+            LAST.update(status=r.status_code, size=len(r.content), url=r.url[:120],
+                        title=(re.search(r'<title>(.*?)</title>', r.text[:20000], re.S | re.I) or [None, ''])[1].strip()[:80])
             return r
         except requests.RequestException:
             if i == 2:
@@ -162,7 +167,7 @@ def magictrade():
         boxes = sp.select('div.section.panel')
         found = 0
         for b in boxes:
-            t = b.select_one('.title .h4, .title')
+            t = b.select_one('.title .h4') or b.select_one('.title p') or b.select_one('.title')
             pr = b.select_one('.product-price')
             st = b.select_one('.product-stock')
             if not t or not pr:
@@ -389,12 +394,13 @@ def main():
             continue
         t0 = time.time()
         try:
-            raw = fn()
+            LAST.clear()
+            raw = list(dict.fromkeys(fn()))  # Duplikate entfernen
             rows = N.normalize(name, deflang, raw)
             if raw and not rows:
                 raise RuntimeError(f'{len(raw)} Produkte gefunden, aber keine erkannt')
             if not raw:
-                raise RuntimeError('keine Produkte gefunden')
+                raise RuntimeError(f'keine Produkte gefunden (letzte Antwort: {LAST})')
             for x in rows:
                 x['stand'] = TODAY
             offers = [o for o in offers if o['shop'] != name] + rows
