@@ -1,0 +1,39 @@
+name: Shopping-Preise aktualisieren
+
+on:
+  schedule:
+    - cron: "17 4 * * *"   # täglich ca. 05:17 / 06:17 Schweizer Zeit
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scraper/**"
+      - ".github/workflows/shopping.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shopping
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r scraper/requirements.txt
+      - name: Preise abfragen
+        run: python scraper/scrape.py
+      - name: Änderungen speichern
+        run: |
+          git config user.name "deckarchiv-bot"
+          git config user.email "deckarchiv-bot@users.noreply.github.com"
+          git add shopping/data shopping/MTG_Display_Preisvergleich_EN.xlsx
+          if git diff --cached --quiet; then echo "Keine Änderungen"; exit 0; fi
+          git commit -m "Shopping-Preise aktualisiert"
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done

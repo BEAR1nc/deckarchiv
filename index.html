@@ -46,6 +46,10 @@ a{color:var(--accent)}
 .theme-btn:hover{border-color:var(--accent)}
 .theme-btn svg{width:14px;height:14px;flex:none}
 .brand p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.sect{display:flex;gap:4px;margin-top:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:3px}
+.sect a{flex:1;text-align:center;padding:5px 8px;border-radius:6px;font:600 13px/1.2 var(--font-body);color:var(--muted);text-decoration:none}
+.sect a:hover{color:var(--fg)}
+.sect a.on{background:var(--surface);color:var(--fg);box-shadow:var(--shadow)}
 .nav{display:flex;flex-direction:column;padding:10px;gap:2px}
 .nav button{display:flex;align-items:center;gap:10px;text-align:left;border:0;background:none;padding:8px 10px;border-radius:6px;cursor:pointer;width:100%}
 .nav button:hover{background:var(--surface-2)}
@@ -234,7 +238,7 @@ tr.sec td{background:var(--surface-2);font-family:var(--font-display);font-weigh
 <body>
 <div class="app">
   <aside class="side">
-    <div class="brand"><div class="brand-row"><h1>Deckarchiv</h1><button class="theme-btn" id="theme-btn" type="button" aria-label="Farbschema wechseln"></button></div><p>Paper-Decks</p></div>
+    <div class="brand"><div class="brand-row"><h1>Deckarchiv</h1><button class="theme-btn" id="theme-btn" type="button" aria-label="Farbschema wechseln"></button></div><p>Paper-Decks</p><div class="sect"><a class="on" href="./" aria-current="page">Deckarchiv</a><a href="shopping/">Shopping</a></div></div>
     <nav class="nav" id="nav"></nav>
     <div class="side-foot">
       <span id="status">Starte …</span>

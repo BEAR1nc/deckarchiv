@@ -1,0 +1,277 @@
+{
+ "Cards & Dice": {
+  "link": "https://cardsdice.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Cardmaniac": {
+  "link": "https://cardmaniac.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "CARAB": {
+  "link": "https://www.carab.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "GameGalaxy": {
+  "link": "https://gamegalaxy.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "GoodGames Bern": {
+  "link": "https://www.goodgamesbern.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Hall of Trader": {
+  "link": "https://halloftrader.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Kabooom": {
+  "link": "https://shop.kabooom.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "MaRo Games": {
+  "link": "https://www.maro-shop.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Magic-Bros": {
+  "link": "https://www.magic-bros.ch",
+  "ok": null,
+  "last_ok": "2026-11-21",
+  "note": "nicht automatisch (letzter Stand bleibt)"
+ },
+ "Magictrade": {
+  "link": "https://magictrade.ch/shop/de/displays",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Mr. Packhouse": {
+  "link": "https://www.mrpackhouse.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Nook's": {
+  "link": "https://www.nooks.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Pikaversum": {
+  "link": "https://pikaversum.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "POKEBOKA": {
+  "link": "https://pokeboka.ch/shop",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Softridge": {
+  "link": "https://www.softridge.ch/de/tcg/magic-the-gathering",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "CardCollectors": {
+  "link": "https://cardcollectors.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "The Uncommon Shop": {
+  "link": "https://theuncommonshop.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Toki": {
+  "link": "https://toki.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Trading Card Cave": {
+  "link": "https://www.tradingcardcave.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "TwoMoons": {
+  "link": "https://www.twomoons.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "CardCosmos": {
+  "link": "https://cardcosmos.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "edujeu": {
+  "link": "https://edujeu.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Galaxus": {
+  "link": "https://www.galaxus.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Sky Spell": {
+  "link": "https://skyspell.ch/collections/magic-the-gathering",
+  "ok": null,
+  "last_ok": "2026-11-21",
+  "note": "nicht automatisch (letzter Stand bleibt)"
+ },
+ "The Mana Shop": {
+  "link": "https://themanashop.ch/en/25-booster-boxes-display",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "World of Games": {
+  "link": "https://www.wog.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "Zadoys": {
+  "link": "https://zadoys.ch",
+  "ok": true,
+  "last_ok": "2026-11-21",
+  "note": null
+ },
+ "_meta": {
+  "updated": "2026-11-21T16:49+00:00",
+  "shops": [
+   {
+    "name": "Cards & Dice",
+    "link": "https://cardsdice.ch"
+   },
+   {
+    "name": "Cardmaniac",
+    "link": "https://cardmaniac.ch"
+   },
+   {
+    "name": "CARAB",
+    "link": "https://www.carab.ch"
+   },
+   {
+    "name": "GameGalaxy",
+    "link": "https://gamegalaxy.ch"
+   },
+   {
+    "name": "GoodGames Bern",
+    "link": "https://www.goodgamesbern.ch"
+   },
+   {
+    "name": "Hall of Trader",
+    "link": "https://halloftrader.ch"
+   },
+   {
+    "name": "Kabooom",
+    "link": "https://shop.kabooom.ch"
+   },
+   {
+    "name": "MaRo Games",
+    "link": "https://www.maro-shop.ch"
+   },
+   {
+    "name": "Magic-Bros",
+    "link": "https://www.magic-bros.ch"
+   },
+   {
+    "name": "Magictrade",
+    "link": "https://magictrade.ch/shop/de/displays"
+   },
+   {
+    "name": "Mr. Packhouse",
+    "link": "https://www.mrpackhouse.ch"
+   },
+   {
+    "name": "Nook's",
+    "link": "https://www.nooks.ch"
+   },
+   {
+    "name": "Pikaversum",
+    "link": "https://pikaversum.ch"
+   },
+   {
+    "name": "POKEBOKA",
+    "link": "https://pokeboka.ch/shop"
+   },
+   {
+    "name": "Softridge",
+    "link": "https://www.softridge.ch/de/tcg/magic-the-gathering"
+   },
+   {
+    "name": "CardCollectors",
+    "link": "https://cardcollectors.ch"
+   },
+   {
+    "name": "The Uncommon Shop",
+    "link": "https://theuncommonshop.ch"
+   },
+   {
+    "name": "Toki",
+    "link": "https://toki.ch"
+   },
+   {
+    "name": "Trading Card Cave",
+    "link": "https://www.tradingcardcave.ch"
+   },
+   {
+    "name": "TwoMoons",
+    "link": "https://www.twomoons.ch"
+   },
+   {
+    "name": "CardCosmos",
+    "link": "https://cardcosmos.ch"
+   },
+   {
+    "name": "edujeu",
+    "link": "https://edujeu.ch"
+   },
+   {
+    "name": "Galaxus",
+    "link": "https://www.galaxus.ch"
+   },
+   {
+    "name": "Sky Spell",
+    "link": "https://skyspell.ch/collections/magic-the-gathering"
+   },
+   {
+    "name": "The Mana Shop",
+    "link": "https://themanashop.ch/en/25-booster-boxes-display"
+   },
+   {
+    "name": "World of Games",
+    "link": "https://www.wog.ch"
+   },
+   {
+    "name": "Zadoys",
+    "link": "https://zadoys.ch"
+   }
+  ]
+ }
+}
