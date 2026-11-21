@@ -3,49 +3,65 @@
   "link": "https://cardsdice.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 28,
+  "error": null
  },
  "Cardmaniac": {
   "link": "https://cardmaniac.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 69,
+  "error": null
  },
  "CARAB": {
   "link": "https://www.carab.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 79,
+  "error": null
  },
  "GameGalaxy": {
   "link": "https://gamegalaxy.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 15,
+  "error": null
  },
  "GoodGames Bern": {
   "link": "https://www.goodgamesbern.ch",
-  "ok": true,
+  "ok": false,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "last_try": "2026-11-21",
+  "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.goodgamesbern.ch/?dispatch=products.search&match=all&subcats=Y&pname=Y&search_performed=Y&q=magic+display&items_per_page=192"
  },
  "Hall of Trader": {
   "link": "https://halloftrader.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 1,
+  "error": null
  },
  "Kabooom": {
   "link": "https://shop.kabooom.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 36,
+  "error": null
  },
  "MaRo Games": {
   "link": "https://www.maro-shop.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 53,
+  "error": null
  },
  "Magic-Bros": {
   "link": "https://www.magic-bros.ch",
@@ -57,85 +73,113 @@
   "link": "https://magictrade.ch/shop/de/displays",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 266,
+  "error": null
  },
  "Mr. Packhouse": {
   "link": "https://www.mrpackhouse.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 12,
+  "error": null
  },
  "Nook's": {
   "link": "https://www.nooks.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 10,
+  "error": null
  },
  "Pikaversum": {
   "link": "https://pikaversum.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 10,
+  "error": null
  },
  "POKEBOKA": {
   "link": "https://pokeboka.ch/shop",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 41,
+  "error": null
  },
  "Softridge": {
   "link": "https://www.softridge.ch/de/tcg/magic-the-gathering",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 89,
+  "error": null
  },
  "CardCollectors": {
   "link": "https://cardcollectors.ch",
-  "ok": true,
+  "ok": false,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "last_try": "2026-11-21",
+  "error": "HTTPError: 403 Client Error: Forbidden for url: https://cardcollectors.ch/wp-json/wc/store/v1/products?search=display&per_page=100&page=1&_fields=name%2Cprices%2Cis_in_stock%2Ccategories"
  },
  "The Uncommon Shop": {
   "link": "https://theuncommonshop.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 141,
+  "error": null
  },
  "Toki": {
   "link": "https://toki.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 22,
+  "error": null
  },
  "Trading Card Cave": {
   "link": "https://www.tradingcardcave.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 14,
+  "error": null
  },
  "TwoMoons": {
   "link": "https://www.twomoons.ch",
-  "ok": true,
+  "ok": false,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "last_try": "2026-11-21",
+  "error": "RuntimeError: keine Produkte gefunden"
  },
  "CardCosmos": {
   "link": "https://cardcosmos.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 151,
+  "error": null
  },
  "edujeu": {
   "link": "https://edujeu.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 11,
+  "error": null
  },
  "Galaxus": {
   "link": "https://www.galaxus.ch",
-  "ok": true,
+  "ok": false,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "last_try": "2026-11-21",
+  "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.galaxus.ch/de/search?q=magic+the+gathering+display"
  },
  "Sky Spell": {
   "link": "https://skyspell.ch/collections/magic-the-gathering",
@@ -147,22 +191,28 @@
   "link": "https://themanashop.ch/en/25-booster-boxes-display",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 276,
+  "error": null
  },
  "World of Games": {
   "link": "https://www.wog.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 20,
+  "error": null
  },
  "Zadoys": {
   "link": "https://zadoys.ch",
   "ok": true,
   "last_ok": "2026-11-21",
-  "note": null
+  "note": null,
+  "count": 68,
+  "error": null
  },
  "_meta": {
-  "updated": "2026-11-21T16:49+00:00",
+  "updated": "2026-11-21T16:53+00:00",
   "shops": [
    {
     "name": "Cards & Dice",
