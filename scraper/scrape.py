@@ -262,8 +262,8 @@ def twomoons():
                 if re.search(r'beginner|deck box|jumpstart|jumstart', txt, re.I):
                     continue
                 nm = b.select_one('.product-name')
-                props = ' '.join(x.get_text(' ', strip=True) for x in b.find_all(string=re.compile(r'\|')) if x)
-                m = re.search(r'Booster Box \| (Play|Collector|Set) \|\s*(\w+)', props)
+                props = re.sub(r'\s+', ' ', ' '.join(str(x) for x in b.find_all(string=re.compile(r'\|'))))
+                m = re.search(r'Booster Box ?\| ?(Play|Collector|Set) ?\| ?(\w+)', props)
                 if not nm or not m:
                     continue
                 prices = re.findall(r'CHF\s?([\d\'.]+)', txt)
@@ -407,7 +407,10 @@ def main():
             st.update(ok=True, last_ok=TODAY, count=len(rows), error=None)
             print(f'OK   {name}: {len(raw)} roh -> {len(rows)} ({time.time() - t0:.0f}s)')
         except Exception as e:
-            st.update(ok=False, last_try=TODAY, error=f'{type(e).__name__}: {e}'[:300])
+            msg = f'{type(e).__name__}: {e}'
+            if '403' in msg:
+                msg = 'Shop blockiert automatische Abfragen (HTTP 403) – letzter bekannter Stand bleibt'
+            st.update(ok=False, last_try=TODAY, error=msg[:300])
             print(f'FAIL {name}: {e}')
             traceback.print_exc(limit=1)
         status[name] = st
