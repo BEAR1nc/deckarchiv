@@ -37,7 +37,7 @@
   "last_ok": "2026-11-21",
   "note": null,
   "last_try": "2026-11-21",
-  "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.goodgamesbern.ch/?dispatch=products.search&match=all&subcats=Y&pname=Y&search_performed=Y&q=magic+display&items_per_page=192"
+  "error": "Shop blockiert automatische Abfragen (HTTP 403) – letzter bekannter Stand bleibt"
  },
  "Hall of Trader": {
   "link": "https://halloftrader.ch",
@@ -123,7 +123,7 @@
   "last_ok": "2026-11-21",
   "note": null,
   "last_try": "2026-11-21",
-  "error": "HTTPError: 403 Client Error: Forbidden for url: https://cardcollectors.ch/wp-json/wc/store/v1/products?search=display&per_page=100&page=1&_fields=name%2Cprices%2Cis_in_stock%2Ccategories"
+  "error": "Shop blockiert automatische Abfragen (HTTP 403) – letzter bekannter Stand bleibt"
  },
  "The Uncommon Shop": {
   "link": "https://theuncommonshop.ch",
@@ -151,11 +151,12 @@
  },
  "TwoMoons": {
   "link": "https://www.twomoons.ch",
-  "ok": false,
+  "ok": true,
   "last_ok": "2026-11-21",
   "note": null,
   "last_try": "2026-11-21",
-  "error": "RuntimeError: keine Produkte gefunden (letzte Antwort: {'status': 200, 'size': 447616, 'url': 'https://www.twomoons.ch/search?search=magic+display&p=1', 'title': ''})"
+  "error": null,
+  "count": 19
  },
  "CardCosmos": {
   "link": "https://cardcosmos.ch",
@@ -179,7 +180,7 @@
   "last_ok": "2026-11-21",
   "note": null,
   "last_try": "2026-11-21",
-  "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.galaxus.ch/de/search?q=magic+the+gathering+display"
+  "error": "Shop blockiert automatische Abfragen (HTTP 403) – letzter bekannter Stand bleibt"
  },
  "Sky Spell": {
   "link": "https://skyspell.ch/collections/magic-the-gathering",
@@ -212,7 +213,7 @@
   "error": null
  },
  "_meta": {
-  "updated": "2026-11-21T16:59+00:00",
+  "updated": "2026-11-21T17:06+00:00",
   "shops": [
    {
     "name": "Cards & Dice",
