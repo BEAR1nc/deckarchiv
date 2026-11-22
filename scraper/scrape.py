@@ -337,6 +337,25 @@ def galaxus():
     return items
 
 
+def drachehoehli():
+    """Preisliste auf der Website (kein Warenkorb): Lieferbarkeit nicht angegeben."""
+    sp = soup('https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/')
+    for s in sp(['script', 'style', 'nav', 'header', 'footer']):
+        s.decompose()
+    lines = [re.sub(r'\s+', ' ', x).strip() for x in sp.get_text('\n').split('\n')]
+    lines = [x for x in lines if x]
+    items = []
+    for i, ln in enumerate(lines):
+        if not re.match(r'magic', ln, re.I) or not is_display(ln) or 'CHF' in ln:
+            continue
+        for nxt in lines[i + 1:i + 4]:
+            m = re.search(r'CHF\s?([\d\'.]+)', nxt)
+            if m:
+                items.append((ln, m.group(1).replace("'", '').rstrip('.'), True))
+                break
+    return items
+
+
 # --------------------------------------------------------------- Händlerliste
 SHOPS = [
     # (Name, Link, Standardsprache, Funktion)
@@ -363,10 +382,11 @@ SHOPS = [
     ('CardCosmos', 'https://cardcosmos.ch', None, lambda: shopify('https://cardcosmos.ch')),
     ('edujeu', 'https://edujeu.ch', None, lambda: woocommerce('https://edujeu.ch')),
     ('Galaxus', 'https://www.galaxus.ch', None, galaxus),
-    ('Sky Spell', 'https://skyspell.ch/collections/magic-the-gathering', None, None),
+    ('Sky Spell', 'https://skyspell.ch/collections/magic-the-gathering', None, lambda: shopify('https://sky-spell.myshopify.com')),
     ('The Mana Shop', 'https://themanashop.ch/en/25-booster-boxes-display', 'EN', manashop),
     ('World of Games', 'https://www.wog.ch', None, wog),
     ('Zadoys', 'https://zadoys.ch', None, lambda: shopify('https://zadoys.ch')),
+    ('Drachehöhli', 'https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/', None, drachehoehli),
 ]
 
 

@@ -148,6 +148,7 @@ def build(offers, status, path):
         'Fehlt eine Abfrage, bleiben die letzten bekannten Preise des Shops stehen (Spalte «Stand» im Blatt «Alle Angebote»).',
         'The Mana Shop zeigt oft «ab»-Preise; dieser kann für eine andere Sprachversion gelten.',
         'Spieltreff Tonazzi (magickarten.ch) leitet auf CardCollectors weiter. ManaBase ist nicht erreichbar.',
+        'Drachehöhli: Preisliste ohne Lagerstatus (gilt als lieferbar); «(DE+EN)» zählt als englisch erhältlich.',
     ]
     ws4.cell(row=r0, column=1, value='Hinweise').font = FB
     for i, t in enumerate(notes):
