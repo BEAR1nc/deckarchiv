@@ -2,7 +2,7 @@
  "Cards & Dice": {
   "link": "https://cardsdice.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 28,
   "error": null
@@ -10,7 +10,7 @@
  "Cardmaniac": {
   "link": "https://cardmaniac.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 69,
   "error": null
@@ -18,7 +18,7 @@
  "CARAB": {
   "link": "https://www.carab.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 77,
   "error": null
@@ -26,9 +26,9 @@
  "GameGalaxy": {
   "link": "https://gamegalaxy.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
-  "count": 15,
+  "count": 13,
   "error": null
  },
  "GoodGames Bern": {
@@ -36,13 +36,13 @@
   "ok": false,
   "last_ok": "2026-11-21",
   "note": null,
-  "last_try": "2026-11-21",
+  "last_try": "2026-11-22",
   "error": "Shop blockiert automatische Abfragen (HTTP 403) – letzter bekannter Stand bleibt"
  },
  "Hall of Trader": {
   "link": "https://halloftrader.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 1,
   "error": null
@@ -50,7 +50,7 @@
  "Kabooom": {
   "link": "https://shop.kabooom.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 35,
   "error": null
@@ -58,7 +58,7 @@
  "MaRo Games": {
   "link": "https://www.maro-shop.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 53,
   "error": null
@@ -72,7 +72,7 @@
  "Magictrade": {
   "link": "https://magictrade.ch/shop/de/displays",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 156,
   "error": null
@@ -80,15 +80,15 @@
  "Mr. Packhouse": {
   "link": "https://www.mrpackhouse.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
-  "count": 12,
+  "count": 11,
   "error": null
  },
  "Nook's": {
   "link": "https://www.nooks.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 10,
   "error": null
@@ -96,7 +96,7 @@
  "Pikaversum": {
   "link": "https://pikaversum.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 10,
   "error": null
@@ -104,7 +104,7 @@
  "POKEBOKA": {
   "link": "https://pokeboka.ch/shop",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 41,
   "error": null
@@ -112,7 +112,7 @@
  "Softridge": {
   "link": "https://www.softridge.ch/de/tcg/magic-the-gathering",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 88,
   "error": null
@@ -122,13 +122,13 @@
   "ok": false,
   "last_ok": "2026-11-21",
   "note": null,
-  "last_try": "2026-11-21",
+  "last_try": "2026-11-22",
   "error": "Shop blockiert automatische Abfragen (HTTP 403) – letzter bekannter Stand bleibt"
  },
  "The Uncommon Shop": {
   "link": "https://theuncommonshop.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 137,
   "error": null
@@ -136,7 +136,7 @@
  "Toki": {
   "link": "https://toki.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 22,
   "error": null
@@ -144,7 +144,7 @@
  "Trading Card Cave": {
   "link": "https://www.tradingcardcave.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 14,
   "error": null
@@ -152,7 +152,7 @@
  "TwoMoons": {
   "link": "https://www.twomoons.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "last_try": "2026-11-21",
   "error": null,
@@ -161,7 +161,7 @@
  "CardCosmos": {
   "link": "https://cardcosmos.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 136,
   "error": null
@@ -169,7 +169,7 @@
  "edujeu": {
   "link": "https://edujeu.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 11,
   "error": null
@@ -179,7 +179,7 @@
   "ok": false,
   "last_ok": "2026-11-21",
   "note": null,
-  "last_try": "2026-11-21",
+  "last_try": "2026-11-22",
   "error": "Shop blockiert automatische Abfragen (HTTP 403) – letzter bekannter Stand bleibt"
  },
  "Sky Spell": {
@@ -191,7 +191,7 @@
  "The Mana Shop": {
   "link": "https://themanashop.ch/en/25-booster-boxes-display",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 96,
   "error": null
@@ -199,7 +199,7 @@
  "World of Games": {
   "link": "https://www.wog.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 20,
   "error": null
@@ -207,13 +207,13 @@
  "Zadoys": {
   "link": "https://zadoys.ch",
   "ok": true,
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "note": null,
   "count": 68,
   "error": null
  },
  "_meta": {
-  "updated": "2026-11-21T17:06+00:00",
+  "updated": "2026-11-22T12:41+00:00",
   "shops": [
    {
     "name": "Cards & Dice",
