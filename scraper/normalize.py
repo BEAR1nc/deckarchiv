@@ -154,6 +154,9 @@ def normalize(shop, deflang, items):
         pr = price if isinstance(price, (int, float)) else parse_price(str(price))
         if not pr or pr < 20:
             continue
+        # Plausibilität: Einzelbooster, die fälschlich als Display gelistet sind, aussortieren
+        if (ty == 'Collector' and pr < 120) or (ty in ('Play', 'Set') and pr < 50):
+            continue
         lang = find_lang(title, deflang)
         if lang == 'andere':
             continue

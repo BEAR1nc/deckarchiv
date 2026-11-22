@@ -424,7 +424,7 @@ def main():
             for x in rows:
                 x['stand'] = TODAY
             offers = [o for o in offers if o['shop'] != name] + rows
-            st.update(ok=True, last_ok=TODAY, count=len(rows), error=None)
+            st.update(ok=True, last_ok=TODAY, count=len(rows), error=None, note=None)
             print(f'OK   {name}: {len(raw)} roh -> {len(rows)} ({time.time() - t0:.0f}s)')
         except Exception as e:
             msg = f'{type(e).__name__}: {e}'
