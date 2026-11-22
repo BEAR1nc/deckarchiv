@@ -1596,28 +1596,6 @@
 },
 {
 "shop": "CardCosmos",
-"title": "Magic: The Gathering - Innistrad: Blutroter Bund Sammler Booster Display - DE",
-"set": "Innistrad: Crimson Vow",
-"type": "Collector",
-"lang": "DE",
-"price": 100.0,
-"avail": false,
-"release": "2021-11",
-"stand": "2026-11-22"
-},
-{
-"shop": "CardCosmos",
-"title": "Magic: The Gathering - Innistrad: Crimson Vow Collectors Booster Box - EN",
-"set": "Innistrad: Crimson Vow",
-"type": "Collector",
-"lang": "EN",
-"price": 103.0,
-"avail": false,
-"release": "2021-11",
-"stand": "2026-11-22"
-},
-{
-"shop": "CardCosmos",
 "title": "Magic: The Gathering - Kaldheim Set Booster Display - DE",
 "set": "Kaldheim",
 "type": "Set",
@@ -1746,17 +1724,6 @@
 "price": 100.0,
 "avail": false,
 "release": "2023-04",
-"stand": "2026-11-22"
-},
-{
-"shop": "CardCosmos",
-"title": "Magic: The Gathering - March of the Machine: The Aftermath Collectors Booster Box - JPN",
-"set": "March of the Machine: The Aftermath",
-"type": "Collector",
-"lang": "JP",
-"price": 108.0,
-"avail": false,
-"release": "2023-05",
 "stand": "2026-11-22"
 },
 {
@@ -3495,17 +3462,6 @@
 "price": 170.0,
 "avail": true,
 "release": "2026-08",
-"stand": "2026-11-22"
-},
-{
-"shop": "Drachehöhli",
-"title": "Magic - Avatar - the Last Airbender Collectors-Booster-Display (12 Packs) (DE+EN)",
-"set": "Avatar: The Last Airbender",
-"type": "Collector",
-"lang": "EN",
-"price": 39.9,
-"avail": true,
-"release": "2025-11",
 "stand": "2026-11-22"
 },
 {

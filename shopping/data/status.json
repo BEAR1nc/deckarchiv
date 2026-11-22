@@ -163,7 +163,7 @@
   "ok": true,
   "last_ok": "2026-11-22",
   "note": null,
-  "count": 130,
+  "count": 127,
   "error": null
  },
  "edujeu": {
@@ -186,7 +186,7 @@
   "link": "https://skyspell.ch/collections/magic-the-gathering",
   "ok": true,
   "last_ok": "2026-11-22",
-  "note": "nicht automatisch (letzter Stand bleibt)",
+  "note": null,
   "count": 64,
   "error": null
  },
@@ -215,7 +215,7 @@
   "error": null
  },
  "_meta": {
-  "updated": "2026-11-22T14:12+00:00",
+  "updated": "2026-11-22T14:18+00:00",
   "shops": [
    {
     "name": "Cards & Dice",
@@ -335,7 +335,8 @@
   "link": "https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/",
   "ok": true,
   "last_ok": "2026-11-22",
-  "count": 12,
-  "error": null
+  "count": 11,
+  "error": null,
+  "note": null
  }
 }
