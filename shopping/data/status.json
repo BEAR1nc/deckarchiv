@@ -20,7 +20,7 @@
   "ok": true,
   "last_ok": "2026-11-22",
   "note": null,
-  "count": 77,
+  "count": 78,
   "error": null
  },
  "GameGalaxy": {
@@ -163,7 +163,7 @@
   "ok": true,
   "last_ok": "2026-11-22",
   "note": null,
-  "count": 136,
+  "count": 130,
   "error": null
  },
  "edujeu": {
@@ -184,9 +184,11 @@
  },
  "Sky Spell": {
   "link": "https://skyspell.ch/collections/magic-the-gathering",
-  "ok": null,
-  "last_ok": "2026-11-21",
-  "note": "nicht automatisch (letzter Stand bleibt)"
+  "ok": true,
+  "last_ok": "2026-11-22",
+  "note": "nicht automatisch (letzter Stand bleibt)",
+  "count": 64,
+  "error": null
  },
  "The Mana Shop": {
   "link": "https://themanashop.ch/en/25-booster-boxes-display",
@@ -213,7 +215,7 @@
   "error": null
  },
  "_meta": {
-  "updated": "2026-11-22T12:41+00:00",
+  "updated": "2026-11-22T14:12+00:00",
   "shops": [
    {
     "name": "Cards & Dice",
@@ -322,7 +324,18 @@
    {
     "name": "Zadoys",
     "link": "https://zadoys.ch"
+   },
+   {
+    "name": "Drachehöhli",
+    "link": "https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/"
    }
   ]
+ },
+ "Drachehöhli": {
+  "link": "https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/",
+  "ok": true,
+  "last_ok": "2026-11-22",
+  "count": 12,
+  "error": null
  }
 }
