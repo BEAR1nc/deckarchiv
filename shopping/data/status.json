@@ -207,7 +207,7 @@
   "error": null
  },
  "_meta": {
-  "updated": "2026-11-25T16:25+00:00",
+  "updated": "2026-11-25T16:33+00:00",
   "shops": [
    {
     "name": "Cards & Dice",
@@ -351,7 +351,7 @@
   "link": "https://shop.lemaitredejeux.ch",
   "ok": true,
   "last_ok": "2026-11-25",
-  "count": 1,
+  "count": 2,
   "error": null,
   "note": null
  },
