@@ -20,7 +20,7 @@
   "ok": true,
   "last_ok": "2026-11-25",
   "note": null,
-  "count": 77,
+  "count": 78,
   "error": null
  },
  "GameGalaxy": {
@@ -156,7 +156,7 @@
   "note": null,
   "last_try": "2026-11-21",
   "error": null,
-  "count": 27
+  "count": 26
  },
  "edujeu": {
   "link": "https://edujeu.ch",
@@ -207,7 +207,7 @@
   "error": null
  },
  "_meta": {
-  "updated": "2026-11-25T11:03+00:00",
+  "updated": "2026-11-25T14:28+00:00",
   "shops": [
    {
     "name": "Cards & Dice",

@@ -650,6 +650,17 @@
 },
 {
 "shop": "CARAB",
+"title": "Magic: the Gathering - Star Trek - Play Booster Display {English}",
+"set": "Star Trek",
+"type": "Play",
+"lang": "EN",
+"price": 134.9,
+"avail": true,
+"release": "2026-11",
+"stand": "2026-11-25"
+},
+{
+"shop": "CARAB",
 "title": "Streets of New Capenna - Set-Booster Display {Deutsch}",
 "set": "Streets of New Capenna",
 "type": "Set",
@@ -2568,7 +2579,7 @@
 "set": "Star Trek",
 "type": "Collector",
 "lang": "EN",
-"price": 489.0,
+"price": 492.0,
 "avail": false,
 "release": "2026-11",
 "stand": "2026-11-25"
@@ -2579,7 +2590,7 @@
 "set": "Star Trek",
 "type": "Play",
 "lang": "EN",
-"price": 196.0,
+"price": 197.0,
 "avail": true,
 "release": "2026-11",
 "stand": "2026-11-25"
@@ -10852,17 +10863,6 @@
 "type": "Collector",
 "lang": "EN",
 "price": 319.9,
-"avail": true,
-"release": "2025-02",
-"stand": "2026-11-25"
-},
-{
-"shop": "TwoMoons",
-"title": "Ätherdrift Play Booster Display (DE)",
-"set": "Aetherdrift",
-"type": "Play",
-"lang": "DE",
-"price": 69.9,
 "avail": true,
 "release": "2025-02",
 "stand": "2026-11-25"
