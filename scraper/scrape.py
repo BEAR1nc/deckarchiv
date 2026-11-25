@@ -104,6 +104,28 @@ def woocommerce(base, query='display'):
     return items
 
 
+def molo13():
+    """Molo 13 (Pregassona/Lugano), ePages-REST-API."""
+    items = []
+    for q in ('display', 'booster box'):
+        for page in range(1, 11):
+            r = get('https://molo13.ch/rs/shops/180252/products', params={'q': q, 'resultsPerPage': 100, 'page': page},
+                    headers={'Accept': 'application/vnd.epages.v1+json'})
+            r.raise_for_status()
+            j = r.json()
+            for d in j.get('items', []):
+                t = re.sub(r'^\d{2}\.\d{2}\.\d{4}\s*', '', d.get('name') or '').strip()
+                if not re.search(r'magic|mtg', t, re.I) or not is_display(t):
+                    continue
+                pr = ((d.get('priceInfo') or {}).get('price') or {}).get('amount')
+                if pr is None:
+                    continue
+                items.append((t, float(pr), d.get('availability') in ('OnStock', 'WarnStock') and d.get('forSale') is not False))
+            if page * 100 >= j.get('results', 0):
+                break
+    return items
+
+
 # ------------------------------------------------------------------- einzelne
 def carab():
     items = []
@@ -420,6 +442,7 @@ SHOPS = [
     ('Zadoys', 'https://zadoys.ch', None, lambda: shopify('https://zadoys.ch')),
     ('Drachehöhli', 'https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/', None, drachehoehli),
     ('Le Maître de Jeux', 'https://shop.lemaitredejeux.ch', None, lambda: woocommerce('https://shop.lemaitredejeux.ch')),
+    ('Molo 13', 'https://molo13.ch/de/c/magic-the-gathering', None, molo13),
     ('Zwergenschmiede', 'https://www.zwergenschmiede.ch/brands/magic-the-gathering/', None, zwergenschmiede),
 ]
 

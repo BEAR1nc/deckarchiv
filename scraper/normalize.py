@@ -119,7 +119,7 @@ def find_lang(t, default):
             return {'en': 'EN', 'eng': 'EN', 'de': 'DE', 'deu': 'DE', 'ger': 'DE', 'fr': 'FR', 'fra': 'FR'}.get(m2.group(1).lower(), 'JP')
         if re.search(r'japan', s, re.I) or re.search(r'\bJPN?\b|\bJAP\b|-J-', s): return 'JP'
         if re.search(r'franz|fran[cç]ais', s, re.I) or re.search(r'\bFR\b', s): return 'FR'
-        if re.search(r'russisch', s, re.I) or re.search(r'\bRUS?\b|\bIT\b|\bES\b', s): return 'andere'
+        if re.search(r'russisch|italiano|italienisch|espa[nñ]ol', s, re.I) or re.search(r'\bRUS?\b|\bIT\b|\bES\b', s): return 'andere'
         if re.search(r'englisch|english|anglais', s, re.I) or re.search(r'\bEN\b|-E-|-EN-', s): return 'EN'
         if re.search(r'deutsch', s, re.I) or re.search(r'\bDE\b|-D-|-DE\b|-D\b|\bD\s*$', s): return 'DE'
     if GERMAN_HINT.search(t): return 'DE'
