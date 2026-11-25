@@ -21,7 +21,7 @@ SETS = [
     ('Foundations', '2024-11', ['foundations', 'grundstein']),
     ('Duskmourn: House of Horror', '2024-09', ['duskmourn']),
     ('Bloomburrow', '2024-08', ['bloomburrow']),
-    ("Assassin's Creed", '2024-07', ["assassin"]),
+    ("Assassin's Creed", '2024-07', ["assassin", "assasin"]),
     ('Modern Horizons 3', '2024-06', ['modern horizons 3', 'modern horizons iii']),
     ('Outlaws of Thunder Junction', '2024-04', ['thunder junction']),
     ('Fallout', '2024-03', ['fallout']),
