@@ -1,0 +1,11 @@
+URL https://www.buchmann.ch/de/advanced_search_result.php?keywords=magic+booster+display
+FINAL https://www.buchmann.ch/de/advanced_search_result.php?keywords=magic+booster+display
+STATUS 403
+LEN 5910
+GEN []
+NEXT False JSONLD 0 PRESTA False
+
+LINKS
+
+
+SNIPPETS
