@@ -148,6 +148,9 @@ def redline():
             if not re.search(r'magic|mtg', name, re.I) or not is_display(name):
                 continue
             price = float(re.sub(r'[^\d,.]', '', pr.get_text()).replace("'", '').replace(',', '.'))
+            m = re.match(r'\s*(ENG|EN|FR|DE|JP|JAP|IT)\b', c.get_text(' ', strip=True))
+            if m and not re.search(r'\b(ENG?|FR|DE|JPN?|JAP|IT)\b', name):
+                name += f' - {m.group(1)}'
             txt = c.get_text(' ', strip=True).lower()
             avail = ('acheter' in txt or c.select_one('[data-button-action="add-to-cart"]') is not None) and not re.search(r'rupture|épuisé|indisponible', txt)
             items.append((name, price, avail))
