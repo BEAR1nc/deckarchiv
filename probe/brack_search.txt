@@ -1,2 +1,0 @@
-URL https://www.brack.ch/search?query=magic%20booster%20display
-ERROR HTTPSConnectionPool(host='www.brack.ch', port=443): Read timed out. (read timeout=40)

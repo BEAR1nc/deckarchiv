@@ -379,7 +379,6 @@ SHOPS = [
     ('Toki', 'https://toki.ch', 'DE', lambda: shopify('https://toki.ch')),
     ('Trading Card Cave', 'https://www.tradingcardcave.ch', None, lambda: shopify('https://www.tradingcardcave.ch')),
     ('TwoMoons', 'https://www.twomoons.ch', None, twomoons),
-    ('CardCosmos', 'https://cardcosmos.ch', None, lambda: shopify('https://cardcosmos.ch')),
     ('edujeu', 'https://edujeu.ch', None, lambda: woocommerce('https://edujeu.ch')),
     ('Galaxus', 'https://www.galaxus.ch', None, galaxus),
     ('Sky Spell', 'https://skyspell.ch/collections/magic-the-gathering', None, lambda: shopify('https://sky-spell.myshopify.com')),

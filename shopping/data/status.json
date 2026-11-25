@@ -158,14 +158,6 @@
   "error": null,
   "count": 19
  },
- "CardCosmos": {
-  "link": "https://cardcosmos.ch",
-  "ok": true,
-  "last_ok": "2026-11-24",
-  "note": null,
-  "count": 127,
-  "error": null
- },
  "edujeu": {
   "link": "https://edujeu.ch",
   "ok": true,
@@ -296,10 +288,6 @@
    {
     "name": "TwoMoons",
     "link": "https://www.twomoons.ch"
-   },
-   {
-    "name": "CardCosmos",
-    "link": "https://cardcosmos.ch"
    },
    {
     "name": "edujeu",
