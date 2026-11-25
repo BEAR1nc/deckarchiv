@@ -20,7 +20,7 @@
   "ok": true,
   "last_ok": "2026-11-25",
   "note": null,
-  "count": 76,
+  "count": 77,
   "error": null
  },
  "GameGalaxy": {
@@ -207,7 +207,7 @@
   "error": null
  },
  "_meta": {
-  "updated": "2026-11-25T10:39+00:00",
+  "updated": "2026-11-25T10:57+00:00",
   "shops": [
    {
     "name": "Cards & Dice",
@@ -316,6 +316,10 @@
    {
     "name": "Drachehöhli",
     "link": "https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/"
+   },
+   {
+    "name": "Zwergenschmiede",
+    "link": "https://www.zwergenschmiede.ch/brands/magic-the-gathering/"
    }
   ]
  },
@@ -324,6 +328,14 @@
   "ok": true,
   "last_ok": "2026-11-25",
   "count": 11,
+  "error": null,
+  "note": null
+ },
+ "Zwergenschmiede": {
+  "link": "https://www.zwergenschmiede.ch/brands/magic-the-gathering/",
+  "ok": true,
+  "last_ok": "2026-11-25",
+  "count": 18,
   "error": null,
   "note": null
  }
