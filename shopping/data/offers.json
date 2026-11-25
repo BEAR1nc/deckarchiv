@@ -2557,7 +2557,7 @@
 "set": "Star Trek",
 "type": "Collector",
 "lang": "EN",
-"price": 491.0,
+"price": 492.0,
 "avail": false,
 "release": "2026-11",
 "stand": "2026-11-25"
@@ -6277,6 +6277,61 @@
 "lang": "EN",
 "price": 169.0,
 "avail": false,
+"release": "2026-08",
+"stand": "2026-11-25"
+},
+{
+"shop": "Red Line TCG",
+"title": "Magic the Gathering - Marvel Super Heroes Display - ENG",
+"set": "Marvel Super Heroes",
+"type": "Play",
+"lang": "k.A.",
+"price": 155.0,
+"avail": true,
+"release": "2026-06",
+"stand": "2026-11-25"
+},
+{
+"shop": "Red Line TCG",
+"title": "Magic the Gathering - REALITY FRACTURE PLAY BOOSTER DISPLAY - ENG",
+"set": "Reality Fracture",
+"type": "Play",
+"lang": "k.A.",
+"price": 180.0,
+"avail": true,
+"release": "2026-10",
+"stand": "2026-11-25"
+},
+{
+"shop": "Red Line TCG",
+"title": "Magic the Gathering - Teenage Mutant Ninja Turtles Collector Booster Display - ENG",
+"set": "Teenage Mutant Ninja Turtles",
+"type": "Collector",
+"lang": "k.A.",
+"price": 495.0,
+"avail": true,
+"release": "2026-03",
+"stand": "2026-11-25"
+},
+{
+"shop": "Red Line TCG",
+"title": "Magic the Gathering Teenage - Mutant Ninja Turtles Booster Display - ENG",
+"set": "Teenage Mutant Ninja Turtles",
+"type": "Play",
+"lang": "k.A.",
+"price": 169.0,
+"avail": true,
+"release": "2026-03",
+"stand": "2026-11-25"
+},
+{
+"shop": "Red Line TCG",
+"title": "Magic the Gathering - The Hobbit Play Booster Display",
+"set": "The Hobbit",
+"type": "Play",
+"lang": "k.A.",
+"price": 180.0,
+"avail": true,
 "release": "2026-08",
 "stand": "2026-11-25"
 },
