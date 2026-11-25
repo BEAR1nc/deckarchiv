@@ -628,28 +628,6 @@
 },
 {
 "shop": "CARAB",
-"title": "Magic: the Gathering - Star Trek - Collector Booster Display {English}",
-"set": "Star Trek",
-"type": "Collector",
-"lang": "EN",
-"price": 429.9,
-"avail": true,
-"release": "2026-11",
-"stand": "2026-11-25"
-},
-{
-"shop": "CARAB",
-"title": "Magic: the Gathering - Star Trek - Play Booster Display {Deutsch}",
-"set": "Star Trek",
-"type": "Play",
-"lang": "DE",
-"price": 129.9,
-"avail": true,
-"release": "2026-11",
-"stand": "2026-11-25"
-},
-{
-"shop": "CARAB",
 "title": "Magic: the Gathering - Star Trek - Play Booster Display {English}",
 "set": "Star Trek",
 "type": "Play",
@@ -2579,7 +2557,7 @@
 "set": "Star Trek",
 "type": "Collector",
 "lang": "EN",
-"price": 492.0,
+"price": 491.0,
 "avail": false,
 "release": "2026-11",
 "stand": "2026-11-25"
@@ -12381,7 +12359,7 @@
 "type": "Play",
 "lang": "FR",
 "price": 134.95,
-"avail": true,
+"avail": false,
 "release": "2026-10",
 "stand": "2026-11-25"
 },

@@ -20,7 +20,7 @@
   "ok": true,
   "last_ok": "2026-11-25",
   "note": null,
-  "count": 78,
+  "count": 76,
   "error": null
  },
  "GameGalaxy": {
@@ -207,7 +207,7 @@
   "error": null
  },
  "_meta": {
-  "updated": "2026-11-25T14:28+00:00",
+  "updated": "2026-11-25T16:01+00:00",
   "shops": [
    {
     "name": "Cards & Dice",
