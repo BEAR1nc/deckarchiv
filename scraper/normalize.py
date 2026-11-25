@@ -114,6 +114,9 @@ def find_lang(t, default):
     m = re.search(r'\{([^}]*)\}', t)
     cands = ([m.group(1)] if m else []) + [t]
     for s in cands:
+        m2 = re.search(r'\((en|eng|de|deu|ger|fr|fra|jp|jap|jpn)\)', s, re.I)
+        if m2:
+            return {'en': 'EN', 'eng': 'EN', 'de': 'DE', 'deu': 'DE', 'ger': 'DE', 'fr': 'FR', 'fra': 'FR'}.get(m2.group(1).lower(), 'JP')
         if re.search(r'japan', s, re.I) or re.search(r'\bJPN?\b|\bJAP\b|-J-', s): return 'JP'
         if re.search(r'franz|fran[cç]ais', s, re.I) or re.search(r'\bFR\b', s): return 'FR'
         if re.search(r'russisch', s, re.I) or re.search(r'\bRUS?\b|\bIT\b|\bES\b', s): return 'andere'
