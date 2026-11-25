@@ -419,6 +419,7 @@ SHOPS = [
     ('World of Games', 'https://www.wog.ch', None, wog),
     ('Zadoys', 'https://zadoys.ch', None, lambda: shopify('https://zadoys.ch')),
     ('Drachehöhli', 'https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/', None, drachehoehli),
+    ('Le Maître de Jeux', 'https://shop.lemaitredejeux.ch', None, lambda: woocommerce('https://shop.lemaitredejeux.ch')),
     ('Zwergenschmiede', 'https://www.zwergenschmiede.ch/brands/magic-the-gathering/', None, zwergenschmiede),
 ]
 
