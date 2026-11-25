@@ -156,7 +156,7 @@
   "note": null,
   "last_try": "2026-11-21",
   "error": null,
-  "count": 19
+  "count": 27
  },
  "edujeu": {
   "link": "https://edujeu.ch",
@@ -207,7 +207,7 @@
   "error": null
  },
  "_meta": {
-  "updated": "2026-11-25T10:57+00:00",
+  "updated": "2026-11-25T11:03+00:00",
   "shops": [
    {
     "name": "Cards & Dice",
