@@ -126,6 +126,36 @@ def molo13():
     return items
 
 
+def redline():
+    """Red Line TCG (Carouge GE), PrestaShop 1.7 Kategorieseite."""
+    items, seen = [], set()
+    for page in range(1, 11):
+        sp = soup('https://www.red-line.shop/18-magic-the-gathering', params={'page': page})
+        cards = [c for c in sp.select('#js-product-list .product-miniature') or sp.select('.product-miniature')
+                 if 'slick-cloned' not in (c.get('class') or [])]
+        new = 0
+        for c in cards:
+            a = c.select_one('.product-name a') or c.select_one('a')
+            pr = c.select_one('.price')
+            if not a or not pr:
+                continue
+            href = a.get('href', '')
+            if href in seen:
+                continue
+            seen.add(href)
+            new += 1
+            name = a.get_text(' ', strip=True)
+            if not re.search(r'magic|mtg', name, re.I) or not is_display(name):
+                continue
+            price = float(re.sub(r'[^\d,.]', '', pr.get_text()).replace("'", '').replace(',', '.'))
+            txt = c.get_text(' ', strip=True).lower()
+            avail = ('acheter' in txt or c.select_one('[data-button-action="add-to-cart"]') is not None) and not re.search(r'rupture|épuisé|indisponible', txt)
+            items.append((name, price, avail))
+        if not new:
+            break
+    return items
+
+
 # ------------------------------------------------------------------- einzelne
 def carab():
     items = []
@@ -443,6 +473,7 @@ SHOPS = [
     ('Drachehöhli', 'https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/', None, drachehoehli),
     ('Le Maître de Jeux', 'https://shop.lemaitredejeux.ch', None, lambda: woocommerce('https://shop.lemaitredejeux.ch')),
     ('Molo 13', 'https://molo13.ch/de/c/magic-the-gathering', None, molo13),
+    ('Red Line TCG', 'https://www.red-line.shop/18-magic-the-gathering', None, redline),
     ('Zwergenschmiede', 'https://www.zwergenschmiede.ch/brands/magic-the-gathering/', None, zwergenschmiede),
 ]
 
