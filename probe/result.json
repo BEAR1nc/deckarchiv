@@ -1,0 +1,205 @@
+[
+ {
+  "domain": "genkicorp.ch",
+  "status": 200,
+  "final": "https://www.genkicorp.ch/de/",
+  "title": "Genki Corp. SA",
+  "plat": [
+   "prestashop"
+  ],
+  "mtg": 3
+ },
+ {
+  "domain": "la-guilde.ch",
+  "status": 200,
+  "final": "https://www.la-guilde.ch/",
+  "title": "Accueil - La Guilde",
+  "plat": [],
+  "mtg": 3
+ },
+ {
+  "domain": "spielstatt.ch",
+  "status": 200,
+  "final": "https://www.spielstatt.ch/",
+  "title": "Start | Spielstatt Gmbh",
+  "plat": [
+   "wix"
+  ],
+  "mtg": 9
+ },
+ {
+  "domain": "miracoolix.ch",
+  "status": 200,
+  "final": "https://www.miracoolix.ch/",
+  "title": "Miracoolix - Home",
+  "plat": [],
+  "mtg": 4
+ },
+ {
+  "domain": "drachenaescht.ch",
+  "status": 200,
+  "final": "https://fatamorgana.ch/",
+  "title": "Start | DracheNäscht &amp; Fata Morgana",
+  "plat": [],
+  "mtg": 17
+ },
+ {
+  "domain": "xenomorph.ch",
+  "error": "HTTPSConnectionPool(host='www.xenomorph.ch', port=443): Max retries exceeded with url: / (Caused by "
+ },
+ {
+  "domain": "lespecialiste.ch",
+  "error": "HTTPSConnectionPool(host='www.lespecialiste.ch', port=443): Max retries exceeded with url: / (Caused"
+ },
+ {
+  "domain": "sognidicarta.ch",
+  "error": "HTTPSConnectionPool(host='www.sognidicarta.ch', port=443): Max retries exceeded with url: / (Caused "
+ },
+ {
+  "domain": "atoidejouer.ch",
+  "status": 404,
+  "final": "https://www.atoidejouer.ch/",
+  "title": "Store unavailable",
+  "plat": [
+   "cdn.shopify"
+  ],
+  "mtg": 0
+ },
+ {
+  "domain": "molo13.ch",
+  "status": 200,
+  "final": "https://molo13.ch/de",
+  "title": "Molo 13 - Armageddon Warhammer 40.000, Age of Sigmar",
+  "plat": [],
+  "mtg": 92
+ },
+ {
+  "domain": "lemaitredejeux.ch",
+  "status": 200,
+  "final": "https://shop.lemaitredejeux.ch/",
+  "title": "Le Maître de Jeux ­– Boutique à Sion (Valais) - Boutique en ligne",
+  "plat": [
+   "woocommerce"
+  ],
+  "mtg": 31,
+  "wc_n": 5,
+  "wc_disp": [
+   "Magic The Gathering : Aetherdrift &#8211; Play Booster Display EN",
+   "Magic The Gathering : Assasin&rsquo;s Creed &#8211; Booster Display (anglais)"
+  ]
+ },
+ {
+  "domain": "spielkiste.ch",
+  "status": 200,
+  "final": "https://shop.spielkiste.ch",
+  "title": "Spielkiste Schweiz AG",
+  "plat": [],
+  "mtg": 1
+ },
+ {
+  "domain": "tulispiele.ch",
+  "error": "HTTPSConnectionPool(host='www.tulispiele.ch', port=443): Max retries exceeded with url: / (Caused by"
+ },
+ {
+  "domain": "tuli.ch",
+  "status": 200,
+  "final": "https://www.tuli.ch/",
+  "title": "sito-tuli",
+  "plat": [],
+  "mtg": 0
+ },
+ {
+  "domain": "spikus.ch",
+  "error": "HTTPSConnectionPool(host='www.spikus.ch', port=443): Max retries exceeded with url: / (Caused by Nam"
+ },
+ {
+  "domain": "wild-cards.ch",
+  "status": 200,
+  "final": "https://www.twomoons.ch/",
+  "title": "",
+  "plat": [
+   "shopware"
+  ],
+  "mtg": 214
+ },
+ {
+  "domain": "wildcards.ch",
+  "error": "HTTPSConnectionPool(host='www.wildcards.ch', port=443): Max retries exceeded with url: / (Caused by "
+ },
+ {
+  "domain": "garagentroll.ch",
+  "error": "HTTPSConnectionPool(host='www.garagentroll.ch', port=443): Max retries exceeded with url: / (Caused "
+ },
+ {
+  "domain": "drachechaeller.ch",
+  "error": "HTTPSConnectionPool(host='www.drachechaeller.ch', port=443): Max retries exceeded with url: / (Cause"
+ },
+ {
+  "domain": "graffiti-spiel.ch",
+  "error": "HTTPSConnectionPool(host='www.graffiti-spiel.ch', port=443): Max retries exceeded with url: / (Cause"
+ },
+ {
+  "domain": "stauffacher.ch",
+  "status": 403,
+  "final": "https://www.orellfuessli.ch/unternehmen/filialen/stauffacher",
+  "title": "Zugriff geblockt",
+  "plat": [],
+  "mtg": 0
+ },
+ {
+  "domain": "spiel-laeselade.ch",
+  "status": 200,
+  "final": "https://www.spiel-laeselade.ch/",
+  "title": "Spiel + L&#228;selade, Ausgew&#228;hlte Spiele und B&#252;cher f&#252;r Jung und",
+  "plat": [],
+  "mtg": 2
+ },
+ {
+  "domain": "stocker-stadel.ch",
+  "error": "HTTPSConnectionPool(host='www.stocker-stadel.ch', port=443): Max retries exceeded with url: / (Cause"
+ },
+ {
+  "domain": "kaufparadies.ch",
+  "error": "HTTPSConnectionPool(host='www.kaufparadies.ch', port=443): Max retries exceeded with url: / (Caused "
+ },
+ {
+  "domain": "aupardisdujeu.ch",
+  "error": "HTTPSConnectionPool(host='www.aupardisdujeu.ch', port=443): Max retries exceeded with url: / (Caused"
+ },
+ {
+  "domain": "auparadisdujeu.ch",
+  "status": 200,
+  "final": "https://auparadisdujeu.ch/",
+  "title": "Au Paradis du Jeu &#8211; Magasin et espace de jeu",
+  "plat": [],
+  "mtg": 0
+ },
+ {
+  "domain": "spielwerk.ch",
+  "status": 200,
+  "final": "https://www.spielwerk.ch/",
+  "title": "Spielwerk – Spielgruppenleiterin für Waldspielgruppe &amp; Kinderbetreuung",
+  "plat": [],
+  "mtg": 0
+ },
+ {
+  "domain": "spieleladen.ch",
+  "error": "HTTPSConnectionPool(host='www.spieleladen.ch', port=443): Max retries exceeded with url: / (Caused b"
+ },
+ {
+  "domain": "wartavern.ch",
+  "status": 403,
+  "final": "https://wartavern.ch/",
+  "title": "Just a moment...",
+  "plat": [],
+  "mtg": 0
+ },
+ {
+  "domain": "mediamarkt.ch",
+  "status": 403,
+  "final": "https://www.mediamarkt.ch/",
+  "title": "Just a moment...",
+  "plat": [],
+  "mtg": 0
+ }
+]
