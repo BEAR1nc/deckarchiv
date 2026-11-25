@@ -337,6 +337,39 @@ def galaxus():
     return items
 
 
+def zwergenschmiede():
+    """Lightspeed-Shop: Marken-Seite als JSON, danach jede Display-Produktseite als JSON."""
+    base = 'https://www.zwergenschmiede.ch/'
+    urls = {}
+    for p in range(1, 15):
+        page = 'brands/magic-the-gathering/' + (f'page{p}.html' if p > 1 else '')
+        r = get(base + page, params={'format': 'json', 'limit': 100})
+        r.raise_for_status()
+        col = r.json().get('collection', {})
+        prods = col.get('products') or {}
+        if isinstance(prods, dict):
+            prods = list(prods.values())
+        for pr in prods:
+            t = pr.get('fulltitle') or pr.get('title') or ''
+            if is_display(t):
+                urls[pr.get('url')] = t
+        if not col.get('page_next') or p >= (col.get('pages') or 1):
+            break
+    items = []
+    for u in urls:
+        if not u:
+            continue
+        r = get(base + u.lstrip('/'), params={'format': 'json'})
+        r.raise_for_status()
+        pr = r.json().get('product', {})
+        t = pr.get('fulltitle') or pr.get('title') or ''
+        price = (pr.get('price') or {}).get('price_incl')
+        stock = pr.get('stock') or {}
+        items.append((t, price, bool(stock.get('available'))))
+        time.sleep(0.3)
+    return items
+
+
 def drachehoehli():
     """Preisliste auf der Website (kein Warenkorb): Lieferbarkeit nicht angegeben."""
     sp = soup('https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/')
@@ -386,6 +419,7 @@ SHOPS = [
     ('World of Games', 'https://www.wog.ch', None, wog),
     ('Zadoys', 'https://zadoys.ch', None, lambda: shopify('https://zadoys.ch')),
     ('Drachehöhli', 'https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/', None, drachehoehli),
+    ('Zwergenschmiede', 'https://www.zwergenschmiede.ch/brands/magic-the-gathering/', None, zwergenschmiede),
 ]
 
 
