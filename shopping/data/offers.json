@@ -2959,6 +2959,17 @@
 "stand": "2026-11-25"
 },
 {
+"shop": "Le Maître de Jeux",
+"title": "Magic The Gathering : Aetherdrift – Play Booster Display EN",
+"set": "Aetherdrift",
+"type": "Play",
+"lang": "EN",
+"price": 140.0,
+"avail": true,
+"release": "2025-02",
+"stand": "2026-11-25"
+},
+{
 "shop": "MaRo Games",
 "title": "Magic The Gathering - Ätherdrift - Sammler Booster Display (12 Packs) DE",
 "set": "Aetherdrift",
@@ -5409,6 +5420,61 @@
 "price": 149.0,
 "avail": false,
 "release": "2020-09",
+"stand": "2026-11-25"
+},
+{
+"shop": "Molo 13",
+"title": "Magic - Avatar: the Last Airbender Play Booster Box (30 Packs) (English)",
+"set": "Avatar: The Last Airbender",
+"type": "Play",
+"lang": "EN",
+"price": 139.9,
+"avail": true,
+"release": "2025-11",
+"stand": "2026-11-25"
+},
+{
+"shop": "Molo 13",
+"title": "Marvel Super Heroes Play Booster Display (English) - Magic: The Gathering",
+"set": "Marvel Super Heroes",
+"type": "Play",
+"lang": "EN",
+"price": 149.9,
+"avail": true,
+"release": "2026-06",
+"stand": "2026-11-25"
+},
+{
+"shop": "Molo 13",
+"title": "Reality Fracture - Play Booster Box (Display) - Magic (English)",
+"set": "Reality Fracture",
+"type": "Play",
+"lang": "EN",
+"price": 149.9,
+"avail": true,
+"release": "2026-10",
+"stand": "2026-11-25"
+},
+{
+"shop": "Molo 13",
+"title": "Star Trek - Play Booster Box (Display 30 booster) (English) - Magic",
+"set": "Star Trek",
+"type": "Play",
+"lang": "EN",
+"price": 129.9,
+"avail": true,
+"release": "2026-11",
+"stand": "2026-11-25"
+},
+{
+"shop": "Molo 13",
+"title": "Magic - Teenage Mutant Ninja Turtles Play Booster Display (English)",
+"set": "Teenage Mutant Ninja Turtles",
+"type": "Play",
+"lang": "EN",
+"price": 129.9,
+"avail": true,
+"release": "2026-03",
 "stand": "2026-11-25"
 },
 {

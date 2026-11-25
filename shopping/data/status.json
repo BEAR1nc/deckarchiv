@@ -207,7 +207,7 @@
   "error": null
  },
  "_meta": {
-  "updated": "2026-11-25T16:01+00:00",
+  "updated": "2026-11-25T16:25+00:00",
   "shops": [
    {
     "name": "Cards & Dice",
@@ -318,6 +318,14 @@
     "link": "https://xn--drachehhli-kcb.ch/drachehoehli/63-2/magic/"
    },
    {
+    "name": "Le Maître de Jeux",
+    "link": "https://shop.lemaitredejeux.ch"
+   },
+   {
+    "name": "Molo 13",
+    "link": "https://molo13.ch/de/c/magic-the-gathering"
+   },
+   {
     "name": "Zwergenschmiede",
     "link": "https://www.zwergenschmiede.ch/brands/magic-the-gathering/"
    }
@@ -336,6 +344,22 @@
   "ok": true,
   "last_ok": "2026-11-25",
   "count": 18,
+  "error": null,
+  "note": null
+ },
+ "Le Maître de Jeux": {
+  "link": "https://shop.lemaitredejeux.ch",
+  "ok": true,
+  "last_ok": "2026-11-25",
+  "count": 1,
+  "error": null,
+  "note": null
+ },
+ "Molo 13": {
+  "link": "https://molo13.ch/de/c/magic-the-gathering",
+  "ok": true,
+  "last_ok": "2026-11-25",
+  "count": 5,
   "error": null,
   "note": null
  }
